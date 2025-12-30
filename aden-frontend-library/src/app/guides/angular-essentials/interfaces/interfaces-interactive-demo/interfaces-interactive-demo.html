@@ -1,0 +1,81 @@
+  <section class="demo-section">
+
+    <div class="ide-container">
+
+      <!-- LEFT: Input Form -->
+      <div class="panel input-panel">
+        <div class="panel-header">Object Creation</div>
+        <div class="form-content">
+
+          <div class="form-group">
+            <label>username <span class="type-hint">(string)</span></label>
+            <input type="text" [(ngModel)]="username" placeholder="e.g. Aden" (input)="compilerStatus = 'idle'">
+          </div>
+
+          <div class="form-group">
+            <label>age <span class="type-hint">(number)</span></label>
+            <input type="number" [(ngModel)]="age" placeholder="e.g. 25" (input)="compilerStatus = 'idle'">
+          </div>
+
+          <div class="form-group checkbox-group">
+            <label>
+              <input type="checkbox" [(ngModel)]="isPremium" (change)="compilerStatus = 'idle'">
+              isPremium <span class="type-hint">(boolean, optional)</span>
+            </label>
+          </div>
+
+          <button class="aden-btn" (click)="checkTypes()">
+            <span class="icon">▶</span> Compile & Check
+          </button>
+
+        </div>
+      </div>
+
+      <!-- RIGHT: Code View -->
+      <div class="panel code-panel">
+        <div class="panel-header">
+          <span>editor.ts</span>
+          <span class="status-dot"
+                [class.green]="compilerStatus === 'success'"
+                [class.red]="compilerStatus === 'error'"></span>
+        </div>
+
+        <div class="editor-content">
+          <!-- The Interface Definition -->
+          <div class="code-block-transparent">
+            <span class="keyword">interface</span> <span class="type">User</span> {{ '{' }}<br>
+            &nbsp;&nbsp;username: <span class="type">string</span>;<br>
+            &nbsp;&nbsp;age: <span class="type">number</span>;<br>
+            &nbsp;&nbsp;isPremium?: <span class="type">boolean</span>;<br>
+            {{ '}' }}
+          </div>
+
+          <div class="divider"></div>
+
+          <!-- The Instantiation -->
+          <div class="code-block-transparent">
+            <span class="keyword">const</span> currentUser: <span class="type">User</span> = {{ '{' }}<br>
+            &nbsp;&nbsp;username: <span class="string">"{{ username }}"</span>,<br>
+            &nbsp;&nbsp;age: <span class="attr">{{ age !== null ? age : 'null' }}</span>,<br>
+            &nbsp;&nbsp;isPremium: <span class="attr">{{ isPremium }}</span><br>
+            {{ '}' }};
+          </div>
+
+          <!-- Error Overlay -->
+          @if (compilerStatus === 'error') {
+            <div class="compiler-output error fade-in">
+              <span class="error-icon">❌</span> {{ errorMessage }}
+            </div>
+          }
+
+          <!-- Success Overlay -->
+          @if (compilerStatus === 'success') {
+            <div class="compiler-output success fade-in">
+              <span class="success-icon">✅</span> Compilation successful. Type matches.
+            </div>
+          }
+        </div>
+      </div>
+
+    </div>
+  </section>

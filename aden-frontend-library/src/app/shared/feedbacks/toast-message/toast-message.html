@@ -1,0 +1,15 @@
+<div #toastEl class="toast" [class]="toast.type">
+  <div class="icon-wrapper">
+    @if(toast.type === 'success') { <span>✓</span> }
+    @else if(toast.type === 'error') { <span>✕</span> }
+    @else { <span>ℹ️</span> }
+  </div>
+
+  <app-typografie class="message"
+    [text]="toast.message"
+    color="white"
+    size="small">
+  </app-typografie>
+
+  <button class="close-btn" (click)="startExitAnimation()">×</button>
+</div>

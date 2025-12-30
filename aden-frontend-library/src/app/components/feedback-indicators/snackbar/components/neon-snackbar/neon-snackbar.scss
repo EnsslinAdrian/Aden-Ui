@@ -1,0 +1,146 @@
+.page-container {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.library-container {
+  position: relative; /* Wichtig für absolute Positionierung der Snackbar */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  width: 100%;
+  max-width: 500px;
+  background-color: var(--aden-bg);
+  border-radius: 12px;
+  overflow: hidden; /* Damit die Snackbar nicht aus der Box fliegt */
+}
+
+:host {
+  --aden-bg: #0f0f0f;
+  --aden-surface: #1a1a1a;
+  --aden-border: #333333;
+  --aden-text: #e5e5e5;
+  --aden-muted: #888;
+  --aden-primary: #4ade80;
+}
+
+/* --- Trigger Button --- */
+.aden-btn {
+  background-color: var(--aden-surface);
+  color: var(--aden-text);
+  border: 1px solid var(--aden-border);
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.aden-btn:hover {
+  border-color: var(--aden-primary);
+  color: #fff;
+}
+
+/* --- Snackbar Styles --- */
+.aden-snackbar {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px); /* Startposition: unten versteckt */
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  min-width: 320px;
+  padding: 12px 16px;
+  background-color: var(--aden-surface);
+  border: 1px solid var(--aden-border);
+  border-left: 4px solid var(--aden-primary); /* Grüner Akzent links */
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 100;
+}
+
+/* Active State */
+.aden-snackbar.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+/* Icon */
+.snackbar-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background-color: rgba(74, 222, 128, 0.1);
+  border-radius: 50%;
+  color: var(--aden-primary);
+  flex-shrink: 0;
+}
+
+.snackbar-icon svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* Text Content */
+.snackbar-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.snackbar-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.snackbar-message {
+  font-size: 0.8rem;
+  color: var(--aden-muted);
+}
+
+/* Action Button (Undo) */
+.snackbar-action {
+  background: none;
+  border: none;
+  color: var(--aden-primary);
+  font-weight: 600;
+  font-size: 0.8rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: color 0.2s;
+}
+
+.snackbar-action:hover {
+  color: #fff;
+}
+
+/* Close X Button */
+.snackbar-close {
+  background: none;
+  border: none;
+  color: var(--aden-muted);
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0 0 0 8px;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.snackbar-close:hover {
+  color: #fff;
+}

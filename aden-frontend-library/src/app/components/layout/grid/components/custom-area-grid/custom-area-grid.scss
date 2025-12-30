@@ -1,0 +1,176 @@
+.page-container {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.library-container {
+  width: 100%;
+  max-width: 1000px; /* Breite geben, damit das Grid wirkt */
+  padding: 20px;
+  background-color: var(--aden-bg);
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+}
+
+:host {
+  --aden-bg: #0f0f0f;
+  --aden-surface: #1a1a1a;
+  --aden-border: #333333;
+  --aden-text: #e5e5e5;
+  --aden-muted: #888;
+  --aden-primary: #4ade80;
+}
+
+/* --- MIXINS (Deine Logik) --- */
+
+@mixin grid-template($layout) {
+  grid-template-areas: $layout;
+}
+
+@mixin apply-grid() {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(6, 1fr);
+
+  /* Desktop Layout: 6 Spalten */
+  @include grid-template(
+    "item1 item1 item2 item2 item2 item2"
+    "item1 item1 item4 item4 item5 item5"
+    "item3 item3 item6 item6 item7 item7"
+  );
+
+  /* Tablet Layout */
+  @media (max-width: 960px) {
+    grid-template-columns: repeat(2, 1fr);
+    @include grid-template(
+      "item2 item2"
+      "item1 item3"
+      "item4 item5"
+      "item6 item7"
+    );
+  }
+
+  /* Mobile Layout */
+  @media (max-width: 480px) {
+    grid-template-columns: repeat(1, 1fr);
+    @include grid-template(
+      "item2"
+      "item1"
+      "item3"
+      "item4"
+      "item5"
+      "item6"
+      "item7"
+    );
+  }
+}
+
+/* --- CONTAINER STYLES --- */
+
+.grid-layout-container {
+  width: 100%;
+  box-sizing: border-box;
+
+  /* Grid anwenden */
+  @include apply-grid();
+}
+
+/* --- AREA ZUWEISUNG --- */
+/* Loop durch 1 bis 7 um grid-area zu setzen */
+@for $i from 1 through 7 {
+  .item#{$i} {
+    grid-area: item#{$i};
+  }
+}
+
+/* --- ITEM STYLING (Aden Theme Anpassung) --- */
+
+.item {
+  background-color: var(--aden-surface);
+  border: 1px solid var(--aden-border);
+  border-radius: 20px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.item:hover {
+    border-color: #555;
+}
+
+/* Spezifische Styles pro Item */
+
+/* Item 1: Das Bild */
+.item1 {
+    padding: 0; /* Kein Padding damit Bild randlos ist */
+    overflow: hidden;
+}
+.item1 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    opacity: 0.8;
+    transition: opacity 0.3s, transform 0.3s;
+}
+.item1:hover img {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+/* Item 2: Headline */
+.item2 {
+    background: transparent;
+    border: none;
+    padding: 0;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+.headline {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+    line-height: 1.1;
+}
+.highlight {
+    color: var(--aden-primary);
+}
+
+/* Item 3: Intro */
+.item3 {
+    background-color: rgba(255, 255, 255, 0.03);
+}
+.intro-text {
+    font-size: 1rem;
+    color: var(--aden-text);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Items 4-7: Details */
+.sub-headline {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fff;
+    margin: 0;
+}
+
+.between-line {
+    border-top: 1px solid var(--aden-border);
+    width: 100%;
+    margin: 16px 0;
+}
+
+.detail-text {
+    font-size: 0.9rem;
+    color: var(--aden-muted);
+    margin: 0;
+    line-height: 1.5;
+}

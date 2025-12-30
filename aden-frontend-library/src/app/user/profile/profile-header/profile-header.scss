@@ -1,0 +1,173 @@
+/* --- HEADER --- */
+.profile-header {
+  position: relative;
+  background: var(--surface-card);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  overflow: hidden;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  .header-bg {
+    position: absolute;
+    top: -50%;
+    left: -10%;
+    width: 50%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(96, 165, 250, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .profile-info {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    z-index: 1;
+
+    /* NEU: Avatar Styling mit Hover Overlay */
+    .avatar-group {
+      position: relative;
+    }
+
+    .avatar-wrapper {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      cursor: pointer;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid var(--dark-grey);
+      background-color: var(--dark-grey);
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s;
+      }
+
+      .upload-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.2s;
+
+        .icon {
+          font-size: 24px;
+        }
+      }
+
+      &:hover {
+        img {
+          transform: scale(1.1);
+        }
+
+        .upload-overlay {
+          opacity: 1;
+        }
+      }
+    }
+
+
+    .text-content {
+      h1 {
+        margin: 0;
+        font-size: 28px;
+        font-weight: 700;
+      }
+
+      .username {
+        color: var(--text-muted);
+        margin: 4px 0 12px 0;
+        font-family: var(--font-mono);
+        font-size: 14px;
+      }
+
+      .meta-badges {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+    }
+  }
+
+  .stats-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    z-index: 1;
+
+    .stat-card {
+      background: var(--dark-grey);
+      border: 1px solid var(--border-color);
+      padding: 12px 20px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 140px;
+
+      @media (max-width: 550px) {
+        flex: 1 1 100%;
+      }
+
+      .stat-icon {
+        font-size: 20px;
+      }
+
+      .stat-data {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+
+        .value {
+          font-weight: 700;
+          font-size: 18px;
+          color: var(--primary-white);
+        }
+
+        .label {
+          font-size: 11px;
+          color: var(--text-muted);
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .profile-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 24px;
+
+    .profile-info {
+      flex-direction: column;
+    }
+
+    .stats-row {
+      width: 100%;
+      overflow-x: auto;
+      justify-content: center;
+    }
+  }
+}
+
+.pro-badge-floating {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}

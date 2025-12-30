@@ -1,0 +1,57 @@
+{% include 'emails/header.html' %}
+
+<!-- Icon (Optional: A small emoji or icon centered at the top looks modern) -->
+<div style="text-align:center; margin-bottom: 24px; font-size: 32px;">
+    👋
+</div>
+
+<h1 style="margin: 0 0 24px 0; font-size: 26px; font-weight: 700; color: #ffffff; text-align: center; letter-spacing: -0.5px;">
+    Verify Your Email
+</h1>
+
+<p class="mobile-text" style="margin: 0 0 24px 0; font-size: 17px; line-height: 1.6; color: #a1a1aa; text-align: center;">
+    Hey <strong>{{ first_name|default:"Developer" }}</strong>,
+</p>
+
+<p class="mobile-text" style="margin: 0 0 40px 0; font-size: 16px; line-height: 1.6; color: #a1a1aa; text-align: center;">
+    Thank you for signing up with <strong>Aden Library</strong>. 
+    We're excited to have you on board! Please confirm your account to get started.
+</p>
+
+<!-- ACTION BUTTON -->
+<table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+        <td align="center">
+            <a href="{{ verify_url }}" target="_blank"
+               style="display: inline-block; 
+                      background-color: #10b981; 
+                      color: #000000; 
+                      font-size: 16px; 
+                      font-weight: 600; 
+                      text-decoration: none; 
+                      padding: 16px 48px; 
+                      border-radius: 8px; 
+                      letter-spacing: -0.2px;
+                      box-shadow: 0 0 0 1px #059669 inset;">
+                Verify Account &rarr;
+            </a>
+        </td>
+    </tr>
+</table>
+
+<!-- DIVIDER -->
+<table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-top: 40px; margin-bottom: 30px;">
+    <tr>
+        <td height="1" style="background-color: #27272a; font-size:0; line-height:0;">&nbsp;</td>
+    </tr>
+</table>
+
+<!-- FALLBACK LINK -->
+<p style="margin: 0 0 10px 0; font-size: 13px; color: #52525b; text-align: center;">
+    Button not working? Copy this link:
+</p>
+<p style="margin: 0; font-size: 13px; text-align: center; word-break: break-all;">
+    <a href="{{ verify_url }}" style="color: #10b981; text-decoration: none;">{{ verify_url }}</a>
+</p>
+
+{% include 'emails/footer.html' %}

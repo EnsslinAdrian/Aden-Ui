@@ -1,0 +1,28 @@
+<div class="menu-wrapper">
+
+    <!-- Trigger -->
+    <button class="icon-btn" (click)="toggleMenu()">
+        <svg>...</svg>
+    </button>
+
+    <!-- Invisible Backdrop (detects click outside) -->
+    <div *ngIf="isOpen" class="menu-backdrop" (click)="closeMenu()"></div>
+
+    <!-- Menu Content -->
+    <div *ngIf="isOpen" class="aden-menu enter-animation">
+
+        <div class="menu-header">Actions</div>
+
+        <button class="menu-item" (click)="doAction()">
+            <svg>...</svg> <span>Edit</span>
+        </button>
+
+        <div class="menu-divider"></div>
+
+        <button class="menu-item danger" (click)="delete()">
+            <svg>...</svg> <span>Delete</span>
+        </button>
+
+    </div>
+
+</div>

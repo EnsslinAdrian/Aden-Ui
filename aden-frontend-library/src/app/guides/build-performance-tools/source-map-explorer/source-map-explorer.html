@@ -1,0 +1,71 @@
+<div class="page-container onest-font">
+
+  <app-headline-guides
+    [badgeText]="'Performance'"
+    [headline]="'Source Map Explorer'"
+    [subheadline]="'The X-ray vision for your app. Stop guessing why your bundle is large. See exactly which library takes up how much space.'">
+  </app-headline-guides>
+
+  <!-- 1. INTRO: THE STORY -->
+  <section class="content-section">
+    <p class="intro-text">
+      I once had a project that loaded extremely slowly. I had no idea why. The code looked clean.
+      Only when I started the Source Map Explorer did I see it: A single import line had accidentally imported an entire chart library, even though I only wanted one icon.
+    </p>
+    <p class="intro-text" style="margin-top: 16px;">
+      This tool generates a <strong>Treemap</strong>. The bigger the box, the more space the code takes up. This makes optimization almost like a game: "Find the biggest box and make it smaller."
+    </p>
+  </section>
+
+  <!-- 2. DEMO -->
+  <section class="demo-section">
+    <h2>1. Bundle Visualizer</h2>
+    <p class="sub-text">
+      Simulate an analysis. Check out the "Bloated" status: Do you see how much space <code>moment.js</code> takes up?
+      Switch to "Optimized" to see what happens when we replace it with a lighter alternative (e.g., <code>date-fns</code>).
+    </p>
+
+    <app-bundle-visualizer></app-bundle-visualizer>
+  </section>
+
+  <!-- 3. IMPLEMENTATION -->
+  <section class="code-section">
+    <h2>2. Implementation</h2>
+    <p class="sub-text">
+      The tool evaluates the so-called <strong>Source Maps</strong>. These are files that map the minified machine code (`a.js`) back to your readable code.
+    </p>
+
+    <h3 style="margin-top: 24px;">Step 1: Installation</h3>
+    <app-code-block-guide
+      filename="terminal"
+      [code]="installCode"
+      language="bash">
+    </app-code-block-guide>
+
+    <h3 style="margin-top: 32px;">Step 2: Enable Config</h3>
+    <p class="sub-text">
+      By default, source maps are disabled in the production build (to save bandwidth). For analysis, we need to enable them in the <code>angular.json</code> (or via CLI flag).
+    </p>
+    <app-code-block-guide
+      filename="angular.json"
+      [code]="configCode"
+      language="json">
+    </app-code-block-guide>
+
+    <h3 style="margin-top: 32px;">Step 3: The Analyze Command</h3>
+    <p class="sub-text">
+      Instead of searching for the path to the <code>dist</code> folder every time, I create a shortcut in the <code>package.json</code>. A command that builds and directly analyzes.
+    </p>
+    <app-code-block-guide
+      filename="package.json"
+      [code]="packageJsonCode"
+      language="json">
+    </app-code-block-guide>
+
+    <app-notice [noticeType]="'tipp'"
+      [noticeText]="'<strong>Lazy Loading Check:</strong> The explorer not only shows you the <code>main.js</code>, but also your lazy chunks. This is perfect for checking whether your admin module is truly cleanly separated from the rest or if code is &quot;leaking&quot;.'">
+    </app-notice>
+
+  </section>
+
+</div>

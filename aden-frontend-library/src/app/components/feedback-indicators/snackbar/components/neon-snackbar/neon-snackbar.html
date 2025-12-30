@@ -1,0 +1,30 @@
+<div class="page-container onest-font">
+  <app-ui-playground [htmlCode]="codeHtml" [scssCode]="codeScss" [tsCode]="codeTs" [meta]="meta">
+
+    <div class="library-container">
+
+      <!-- Trigger Button for Demo -->
+      <button class="aden-btn" (click)="showSnackbar()">
+        Show Notification
+      </button>
+
+      <!-- The Snackbar Component -->
+      <div class="aden-snackbar" [class.show]="isVisible">
+        <div class="snackbar-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+        <div class="snackbar-content">
+          <span class="snackbar-title">Success</span>
+          <span class="snackbar-message">Your changes have been saved.</span>
+        </div>
+        <button class="snackbar-action" (click)="isVisible = false">UNDO</button>
+        <button class="snackbar-close" (click)="isVisible = false">✕</button>
+      </div>
+
+    </div>
+
+  </app-ui-playground>
+</div>

@@ -1,0 +1,72 @@
+<div class="card library-card">
+
+  <div class="library-header">
+    <div class="tabs">
+      <button class="tab-btn" [class.active]="activeTab() === 'created'" (click)="setTab('created')">
+        My Creations <span class="count">{{ createdComponents().length }}</span>
+      </button>
+
+      <button class="tab-btn" [class.active]="activeTab() === 'saved'" (click)="setTab('saved')">
+        Saved <span class="count">{{ savedComponents().length }}</span>
+      </button>
+    </div>
+
+    <div class="page-indicator">
+      Page {{ currentPage() + 1 }}
+    </div>
+  </div>
+
+  <div class="library-content">
+
+    @if (visibleItems().length > 0) {
+      <div class="grid">
+
+        @for (comp of visibleItems(); track comp.id) {
+        <app-library-components
+          [comp]="comp"
+          [tab]="activeTab()">
+        </app-library-components>
+        }
+
+      </div>
+    } @else {
+      <!-- EMPTY STATE -->
+      <div class="empty-state">
+        <p>No {{ activeTab() }} components found.</p>
+        @if(activeTab() === 'created') {
+           <button class="btn-create">Create New</button>
+        } @else {
+           <a routerLink="/components" class="link">Browse Library</a>
+        }
+      </div>
+    }
+
+
+@if (totalPages() > 1) {
+  <div class="pagination-footer">
+
+    <button class="nav-btn" [disabled]="!hasPrev()" (click)="prevPage()">
+      ← Prev
+    </button>
+
+    <div class="dots">
+      <!-- Loop über die berechneten Seiten -->
+      @for (pageIndex of pageDots(); track pageIndex) {
+        <span
+          class="dot"
+          [class.active]="currentPage() === pageIndex"
+          (click)="goToPage(pageIndex)"
+          title="Go to page {{ pageIndex + 1 }}">
+        </span>
+      }
+    </div>
+
+    <button class="nav-btn" [disabled]="!hasMore()" (click)="nextPage()">
+      Next →
+    </button>
+
+  </div>
+}
+
+  </div>
+</div>

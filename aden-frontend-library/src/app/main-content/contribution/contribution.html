@@ -1,0 +1,106 @@
+<div class="guide-container">
+
+  <header class="page-header">
+    <app-typografie text="Contribution Guide" size="xlarge" [weight]="700" color="white"></app-typografie>
+    <app-typografie
+      text="How to get your code into my library."
+      size="medium" color="grey" class="subtitle">
+    </app-typografie>
+  </header>
+
+  <div class="rules-grid">
+
+    <!-- Left Column: The Rules -->
+    <div class="steps-col">
+
+      <!-- Rule 1: Repo -->
+      <div class="rule-card">
+        <span class="icon">📂</span>
+        <div class="card-content">
+          <h3>Public Repository</h3>
+          <p>I need a public GitHub repository to access your code. You can submit a single component or a whole collection. Just keep the folder structure clean so I can find the files easily.</p>
+        </div>
+      </div>
+
+      <!-- Rule 2: Dependencies -->
+      <div class="rule-card">
+        <span class="icon">⚡</span>
+        <div class="card-content">
+          <h3>Keep it clean</h3>
+          <p>I want to keep ADEN lightweight and dependency-free. Please avoid heavy libraries like Bootstrap or Swiper. Tools like GSAP are allowed if necessary, but please mention them in your <code>README.md</code>.</p>
+        </div>
+      </div>
+
+      <!-- Rule 3: Process -->
+      <div class="rule-card">
+        <span class="icon">🤝</span>
+        <div class="card-content">
+          <h3>Submission & Review</h3>
+          <p>Use the form below to generate a GitHub Issue. I personally review every submission. If the quality matches my standards, I will merge it into the library and notify you.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: File Tree Visualization -->
+    <div class="file-tree-card">
+      <div class="tree-header">Recommended Repo Structure</div>
+      <div class="tree-content">
+
+        <!-- Root -->
+        <div class="file-row folder root">
+          <span class="icon">📦</span> my-awesome-collection
+        </div>
+
+        <!-- README -->
+        <div class="file-row file md">
+          <span class="indent">├──</span>
+          <span class="icon">📝</span> README.md <span class="comment">// Dependencies & Setup</span>
+        </div>
+
+        <!-- Components Folder -->
+        <div class="file-row folder">
+          <span class="indent">└──</span>
+          <span class="icon">📂</span> components
+        </div>
+
+        <!-- Example Component 1 -->
+        <div class="file-row folder sub">
+          <span class="indent">│&nbsp;&nbsp;&nbsp;├──</span>
+          <span class="icon">📁</span> neon-button
+        </div>
+        <div class="file-row file ts">
+          <span class="indent">│&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├──</span>
+          <span class="icon">⚙️</span> neon-button.ts
+        </div>
+        <div class="file-row file scss">
+          <span class="indent">│&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└──</span>
+          <span class="icon">🎨</span> neon-button.scss
+        </div>
+
+        <!-- Example Component 2 -->
+        <div class="file-row folder sub">
+          <span class="indent">│&nbsp;&nbsp;&nbsp;└──</span>
+          <span class="icon">📁</span> magic-card
+        </div>
+         <div class="file-row file ts">
+          <span class="indent">│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├──</span>
+          <span class="icon">⚙️</span> magic-card.ts
+        </div>
+      </div>
+
+      <div class="tree-footer">
+        <p>You are free to use your own CSS variables. Just document them clearly.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Call to Action -->
+  <div class="cta-section">
+    <app-typografie text="Ready to ship?" size="xmedium" color="white"></app-typografie>
+    <button class="primary-btn" routerLink="/contribution/form">
+      <span>Go to Submission Form</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+.carousel-wrapper {
+  overflow: hidden;
+  position: relative;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.carousel-slide {
+  min-width: 100%;
+  position: relative;
+}
+
+.carousel-slide.active .slide-image { transform: scale(1.05); }
+.slide-info { opacity: 0; transform: translateY(20px); transition: 0.5s; }
+.carousel-slide.active .slide-info { opacity: 1; transform: translateY(0); }
+
+.dot.active {
+  background-color: var(--aden-primary);
+  width: 24px;
+  border-radius: 10px;
+}

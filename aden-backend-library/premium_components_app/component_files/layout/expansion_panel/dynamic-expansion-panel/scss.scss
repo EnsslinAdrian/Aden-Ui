@@ -1,0 +1,93 @@
+:host {
+    --panel-bg: #111111;
+    --panel-border: #333333;
+    --panel-bg-hover: #161616;
+    --panel-bg-active: #1a1a1a;
+    --panel-active: #4ade80;
+    --panel-shadow-active: rgba(74, 222, 128, 0.1);
+    --header-text: #ffffff;
+    --icon-color: #888;
+    --content-text: #a1a1aa;
+    --panel-border-hover: #555;
+}
+
+.accordion-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    max-width: 800px;
+}
+
+.expansion-panel {
+    background-color: var(--panel-bg);
+    border: 1px solid var(--panel-border);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+.expansion-panel:hover {
+    border-color: var(--panel-border-hover);
+    background-color: var(--panel-bg-hover);
+}
+
+.expansion-panel.active {
+    background-color: var(--panel-bg-active);
+    border-color: var(--panel-active);
+    box-shadow: 0 4px 20px var(--panel-shadow-active);
+}
+
+.expansion-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    gap: 10px;
+}
+
+.expansion-header h3 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--header-text);
+    letter-spacing: 0.5px;
+}
+
+.expansion-arrow {
+    width: 24px;
+    height: 24px;
+    color: var(--icon-color);
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.expansion-panel.active .expansion-arrow {
+    transform: rotate(180deg);
+    color: var(--panel-active);
+}
+
+.expansion-content {
+    padding: 0 24px 24px 24px;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.content-text {
+    margin: 0;
+    color: var(--content-text);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

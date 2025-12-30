@@ -1,0 +1,26 @@
+<div class="page-container onest-font">
+  <app-ui-playground [htmlCode]="codeHtml" [scssCode]="codeScss" [tsCode]="codeTs" [meta]="meta">
+    <div class="accordion-container">
+
+      @for (panel of panels; track $index; let i = $index) {
+      <div class="expansion-panel" [class.active]="isPanelOpen(i)" (click)="toggleExpansionPanel(i)">
+
+        <div class="expansion-header">
+          <h3>{{ panel.headline }}</h3>
+
+          <svg class="expansion-arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </div>
+
+        @if (isPanelOpen(i)) {
+        <div class="expansion-content">
+          <p class="content-text">{{ panel.content }}</p>
+        </div>
+        }
+      </div>
+      }
+    </div>
+  </app-ui-playground>
+</div>

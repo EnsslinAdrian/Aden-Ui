@@ -1,0 +1,36 @@
+.btn-logout {
+  width: 100%;
+  margin-top: 12px;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  padding: 12px;
+  border-radius: 12px;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.2s ease;
+
+  svg {
+    stroke: var(--text-muted);
+    transition: stroke 0.2s;
+  }
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--primary-white);
+    border-color: var(--text-muted);
+
+    svg {
+      stroke: var(--primary-white);
+    }
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}

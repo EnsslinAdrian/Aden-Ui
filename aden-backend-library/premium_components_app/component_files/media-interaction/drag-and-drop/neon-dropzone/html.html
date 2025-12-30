@@ -1,0 +1,13 @@
+<div class="drop-zone" [class.active]="isDragging" (dragenter)="onDragEnter($event)" (dragover)="onDragOver($event)"
+    (dragleave)="onDragLeave($event)" (drop)="onDrop($event)">
+
+    <!-- Content needs pointer-events: none in CSS to prevent flickering -->
+    <div class="zone-content">
+        <h3>Drop files here</h3>
+    </div>
+
+    <!-- Overlay needs pointer-events: none too -->
+    @if (isDragging) {
+    <div class="drag-overlay">Drop now</div>
+    }
+</div>

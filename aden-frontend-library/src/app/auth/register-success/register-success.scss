@@ -1,0 +1,119 @@
+:host {
+  display: block;
+}
+
+.success-layout {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--dark-grey, #09090b);
+  /* Fallback */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  /* Damit keine Scrollbalken durch Konfetti entstehen */
+  font-family: var(--main-font);
+}
+
+/* Die Karte */
+.success-card {
+  position: relative;
+  z-index: 10;
+  background: rgba(24, 24, 27, 0.6);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 48px;
+  border-radius: 24px;
+  text-align: center;
+  max-width: 420px;
+  width: 90%;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  animation: scaleIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .icon-wrapper {
+    position: relative;
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+
+    .check-icon {
+      font-size: 32px;
+      color: var(--neon-green, #4ade80);
+      font-weight: bold;
+      position: relative;
+      z-index: 2;
+    }
+
+    .icon-glow {
+      position: absolute;
+      inset: 0;
+      background: rgba(74, 222, 128, 0.2);
+      border-radius: 50%;
+      filter: blur(10px);
+    }
+
+    /* Ring um das Icon */
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 2px solid rgba(74, 222, 128, 0.3);
+      border-radius: 50%;
+    }
+  }
+
+  .actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+}
+
+::ng-deep .gsap-particle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  pointer-events: none;
+  z-index: 5;
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.message-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

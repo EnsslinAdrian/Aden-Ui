@@ -1,0 +1,65 @@
+
+:host {
+  --aden-surface: #1a1a1a;
+  --aden-border: #333333;
+  --aden-text: #e5e5e5;
+  --aden-primary: #4ade80;
+}
+
+.tooltip-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.aden-btn {
+  background-color: var(--aden-surface);
+  color: var(--aden-text);
+  border: 1px solid var(--aden-border);
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.aden-btn:hover {
+  border-color: var(--aden-primary);
+  box-shadow: 0 0 15px rgba(74, 222, 128, 0.15);
+}
+
+.tooltip-box {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  /* Start state for animation */
+  transform: translateX(-50%) translateY(10px) scale(0.95);
+  width: 200px;
+  background-color: var(--aden-surface);
+  border: 1px solid var(--aden-border);
+  border-radius: 8px;
+  padding: 12px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: all 0.25s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  margin-bottom: 12px;
+  z-index: 10;
+}
+
+.tooltip-arrow {
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 12px;
+  height: 12px;
+  background-color: var(--aden-surface);
+  border-bottom: 1px solid var(--aden-border);
+  border-right: 1px solid var(--aden-border);
+}
+
+.tooltip-wrapper:hover .tooltip-box {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0) scale(1);
+}
+  

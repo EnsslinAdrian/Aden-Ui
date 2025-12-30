@@ -1,0 +1,17 @@
+<div class="carousel-wrapper">
+  <div class="carousel-track" [style.transform]="'translateX(-' + (currentIndex * 100) + '%)'">
+
+      @for (slide of slides; track $index) {
+          <div class="carousel-slide" [class.active]="$index === currentIndex">
+              <div class="slide-image" [style.background-image]="'url(' + slide.image + ')'"></div>
+              <div class="slide-info">
+                  <h3>{{ slide.title }}</h3>
+              </div>
+          </div>
+      }
+
+  </div>
+
+  <button class="nav-btn prev" (click)="prevSlide()"><</button>
+  <button class="nav-btn next" (click)="nextSlide()">></button>
+</div>

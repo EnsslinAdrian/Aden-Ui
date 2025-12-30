@@ -1,0 +1,37 @@
+<div class="settings-container">
+
+  <!-- Check: Ist der User eingeloggt? -->
+  @if (authService.isAuthenticated()) {
+
+    <!-- Profilbild & Badge -->
+    <div class="user-profile" (click)="goToProfile()" title="Go to Profile">
+
+      <!-- Avatar aus dem Signal -->
+      <img [src]="avatarUrl()" alt="User Avatar" class="avatar-img">
+
+      <!-- Pro Badge aus dem Signal -->
+      @if (isPro()) {
+        <span class="pro-badge">PRO</span>
+      }
+    </div>
+
+  } @else {
+
+    <!-- Login Button (wenn nicht eingeloggt) -->
+    <button class="login-btn" (click)="login()" title="Login to your account">
+      Login
+    </button>
+  }
+
+  <div class="divider"></div>
+
+  <!-- Social Media Links (Bleiben gleich) -->
+  <a href="https://github.com/adrianensslin" target="_blank" class="icon-btn" title="GitHub">
+    <img src="img/icons/social-media/github.svg" alt="GitHub">
+  </a>
+
+  <a href="https://www.linkedin.com/in/adrian-ensslin/" target="_blank" class="icon-btn" title="LinkedIn">
+    <img src="img/icons/social-media/linkedin.svg" alt="LinkedIn">
+  </a>
+
+</div>

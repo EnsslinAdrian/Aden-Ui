@@ -1,0 +1,122 @@
+<div class="page-container onest-font">
+
+  <app-headline-guides [badgeText]="'Marketing & Social'" [headline]="'SEO & Social Sharing'"
+    [subheadline]="'Being found is everything. From index.html to dynamic social media images: This is how you make Google understand your app.'">
+  </app-headline-guides>
+
+  <!-- 1. INTRO -->
+  <section class="content-section">
+    <p class="intro-text">
+      In Angular SEO, we distinguish between two levels:
+      <br>1. The <strong>Foundation</strong>: Things that stay constant (viewport, language).
+      <br>2. The <strong>Dynamic Content</strong>: Titles, images, and descriptions that change per route.
+    </p>
+    <p class="intro-text" style="margin-top: 16px;">
+      Thanks to <strong>SSR (Server Side Rendering)</strong>, we can serve both perfectly. Bots no longer stare at a
+      "Loading..." screen but receive fully hydrated HTML instantly.
+    </p>
+  </section>
+
+  <!-- 2. THE FOUNDATION -->
+  <section class="code-section">
+    <h2>1. The Foundation (index.html)</h2>
+    <p class="sub-text">
+      Before writing any TypeScript, the basics must be solid. These settings in <code>src/index.html</code> are
+      mandatory for ranking.
+      Never forget the <code>viewport</code> tag; otherwise, Google will penalize your site as "not mobile-friendly."
+    </p>
+
+    <app-code-block-guide filename="src/index.html" [code]="indexHtmlCode" language="html">
+    </app-code-block-guide>
+
+    <app-notice [noticeType]="'warning'"
+      [noticeText]="'<strong>Language Setting:</strong> Ensure the <code>&lt;html&gt;</code> tag has the correct language (e.g., <code>lang=\'en\'</code>). This is crucial for accessibility tools and local search results.'">
+    </app-notice>
+  </section>
+
+  <!-- 3. DEMO (VISUAL) -->
+  <section class="demo-section">
+    <h2>2. The Dynamic Part</h2>
+    <p class="sub-text">
+      The <code>index.html</code> is static. But when a user shares a profile link, we want to show their specific
+      avatar and name.
+      The preview below demonstrates what our <code>SeoService</code> generates.
+    </p>
+
+    <app-meta-interactive-demo></app-meta-interactive-demo>
+  </section>
+
+  <!-- 4. SERVICE IMPLEMENTATION -->
+  <section class="code-section">
+    <h2>3. The SeoService (All-in-One)</h2>
+    <p class="sub-text">
+      I use a central service that handles three major tasks:
+      <br>1. <strong>Title & Description</strong> for Google Search.
+      <br>2. <strong>Open Graph Tags</strong> for rich previews on WhatsApp/LinkedIn.
+      <br>3. <strong>Canonical URLs</strong> to prevent duplicate content issues.
+    </p>
+
+    <app-code-block-guide filename="seo.service.ts" [code]="seoServiceCode" language="typescript">
+    </app-code-block-guide>
+  </section>
+
+  <!-- 5. ROUTE CONFIG & AUTO-PILOT -->
+  <section class="code-section">
+    <h2>4. Automation</h2>
+    <p class="sub-text">
+      Manually calling <code>ngOnInit</code> in every static component (Home, Imprint, Login) is tedious and
+      error-prone.
+      That's why we automate it.
+    </p>
+
+    <h3 style="margin-top: 24px;">Step A: Data in the Route</h3>
+    <p class="sub-text">
+      We define titles and descriptions directly in the route configuration. This keeps our components clean and dumb.
+    </p>
+    <app-code-block-guide filename="app.routes.ts" [code]="staticRoutesCode" language="typescript">
+    </app-code-block-guide>
+
+    <h3 style="margin-top: 32px;">Step B: The Auto-Pilot (AppComponent)</h3>
+    <p class="sub-text">
+      In <code>app.component.ts</code>, we listen to every navigation event globally.
+      If the active route contains SEO data, this code automatically feeds our SeoService. Zero manual work required.
+    </p>
+    <app-code-block-guide filename="app.component.ts" [code]="autoPilotCode" language="typescript">
+    </app-code-block-guide>
+  </section>
+
+  <!-- 6. DYNAMIC DATA -->
+  <section class="code-section">
+    <h2>5. Dynamic Content (Profiles)</h2>
+    <p class="sub-text">
+      For profiles or product details, the route config doesn't know the specific data yet.
+      Here, we leave the <code>data</code> object empty and manually call the service once the API response arrives.
+    </p>
+
+    <app-code-block-guide filename="member-profile.ts" [code]="dynamicUsageCode" language="typescript">
+    </app-code-block-guide>
+
+    <app-notice [noticeType]="'tipp'"
+      [noticeText]="'<strong>SSR Queue:</strong> Angular creates a queue on the server. It waits until all HTTP requests in ngOnInit are completed before generating the HTML. This ensures your dynamic meta tags are fully rendered when the bot arrives.'">
+    </app-notice>
+  </section>
+
+  <!-- 7. CHECKLIST -->
+  <section class="code-section">
+    <h2>6. The Ultimate SEO Checklist</h2>
+    <div class="feature-list-box">
+      <ul class="feature-list">
+        <li><strong>SSR enabled?</strong> Without it, bots often see a blank page (see SSR Guide).</li>
+        <li><strong>Canonical Tags?</strong> Essential to avoid duplicate content penalties.</li>
+        <li><strong>Sitemap.xml?</strong> Ensures Google discovers all deep links.</li>
+        <li><strong>Robots.txt?</strong> Keep admin areas private.</li>
+        <li><strong>Structured Data (JSON-LD)?</strong> For rich snippets like ratings or breadcrumbs.</li>
+      </ul>
+    </div>
+
+    <p class="sub-text" style="margin-top: 20px; font-size: 0.9rem;">
+      Tip: Check out the separate guides for Sitemap and Robots.txt in the library.
+    </p>
+  </section>
+
+</div>

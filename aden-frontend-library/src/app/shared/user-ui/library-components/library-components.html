@@ -1,0 +1,22 @@
+<a [routerLink]="['/components', comp().subcategory || comp().category, comp().slug]" class="mini-card">
+
+  <div class="icon-box">
+    @if (tab() === 'created') {
+      &lt;/&gt;
+    } @else {
+      ★
+    }
+  </div>
+
+  <div class="info">
+    <span class="title">{{ comp().title }}</span>
+
+    <span class="meta">
+      {{ comp().subcategory || comp().category }}
+
+      @if(tab() === 'created') {
+        · ♥️ {{ comp().likes_count }}
+      }
+    </span>
+  </div>
+</a>

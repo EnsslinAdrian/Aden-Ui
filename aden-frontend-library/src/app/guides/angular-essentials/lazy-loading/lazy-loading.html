@@ -1,0 +1,72 @@
+<div class="page-container onest-font">
+
+  <app-headline-guides
+    [badgeText]="'Angular Performance'"
+    [headline]="'Lazy Loading'"
+    [subheadline]="'Don\'t ship code the user doesn\'t need. We split the app into small chunks that the browser fetches only on demand.'">
+  </app-headline-guides>
+
+  <!-- 1. INTRO -->
+  <section class="content-section">
+    <p class="intro-text">
+      When I start a new app, it feels blazing fast. But after a few months, I have dozens of features. Suddenly, the <code>main.js</code> is huge, and the user stares at a white screen for 3 seconds.
+    </p>
+    <p class="intro-text" style="margin-top: 16px;">
+      I treat the startup of my app like a <strong>VIP area</strong>: Only the essentials (Header, Home) get in immediately. Everything else (Admin, Settings, Charts) has to wait outside (lazy) until the user explicitly asks for it.
+    </p>
+  </section>
+
+  <!-- 2. DEMO -->
+  <section class="demo-section">
+    <h2>1. The Simulation</h2>
+    <p class="sub-text">
+      Watch the "Network Status". When you click on <strong>Admin Dashboard</strong>, you'll see a brief loading state. That is the exact moment the code is being fetched from the server.
+    </p>
+    <app-lazy-loading-interactive-demo></app-lazy-loading-interactive-demo>
+  </section>
+
+  <!-- 3. IMPLEMENTATION -->
+  <section class="code-section">
+    <h2>2. Implementation</h2>
+    <p class="sub-text">
+      Angular gives us two ways to do this. Which one I choose depends purely on the complexity of the feature I'm building.
+    </p>
+
+    <h3 style="margin-top: 24px;">Scenario A: The Single Page (loadComponent)</h3>
+    <p class="sub-text">
+      This is my default for isolated pages like "Imprint", "404", or simple dashboards. I tell the router directly: "Just load this one file."
+    </p>
+    <app-code-block-guide
+      filename="app.routes.ts"
+      [code]="singleComponentCode"
+      language="typescript">
+    </app-code-block-guide>
+
+    <h3 style="margin-top: 40px;">Scenario B: The Feature Area (loadChildren)</h3>
+    <p class="sub-text">
+      This is where it gets interesting. If I have a large area like <strong>Settings</strong> that has its own sub-pages (Profile, Security, Account), a single component isn't enough.
+      <br><br>
+      In this case, I load a <strong>separate routing file</strong>. This keeps my `app.routes.ts` clean and encapsulates the entire feature.
+    </p>
+
+    <div style="margin-bottom: 12px; font-weight: 600; color: white;">Step 1: The Parent Router</div>
+    <app-code-block-guide
+      filename="app.routes.ts"
+      [code]="featureParentCode"
+      language="typescript">
+    </app-code-block-guide>
+
+    <div style="margin-bottom: 12px; font-weight: 600; color: white;">Step 2: The Child Router</div>
+    <app-code-block-guide
+      filename="settings/settings.routes.ts"
+      [code]="featureChildCode"
+      language="typescript">
+    </app-code-block-guide>
+
+    <app-notice [noticeType]="'tipp'"
+      [noticeText]="'<strong>The Magic of Scenario B:</strong> The routes are combined automatically. If I define <code>path: \'settings\'</code> in the main router and <code>path: \'profile\'</code> in the child router, Angular creates the URL <code>/settings/profile</code> for me.'">
+    </app-notice>
+
+  </section>
+
+</div>

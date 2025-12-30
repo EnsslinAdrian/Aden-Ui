@@ -1,0 +1,166 @@
+/* :host Block entfernt -> läuft über Root */
+
+.playground-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 24px;
+  margin-top: 24px;
+  height: 500px;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+}
+
+.config-pane,
+.preview-pane {
+  background-color: var(--surface-card); /* War --aden-surface */
+  border: 1px solid var(--ui-border);    /* War --aden-border */
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 24px;
+}
+
+/* LEFT: Configuration */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+label {
+  font-size: 0.8rem;
+  color: var(--text-muted); /* War #666 */
+  text-transform: uppercase;
+}
+
+.route-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--ui-border); /* War --aden-border */
+  padding-bottom: 8px;
+}
+
+.route-list-header span {
+  font-weight: bold;
+  color: var(--primary-white); /* War #fff */
+}
+
+.aden-btn-small {
+  background: var(--neon-green); /* War --aden-primary */
+  color: #000;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: filter 0.2s;
+
+  &:hover {
+    filter: brightness(1.1);
+  }
+}
+
+.route-list {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-right: 4px;
+}
+
+.route-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--terminal-header); /* War #111 */
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid var(--ui-border); /* War #222 */
+}
+
+.route-inputs {
+  display: flex;
+  gap: 8px;
+  flex: 1;
+}
+
+.aden-input,
+.aden-select {
+  background: var(--terminal-bg); /* War #000 */
+  border: 1px solid var(--ui-border); /* War --aden-border */
+  color: var(--primary-white); /* War #fff */
+  padding: 8px;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  outline: none;
+  font-size: 0.85rem;
+
+  &:focus {
+    border-color: var(--neon-green); /* War --aden-primary */
+  }
+}
+
+.path {
+  flex: 2;
+}
+
+.prio {
+  width: 50px;
+  text-align: center;
+}
+
+.delete-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted); /* War #666 */
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: all 0.2s;
+
+  &:hover {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--danger-color); /* War --aden-error */
+  }
+}
+
+.preview-pane {
+  padding: 0;
+  background: var(--terminal-bg); /* War #0a0a0a */
+}
+
+.pane-header {
+  background: var(--terminal-header); /* War #111 */
+  padding: 10px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted); /* War #888 */
+  border-bottom: 1px solid var(--ui-border); /* War --aden-border */
+}
+
+.code-editor {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--neon-blue); /* War --aden-accent-blue (#60a5fa) */
+  font-family: var(--font-mono); /* War 'Fira Code' */
+  font-size: 0.85rem;
+  padding: 16px;
+  resize: none;
+  outline: none;
+  line-height: 1.5;
+  white-space: pre;
+}

@@ -1,0 +1,73 @@
+<section class="demo-section">
+
+    <div class="playground-grid">
+
+      <!-- 1. Text Transformation -->
+      <div class="demo-card">
+        <div class="card-header">String Pipes</div>
+        <div class="pipeline">
+
+          <!-- Input -->
+          <div class="stage input-stage">
+            <label>Raw String</label>
+            <input type="text" [(ngModel)]="rawText" class="data-input">
+          </div>
+
+          <!-- Pipe Selector -->
+          <div class="stage pipe-stage">
+            <div class="pipe-connector">|</div>
+            <div class="pipe-selector">
+              <button [class.active]="selectedTextPipe === 'uppercase'" (click)="selectedTextPipe = 'uppercase'">uppercase</button>
+              <button [class.active]="selectedTextPipe === 'lowercase'" (click)="selectedTextPipe = 'lowercase'">lowercase</button>
+              <button [class.active]="selectedTextPipe === 'titlecase'" (click)="selectedTextPipe = 'titlecase'">titlecase</button>
+              <button [class.active]="selectedTextPipe === 'slice'" (click)="selectedTextPipe = 'slice'">slice:0:7</button>
+            </div>
+            <div class="arrow">→</div>
+          </div>
+
+          <!-- Output -->
+          <div class="stage output-stage">
+            <label>Output</label>
+            <div class="result-box">
+              @switch (selectedTextPipe) {
+                @case ('uppercase') { {{ rawText | uppercase }} }
+                @case ('lowercase') { {{ rawText | lowercase }} }
+                @case ('titlecase') { {{ rawText | titlecase }} }
+                @case ('slice') { {{ rawText | slice:0:7 }} }
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Formatting Pipes (Static examples) -->
+      <div class="demo-card">
+        <div class="card-header">Formatting Pipes</div>
+        <div class="examples-list">
+
+          <!-- Currency -->
+          <div class="example-row">
+            <div class="col raw">{{ rawPrice }}</div>
+            <div class="col pipe">currency:'EUR'</div>
+            <div class="col out">{{ rawPrice | currency:'EUR' }}</div>
+          </div>
+
+          <!-- Date -->
+          <div class="example-row">
+            <div class="col raw">Date Object</div>
+            <div class="col pipe">date:'short'</div>
+            <div class="col out">{{ rawDate | date:'short' }}</div>
+          </div>
+
+          <!-- JSON (Debugging) -->
+          <div class="example-row">
+            <div class="col raw">Object</div>
+            <div class="col pipe">json</div>
+            <div class="col out code-font">{{ rawJson | json }}</div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>

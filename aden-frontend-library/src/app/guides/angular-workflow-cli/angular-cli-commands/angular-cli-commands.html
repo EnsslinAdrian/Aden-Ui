@@ -1,0 +1,76 @@
+<div class="page-container onest-font">
+
+  <app-headline-guides
+    [badgeText]="'Workflow & CLI'"
+    [headline]="'Angular CLI'"
+    [subheadline]="'Your best friend in everyday Angular development. Why create files manually when the CLI can generate the boilerplate code for you?'">
+  </app-headline-guides>
+
+  <!-- 1. INTRO -->
+  <section class="content-section">
+    <p class="intro-text">
+      The Angular CLI (Command Line Interface) is more than just a "start" button. It's a code generator.
+      It not only creates files but also links them automatically, respects your folder structure, and follows best practices.
+    </p>
+    <p class="intro-text" style="margin-top: 16px;">
+      Here is my personal collection of commands that I use daily – including the "secret weapons" like Dry-Run.
+    </p>
+  </section>
+
+  <!-- 2. SIMULATOR -->
+  <section class="demo-section">
+    <h2>1. Visualization</h2>
+    <p class="sub-text">
+      Click on the buttons and see what Angular does in the background. Notice how it creates four files for a component but only two for a service.
+    </p>
+    <app-cli-simulator></app-cli-simulator>
+  </section>
+
+  <!-- 3. SCAFFOLDING -->
+  <section class="code-section">
+    <h2>2. Scaffolding (Code generation)</h2>
+    <p class="sub-text">
+      I never write <code>ng generate component</code>. I always use the shortcuts. It saves time and avoids typos.
+    </p>
+
+    <div class="grid-2">
+      <div>
+        <app-code-block-guide filename="Terminal" [code]="scaffoldingCode" language="bash"></app-code-block-guide>
+      </div>
+      <div>
+        <div class="info-box">
+          <h4>💡 Why use it?</h4>
+          <ul>
+            <li>Automatically creates the folder.</li>
+            <li>Generates <code>.ts</code>, <code>.html</code>, <code>.scss</code> & <code>.spec.ts</code>.</li>
+            <li>Uses the correct selector prefix (e.g., <code>app-</code>).</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. FLAGS & OPTIONS -->
+  <section class="code-section">
+    <h2>3. The most important flags</h2>
+    <p class="sub-text">
+      These are the options that make the difference.
+    </p>
+
+    <app-code-block-guide filename="Terminal" [code]="flagsCode" language="bash"></app-code-block-guide>
+
+    <app-notice [noticeType]="'tipp'"
+      [noticeText]="'<strong>Dry Run is worth its weight in gold:</strong> Before creating a complex module structure, I always run the command with <code>-d</code> first. This way, I can check if the paths are correct without creating unnecessary files in the project.'">
+    </app-notice>
+  </section>
+
+  <!-- 5. RUNNING -->
+  <section class="code-section">
+    <h2>4. Build & Serve</h2>
+    <p class="sub-text">
+      The basics to bring the app to life.
+    </p>
+    <app-code-block-guide filename="Terminal" [code]="runningCode" language="bash"></app-code-block-guide>
+  </section>
+
+</div>

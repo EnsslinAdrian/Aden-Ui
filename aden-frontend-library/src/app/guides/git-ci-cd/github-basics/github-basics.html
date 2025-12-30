@@ -1,0 +1,81 @@
+<div class="page-container onest-font">
+
+  <app-headline-guides
+    [badgeText]="'Workflow & Tools'"
+    [headline]="'Git & GitHub'"
+    [subheadline]="'My safety net as a developer. How I use version control to code without fear and never lose data again.'">
+  </app-headline-guides>
+
+  <!-- 1. INTRO -->
+  <section class="content-section">
+    <p class="intro-text">
+      I don't see Git as a "tool for uploading," but as a time machine.
+      If I make a mistake, I can rewind. If I test a feature, I can create a parallel reality (branch).
+    </p>
+    <p class="intro-text" style="margin-top: 16px;">
+      Here is my personal cheat sheet for everyday use. No theory, just the commands I actually use.
+    </p>
+  </section>
+
+  <!-- 2. DEMO -->
+  <section class="demo-section">
+    <h2>1. Visualization: What's actually happening?</h2>
+    <p class="sub-text">
+      Click on the buttons to understand how commits build on each other and how branches work.
+      Merging simply means bringing two timelines back together.
+    </p>
+    <app-git-visualizer></app-git-visualizer>
+  </section>
+
+  <!-- 3. DAILY BUSINESS -->
+  <section class="code-section">
+    <h2>2. The Daily Workflow</h2>
+    <p class="sub-text">
+      These are the commands I type 90% of the time. When I start in the morning or finish a feature.
+    </p>
+
+    <div class="grid-2">
+      <div>
+        <h4>Setup</h4>
+        <app-code-block-guide filename="Terminal" [code]="setupCode" language="bash"></app-code-block-guide>
+      </div>
+      <div>
+        <h4>Routine</h4>
+        <app-code-block-guide filename="Terminal" [code]="dailyCode" language="bash"></app-code-block-guide>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. BRANCHING -->
+  <section class="code-section">
+    <h2>3. Working with Branches</h2>
+    <p class="sub-text">
+      I <strong>never</strong> work directly on the <code>main</code> branch. For every ticket, I create my own "feature branch."
+      This keeps the main version clean and functional.
+    </p>
+    <app-code-block-guide filename="Terminal" [code]="branchCode" language="bash"></app-code-block-guide>
+  </section>
+
+  <!-- 5. PANIC ROOM -->
+  <section class="code-section">
+    <h2 style="color: var(--danger-color);">4. Panic Room (Emergency Commands)</h2>
+    <p class="sub-text">
+      I often look this up myself. What to do when you're stuck?
+    </p>
+    <app-code-block-guide filename="Terminal" [code]="panicCode" language="bash"></app-code-block-guide>
+
+    <app-notice [noticeType]="'tipp'"
+      [noticeText]="'<strong>Git Stash</strong> is my best friend. If the boss comes in and says \'Fix this quickly on Main,\' but I\'m in the middle of a feature: <code>git stash</code> -> Do the hotfix -> <code>git stash pop</code>. Everything is back.'">
+    </app-notice>
+  </section>
+
+  <!-- 6. PRO TIPS -->
+  <section class="code-section">
+    <h2>5. Pro Tip: Aliases</h2>
+    <p class="sub-text">
+      I'm lazy. I don't want to type <code>git status</code> every time. That's why I created shortcuts (aliases).
+    </p>
+    <app-code-block-guide filename=".gitconfig" [code]="aliasCode" language="bash"></app-code-block-guide>
+  </section>
+
+</div>

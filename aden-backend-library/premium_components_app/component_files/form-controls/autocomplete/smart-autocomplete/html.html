@@ -1,0 +1,23 @@
+
+<div class="input-container" #dropdown>
+  <input
+    type="text"
+    placeholder="Search fruit..."
+    [(ngModel)]="inputValue"
+    (input)="onInputChange()"
+    (keydown)="onKeyDown($event)"
+    (focus)="onFocus()" />
+
+  @if (isDropdownOpen) {
+    <div class="dropdown">
+      @for (option of filteredOptions; track $index; let i = $index) {
+        <div
+          class="dropdown-item"
+          [class.active]="i === activeIndex"
+          (mousedown)="selectOption(option)">
+          {{ option }}
+        </div>
+      }
+    </div>
+  }
+</div>

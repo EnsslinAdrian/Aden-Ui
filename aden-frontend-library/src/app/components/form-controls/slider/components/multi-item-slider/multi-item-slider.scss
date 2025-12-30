@@ -1,0 +1,196 @@
+.page-container {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.library-container {
+  width: 100%;
+  max-width: 700px;
+  padding: 40px;
+  background-color: var(--aden-bg);
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+}
+
+:host {
+  --aden-bg: #0f0f0f;
+  --aden-surface: #1a1a1a;
+  --aden-border: #333333;
+  --aden-text: #e5e5e5;
+  --aden-muted: #888;
+  --aden-primary: #4ade80;
+}
+
+.feedback-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Header Styles */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1px solid var(--aden-border);
+  padding-bottom: 16px;
+}
+
+.title-group h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+.highlight {
+  font-size: 0.85rem;
+  color: var(--aden-primary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.nav-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.nav-btn {
+  background: var(--aden-surface);
+  border: 1px solid var(--aden-border);
+  color: var(--aden-text);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.nav-btn:hover:not(:disabled) {
+  border-color: var(--aden-primary);
+  color: var(--aden-primary);
+}
+
+.nav-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.nav-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+
+/* Slider Core */
+.slider-viewport {
+  width: 100%;
+  overflow: hidden;
+  /* Maskiert den Inhalt */
+}
+
+.slider-track {
+  display: flex;
+  width: 100%;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/*
+   Items Logic:
+   Wir zeigen 2 Items an.
+   Jedes Item ist 50% breit.
+   Padding sorgt für den "Gap" zwischen den Karten.
+*/
+.slide-item {
+  flex: 0 0 50%;
+  /* 2 Items sichtbar */
+  max-width: 50%;
+  padding-right: 20px;
+  /* Simulated Gap */
+  box-sizing: border-box;
+}
+
+/* Feedback Card Styling */
+.feedback-card {
+  background-color: var(--aden-surface);
+  border: 1px solid var(--aden-border);
+  border-radius: 16px;
+  padding: 24px;
+  height: 220px;
+  /* Fixed height for uniformity */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  transition: transform 0.3s;
+}
+
+.feedback-card:hover {
+  border-color: #444;
+  transform: translateY(-2px);
+}
+
+.card-icon {
+  color: #333;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.card-icon svg {
+  width: 32px;
+  height: 32px;
+}
+
+.comment {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--aden-text);
+  margin-top: 12px;
+  font-style: italic;
+  position: relative;
+  z-index: 2;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  color: #000;
+  font-size: 0.9rem;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.role {
+  font-size: 0.75rem;
+  color: var(--aden-muted);
+}

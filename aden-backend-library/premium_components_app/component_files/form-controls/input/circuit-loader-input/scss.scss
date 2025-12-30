@@ -1,0 +1,74 @@
+:host {
+    --aden-bg: #0f0f0f;
+    --aden-surface: #1a1a1a;
+    --aden-border: #333333;
+    --aden-text: #e5e5e5;
+    --aden-placeholder: #666;
+    --aden-primary: #4ade80;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-label {
+    font-size: 0.9rem;
+    color: #888;
+    font-weight: 500;
+    margin-left: 2px;
+}
+
+.aden-input {
+    width: 100%;
+    padding: 14px 16px;
+    font-size: 1rem;
+    color: var(--aden-text);
+    background-color: var(--aden-surface);
+    border: 1px solid var(--aden-border);
+    border-radius: 8px;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.aden-input::placeholder {
+    color: var(--aden-placeholder);
+}
+
+.gsap-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.gsap-input {
+    position: relative;
+    z-index: 1;
+    background-color: var(--aden-surface);
+}
+
+.gsap-input:focus {
+    border-color: transparent;
+}
+
+.circuit-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.circuit-rect {
+    fill: none;
+    stroke: var(--aden-primary);
+    stroke-width: 2px;
+    stroke-dasharray: 2000;
+    stroke-dashoffset: 2000;
+    opacity: 0;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}

@@ -1,0 +1,87 @@
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 12px;
+  color: var(--primary-white);
+}
+
+.sub-text {
+  color: var(--text-muted);
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+
+.app-simulation {
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--dark-grey);
+}
+
+.sim-nav {
+  padding: 16px 24px;
+  background-color: var(--surface-card);
+  border-bottom: 1px dashed var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .logo { font-weight: 700; letter-spacing: -0.5px; }
+
+  .links {
+    display: flex;
+    gap: 16px;
+
+    a {
+      font-size: 0.9rem;
+      cursor: pointer;
+      color: var(--text-muted);
+      transition: color 0.2s;
+      user-select: none;
+
+      &:hover { color: var(--primary-white); }
+      &.active { color: var(--accent-color); font-weight: 600; }
+    }
+  }
+}
+
+// Router Outlet Bereich
+.router-outlet-area {
+  flex: 1;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  // Grid Pattern Hintergrund
+  background-image: radial-gradient(circle at center, #333 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.outlet-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  opacity: 0.5;
+  margin: 10px 0;
+
+  &.closing { margin-top: auto; }
+}
+
+.outlet-content {
+  background: var(--surface-card);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 30px;
+  width: 80%;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  h3 { margin-bottom: 8px; color: var(--primary-white); }
+  p { color: var(--text-muted); font-size: 0.95rem; }
+}

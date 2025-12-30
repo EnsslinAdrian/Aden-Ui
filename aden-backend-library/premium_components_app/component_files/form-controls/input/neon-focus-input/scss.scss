@@ -1,0 +1,45 @@
+:host {
+    --aden-bg: #0f0f0f;
+    --aden-surface: #1a1a1a;
+    --aden-border: #333333;
+    --aden-text: #e5e5e5;
+    --aden-placeholder: #666;
+    --aden-primary: #4ade80;
+}
+
+.input-group {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-label {
+    font-size: 0.85rem;
+    color: #888;
+    font-weight: 500;
+    margin-left: 2px;
+}
+
+.aden-input {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 1rem;
+    color: var(--aden-text);
+    background-color: var(--aden-surface);
+    border: 1px solid var(--aden-border);
+    border-radius: 8px;
+    outline: none;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.aden-input::placeholder {
+    color: var(--aden-placeholder);
+}
+
+.neon-box:focus {
+    border-color: var(--aden-primary);
+    background-color: #111;
+    box-shadow: 0 0 15px var(--aden-glow);
+}

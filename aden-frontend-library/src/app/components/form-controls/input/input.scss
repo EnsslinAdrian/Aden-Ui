@@ -1,0 +1,32 @@
+/* Globale Variablen */
+:host {
+  --aden-bg: #0f0f0f;
+  --aden-primary: #4ade80;
+  --aden-text: #ffffff;
+  --aden-text-muted: #888888;
+  --nav-height: 70px;
+}
+
+.page-container {
+  background-color: var(--aden-bg);
+  min-height: 100vh;
+  padding-bottom: 200px;
+}
+
+.main-content {
+  margin: 0 auto;
+  padding: 60px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+}
+
+.chapter-section {
+  scroll-margin-top: calc(var(--nav-height) + 40px);
+}
+
+.showcase-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}

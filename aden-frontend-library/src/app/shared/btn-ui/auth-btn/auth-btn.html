@@ -1,0 +1,7 @@
+<button type="submit" class="btn-primary" [disabled]="isLoading || formInvalid">
+  @if(isLoading) {
+  <span class="spinner"></span> {{loadingText}}
+  } @else {
+    {{buttonText}}
+  }
+</button>

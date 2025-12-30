@@ -1,0 +1,139 @@
+.browser-content {
+  height: 350px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: radial-gradient(circle at center, var(--ui-border) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.view {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.hero h3 {
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+}
+
+.hero p {
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+
+.aden-btn {
+  background-color: var(--neon-green);
+  color: #000;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.2s;
+}
+
+.aden-btn:hover {
+  transform: scale(1.05);
+}
+
+.aden-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.aden-btn.ghost {
+  background: transparent;
+  border: 1px solid var(--ui-border);
+  color: var(--primary-white);
+}
+
+.aden-btn.ghost:hover {
+  background: rgba(255,255,255,0.05);
+}
+
+.loader-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--ui-border);
+  border-top-color: var(--neon-green);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+.network-status {
+  font-family: var(--font-mono);
+  background: var(--terminal-header);
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid var(--ui-border);
+  width: 300px;
+  text-align: left;
+}
+
+.network-status .filename {
+  color: var(--neon-blue);
+  background: transparent;
+  padding: 0;
+  border: none;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 4px;
+  background: var(--ui-border);
+  margin-top: 8px;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  background: var(--neon-green);
+  transition: width 0.15s linear;
+}
+
+.success-icon {
+  color: var(--neon-green);
+  background: rgba(74, 222, 128, 0.1);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.success-icon svg {
+  width: 30px;
+  height: 30px;
+}
+
+.code-block {
+  background-color: var(--terminal-bg);
+  border: 1px solid var(--ui-border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.filename {
+  background: var(--terminal-header);
+  padding: 8px 16px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--ui-border);
+  font-family: var(--font-mono);
+}

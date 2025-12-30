@@ -1,0 +1,56 @@
+  <section class="demo-section">
+
+
+    <div class="playground-grid">
+
+      <!-- LEFT: Editor -->
+      <div class="editor-pane">
+        <div class="pane-header">
+          <span class="filename">robots.txt</span>
+          <span class="edited-badge">Editable</span>
+        </div>
+        <textarea [(ngModel)]="fileContent" spellcheck="false"></textarea>
+      </div>
+
+      <!-- RIGHT: Test Console -->
+      <div class="test-pane">
+        <div class="pane-header">Bot Simulation</div>
+
+        <div class="test-controls">
+
+          <div class="input-group">
+            <label>User Agent (Bot)</label>
+            <select [(ngModel)]="selectedBot" class="aden-select">
+              <option value="*">All Bots (*)</option>
+              <option value="Googlebot">Googlebot</option>
+              <option value="Bingbot">Bingbot</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label>Path to crawl</label>
+            <input type="text" [(ngModel)]="testPath" class="aden-input" placeholder="/path">
+          </div>
+
+          <button class="aden-btn" (click)="runTest()">Check Permission</button>
+
+        </div>
+
+        <!-- Result Output -->
+        @if (simulationResult) {
+        <div class="result-box scale-in" [class.allowed]="simulationResult.allowed"
+          [class.blocked]="!simulationResult.allowed">
+          <div class="status-icon">
+            @if (simulationResult.allowed) { <span>✓</span> } @else { <span>✕</span> }
+          </div>
+          <div class="result-info">
+            <span class="status-title">{{ simulationResult.allowed ? 'Crawl Allowed' : 'Crawl Blocked' }}</span>
+            <span class="status-desc">{{ simulationResult.reason }}</span>
+          </div>
+        </div>
+        }
+      </div>
+
+    </div>
+  </section>
+

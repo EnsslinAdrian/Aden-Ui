@@ -1,0 +1,138 @@
+.settings-card {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+
+  .card-header {
+    padding: 24px 24px 0 24px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .form-grid {
+    padding: 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      &.full-width {
+        grid-column: 1 / -1;
+      }
+
+
+      .label-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        label {
+          margin: 0;
+        }
+
+        .link-btn {
+          background: none;
+          border: none;
+          padding: 0;
+          color: var(--neon-blue);
+          font-size: 12px;
+          font-weight: 600;
+          cursor: pointer;
+          font-family: var(--main-font);
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+
+  .card-actions {
+    padding: 16px 24px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
+
+    button {
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-weight: 500;
+      cursor: pointer;
+      font-size: 13px;
+      font-family: var(--main-font);
+      transition: all 0.2s;
+    }
+
+    .btn-save {
+      background: var(--primary-white);
+      color: var(--primary-black);
+      border: 1px solid var(--primary-white);
+      font-weight: 600;
+
+      &:hover {
+        background: #e4e4e7;
+        transform: translateY(-1px);
+      }
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: none;
+      }
+    }
+  }
+}
+
+
+.static-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-family: var(--main-font);
+  font-size: 14px;
+
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px dashed var(--border-color);
+  color: var(--text-muted);
+  cursor: not-allowed;
+  user-select: text;
+
+  .value {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .lock-icon {
+    font-size: 14px;
+    opacity: 0.5;
+    margin-left: 10px;
+  }
+
+  &:hover {
+    border-color: var(--text-muted);
+  }
+}

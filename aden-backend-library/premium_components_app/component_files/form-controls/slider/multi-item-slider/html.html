@@ -1,0 +1,17 @@
+<div class="slider-viewport">
+    <div class="slider-track" [style.transform]="getTransform()">
+
+        @for (item of feedbacks; track $index) {
+        <div class="slide-item">
+            <div class="card">
+                <p>"{{ item.comment }}"</p>
+                <div class="profile">...</div>
+            </div>
+        </div>
+        }
+
+    </div>
+</div>
+
+<button (click)="prev()">Prev</button>
+<button (click)="next()">Next</button>

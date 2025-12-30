@@ -1,0 +1,40 @@
+<section class="demo-wrapper">
+
+  <!-- 1. Controls (Der SEO Service Simulator) -->
+  <div class="controls-panel">
+    <h3>SEO Service Input</h3>
+    <p class="hint">Simuliere hier die Daten, die aus deiner API kommen.</p>
+
+    <div class="input-group">
+      <label>Page Title (og:title)</label>
+      <input type="text" [(ngModel)]="title" placeholder="Titel eingeben...">
+    </div>
+
+    <div class="input-group">
+      <label>Description (og:description)</label>
+      <textarea [(ngModel)]="description" rows="3" placeholder="Beschreibung eingeben..."></textarea>
+    </div>
+  </div>
+
+  <!-- 2. The Result (Social Media Card) -->
+  <div class="preview-panel">
+    <h3>Social Media Preview</h3>
+    <p class="hint">So sieht dein Link auf WhatsApp / LinkedIn aus:</p>
+
+    <div class="social-card">
+      <!-- Fake Image Area -->
+      <div class="card-image">
+        <div class="img-placeholder">
+          <span>Image Preview</span>
+        </div>
+      </div>
+
+      <div class="card-content">
+        <div class="card-title">{{ title() }}</div>
+        <div class="card-desc">{{ description() }}</div>
+        <div class="card-domain">ADEN-LIBRARY.COM</div>
+      </div>
+    </div>
+  </div>
+
+</section>

@@ -1,0 +1,50 @@
+<div class="page-container onest-font">
+  <app-ui-playground [htmlCode]="codeHtml" [scssCode]="codeScss" [tsCode]="codeTs" [meta]="meta">
+
+    <div class="library-container">
+
+      <!-- 1. Standard Interactive Progress -->
+      <div class="progress-section">
+        <div class="label-row">
+          <span class="label">Installation</span>
+          <span class="percentage">{{ progressValue }}%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-bar" [style.width.%]="progressValue"></div>
+        </div>
+
+        <!-- Controls for Demo -->
+        <div class="controls">
+          <button class="control-btn" (click)="setProgress(0)">0%</button>
+          <button class="control-btn" (click)="setProgress(25)">25%</button>
+          <button class="control-btn" (click)="setProgress(75)">75%</button>
+          <button class="control-btn" (click)="setProgress(100)">100%</button>
+        </div>
+      </div>
+
+      <!-- 2. Striped Animated Progress -->
+      <div class="progress-section">
+        <div class="label-row">
+          <span class="label">Uploading File...</span>
+        </div>
+        <div class="progress-track">
+          <!-- Striped class added -->
+          <div class="progress-bar striped" style="width: 60%"></div>
+        </div>
+      </div>
+
+      <!-- 3. Indeterminate (Loading) -->
+      <div class="progress-section">
+        <div class="label-row">
+          <span class="label">Processing data</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-bar indeterminate"></div>
+        </div>
+      </div>
+
+    </div>
+
+  </app-ui-playground>
+
+</div>

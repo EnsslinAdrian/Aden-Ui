@@ -1,0 +1,233 @@
+.guide-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 80px 24px;
+  min-height: 100vh;
+
+  @media (max-width: 768px) {
+    padding: 40px 20px;
+  }
+}
+
+.page-header {
+  margin-bottom: 60px;
+  text-align: center; // Zentriert sieht oft besser aus bei Guides
+
+  .subtitle {
+    margin-top: 16px;
+    display: block;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.rules-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+// --- Linke Spalte: Rule Cards ---
+.steps-col {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.rule-card {
+  background: rgba(24, 24, 27, 0.4);
+  border: 1px solid var(--border-color);
+  padding: 24px;
+  border-radius: 12px;
+  display: flex;
+  gap: 20px;
+  transition: all 0.2s ease;
+  align-items: flex-start;
+
+  .icon {
+    font-size: 24px;
+    background: rgba(255, 255, 255, 0.05);
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    flex-shrink: 0;
+  }
+
+  .card-content {
+    h3 {
+      margin: 0 0 8px 0;
+      font-family: var(--main-font);
+      font-size: 16px;
+      color: var(--primary-white);
+      font-weight: 600;
+    }
+
+    p {
+      margin: 0;
+      font-family: var(--main-font);
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+
+      code {
+        background: rgba(255,255,255,0.1);
+        padding: 2px 4px;
+        border-radius: 4px;
+        font-family: var(--font-mono);
+        color: var(--primary-white);
+        font-size: 12px;
+      }
+    }
+  }
+
+  &:hover {
+    border-color: #3f3f46;
+    background: var(--bg-hover);
+    transform: translateX(4px);
+  }
+}
+
+// --- Rechte Spalte: File Tree ---
+.file-tree-card {
+  background: #09090b; // Sehr dunkles Grau/Schwarz
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.5);
+  font-family: var(--font-mono);
+
+  .tree-header {
+    background: #18181b;
+    padding: 12px 16px;
+    font-size: 12px;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    &::before {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 10px;
+      background: radial-gradient(circle at 5px, #ff5f56 5px, transparent 6px),
+                  radial-gradient(circle at 20px, #ffbd2e 5px, transparent 6px),
+                  radial-gradient(circle at 35px, #27c93f 5px, transparent 6px);
+      margin-right: 8px;
+    }
+  }
+
+  .tree-content {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px; // Etwas enger für mehr Zeilen
+    overflow-x: auto; // Falls Pfade zu lang sind auf Mobile
+  }
+
+  .file-row {
+    display: flex;
+    align-items: center;
+    color: var(--text-muted);
+    font-size: 13px;
+    white-space: nowrap; // Kein Umbruch im Code
+
+    &.root {
+      color: var(--accent-color);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    &.folder {
+      color: var(--primary-white);
+      font-weight: 600;
+
+      &.sub { color: #e4e4e7; font-weight: 500; }
+    }
+
+    .indent {
+      color: #3f3f46;
+      margin-right: 8px;
+      user-select: none;
+      font-family: monospace; // Wichtig für exakte Ausrichtung
+    }
+
+    .icon {
+      margin-right: 8px;
+      font-style: normal;
+      font-size: 14px;
+    }
+
+    // Syntax Highlighting Colors
+    &.html .icon { filter: hue-rotate(320deg); }
+    &.scss .icon { filter: hue-rotate(200deg); }
+    &.ts .icon { filter: hue-rotate(180deg); }
+    &.md .icon { filter: grayscale(1); }
+
+    .comment {
+      margin-left: 12px;
+      color: #6a9955;
+      font-style: italic;
+
+      @media (max-width: 480px) { display: none; } // Auf Handy ausblenden
+    }
+  }
+
+  .tree-footer {
+    padding: 12px 24px;
+    border-top: 1px solid var(--border-color);
+    background: rgba(255, 255, 255, 0.02);
+
+    p {
+      margin: 0;
+      color: var(--text-muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+  }
+}
+
+// --- CTA Section ---
+.cta-section {
+  margin-top: 80px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding-top: 40px;
+  border-top: 1px solid var(--border-color);
+
+  .primary-btn {
+    background: var(--primary-white);
+    color: var(--primary-black);
+    border: none;
+    padding: 14px 32px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+      background: #ffffff;
+    }
+  }
+}

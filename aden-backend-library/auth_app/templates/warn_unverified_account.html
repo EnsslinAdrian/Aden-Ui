@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Email Confirmation Required</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Dark Mode Support -->
+  <meta name="color-scheme" content="dark">
+  <meta name="supported-color-schemes" content="dark">
+</head>
+
+<body style="margin:0; padding:0; background-color:#09090b; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color:#e4e4e7;">
+
+  {% include 'emails/header.html' %}
+
+  <!-- ================= CONTENT START ================= -->
+
+  <h1 style="font-size:22px; margin:0 0 24px 0; font-weight:700; color:#ffffff; text-align:center;">
+    ⚠️ Action Required
+  </h1>
+
+  <p style="font-size:16px; margin-bottom:20px; color:#e4e4e7;">
+    Hello {{ user.first_name|default:"" }},
+  </p>
+
+  <p style="font-size:16px; margin-bottom:24px; color:#a1a1aa; line-height: 1.6;">
+    You have successfully registered with <strong>Aden Webdesign</strong>, but have not yet verified your email address.
+  </p>
+
+  <!-- Warning Box (Dark Red Transparent) -->
+  <div style="background-color:rgba(239, 68, 68, 0.1); border:1px solid rgba(239, 68, 68, 0.3); border-radius:8px; padding:16px; margin-bottom:32px; text-align:center;">
+    <p style="margin:0; font-size:15px; color:#fca5a5; font-weight:500;">
+      Please verify your email within the next <strong>24 hours</strong>.<br>
+      Otherwise, your account will be automatically deleted for security reasons.
+    </p>
+  </div>
+
+  <!-- Button -->
+  <div style="margin:32px 0; text-align:center;">
+    <a href="{{ verify_url }}" 
+       style="background-color:#10b981; color:#000000; padding:14px 32px; text-decoration:none; font-size:16px; font-weight:600; border-radius:8px; display:inline-block; box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);">
+      Verify Email Now
+    </a>
+  </div>
+
+  <!-- Fallback Link -->
+  <p style="font-size:13px; color:#52525b; text-align:center; margin-bottom:5px;">
+    Or copy the link:
+  </p>
+  <p style="font-size:13px; word-break:break-all; text-align:center; margin:0;">
+    <a href="{{ verify_url }}" style="color:#10b981; text-decoration:underline;">{{ verify_url }}</a>
+  </p>
+
+  <!-- Sign Off -->
+  <div style="margin-top: 40px; border-top: 1px solid #27272a; padding-top: 20px;">
+    <p style="font-size:14px; color:#71717a; margin:0;">
+      Best regards,<br>
+      Your Aden Team
+    </p>
+  </div>
+
+  <!-- ================= CONTENT END ================= -->
+
+  {% include 'emails/footer.html' %}
+
+</body>
+</html>

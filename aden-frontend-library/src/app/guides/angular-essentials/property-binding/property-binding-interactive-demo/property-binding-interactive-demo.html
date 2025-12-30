@@ -1,0 +1,95 @@
+<section class="demo-section">
+
+
+  <div class="binding-studio">
+
+    <!-- LEFT: LOGIC (TypeScript) -->
+    <div class="panel logic-panel">
+      <div class="panel-header">
+        <span class="icon">TS</span> Component Logic
+      </div>
+      <div class="panel-content">
+
+        <!-- Image Control -->
+        <div class="control-group">
+          <label>src (Image URL)</label>
+          <div class="action-row">
+            <button class="aden-btn small" (click)="toggleImage()">Switch Image</button>
+            <span class="value-preview">{{ currentImg | slice:0:30 }}...</span>
+          </div>
+        </div>
+
+        <!-- Disabled Control -->
+        <div class="control-group">
+          <label>isDisabled (boolean)</label>
+          <div class="toggle-wrapper" (click)="isDisabled = !isDisabled">
+            <div class="toggle-switch" [class.active]="isDisabled">
+              <div class="toggle-knob"></div>
+            </div>
+            <span class="value-bool">{{ isDisabled }}</span>
+          </div>
+        </div>
+
+        <!-- Color Control -->
+        <div class="control-group">
+          <label>accentColor (string)</label>
+          <div class="color-picker-row">
+            <input type="color" [(ngModel)]="accentColor">
+            <span class="value-preview">{{ accentColor }}</span>
+          </div>
+        </div>
+
+        <!-- Label Control -->
+        <div class="control-group">
+          <label>label (string)</label>
+          <input type="text" [(ngModel)]="buttonLabel" class="text-input">
+        </div>
+
+      </div>
+    </div>
+
+    <!-- MIDDLE: ARROW (Data Flow) -->
+    <div class="flow-indicator">
+      <div class="arrow-line"></div>
+      <div class="arrow-head">►</div>
+      <div class="binding-brackets">[ ]</div>
+    </div>
+
+    <!-- RIGHT: VIEW (HTML Template) -->
+    <div class="panel view-panel">
+      <div class="panel-header">
+        <span class="icon">HTML</span> Result
+      </div>
+
+      <div class="preview-stage">
+
+        <!-- The Demo Element -->
+        <div class="card-preview">
+          <img [src]="currentImg" class="avatar" alt="User Avatar">
+
+          <div class="card-body">
+            <h3>User Profile</h3>
+            <button class="demo-btn" [disabled]="isDisabled"
+              [style.backgroundColor]="isDisabled ? '#333' : accentColor">
+              {{ buttonLabel }}
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Live Code Preview -->
+      <div class="code-preview">
+        <code>
+            &lt;img <span class="attr">[src]</span>=<span class="string">"currentImg"</span> /&gt;<br>
+            &lt;button <br>
+            &nbsp;&nbsp;<span class="attr">[disabled]</span>=<span class="string">"{{isDisabled}}"</span> <br>
+            &nbsp;&nbsp;<span class="attr">[style.background]</span>=<span class="string">"{{accentColor}}"</span>&gt;<br>
+            &nbsp;&nbsp;{{ '{' }}{{ '{' }} buttonLabel {{ '}' }}{{ '}' }}<br>
+            &lt;/button&gt;
+          </code>
+      </div>
+    </div>
+
+  </div>
+</section>

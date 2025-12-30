@@ -1,0 +1,106 @@
+<div class="contrib-container">
+
+  <header class="page-header">
+    <app-typografie text="Contribution" size="xlarge" [weight]="700" color="white"></app-typografie>
+    <app-typografie text="Submit your component to the ADEN ecosystem via GitHub." size="medium" color="grey"
+      class="subtitle"></app-typografie>
+  </header>
+
+  <form [formGroup]="contributionForm" (ngSubmit)="submitToGitHub()" class="form-grid">
+
+    <!-- SPALTE 1: META DATA & DESCRIPTION -->
+    <div class="form-section">
+      <div class="section-title">
+        <span class="step">01</span>
+        <app-typografie text="Meta Data" size="small" [weight]="600" color="white"></app-typografie>
+      </div>
+
+      <div class="form-group full-width">
+        <label class="email-label">Your Account Email</label>
+        <div class="static-box">
+          <span class="value">{{ userEmail() }}</span>
+          <span class="lock-icon" title="Linked to your account">🔒</span>
+        </div>
+        <app-typografie text="Submissions are linked to your ADEN profile." size="xsmall" color="grey" class="hint-text"></app-typografie>
+      </div>
+
+      <app-auth-inputs type="text" name="componentName" label="Component Name" placeholder="e.g. Magic Button" autocomplete="off"></app-auth-inputs>
+      <app-textarea name="description" label="Short Description" placeholder="Briefly describe what your component does..." [maxLength]="200" [rows]="5"></app-textarea>
+    </div>
+
+
+    <div class="form-section">
+      <div class="section-title">
+        <span class="step">02</span>
+        <app-typografie text="Quality & Code" size="small" [weight]="600" color="white"></app-typografie>
+      </div>
+
+      <div class="input-group">
+        <app-auth-inputs type="url" name="codeLink" label="GitHub Repository URL" placeholder="https://github.com/..." patternError="Must start with https://github.com/" autocomplete="off"></app-auth-inputs>
+        <app-typografie text="Please provide a direct link to the source code." size="xsmall" color="grey"class="or-text"></app-typografie>
+      </div>
+
+      <div class="checkbox-list">
+        <!-- JSDoc -->
+        <label class="custom-checkbox">
+          <input type="checkbox" formControlName="hasDocumentation">
+          <span class="checkmark"></span>
+          <div class="checkbox-text">
+            <app-typografie text="Code is documented" size="small" [weight]="600" color="white"></app-typografie>
+            <app-typografie text="Functions use proper JSDoc comments." size="xsmall" [weight]="400"
+              color="grey"></app-typografie>
+          </div>
+        </label>
+
+        <!-- Readme -->
+        <label class="custom-checkbox">
+          <input type="checkbox" formControlName="hasReadme">
+          <span class="checkmark"></span>
+          <div class="checkbox-text">
+            <app-typografie text="Includes README.md" size="small" [weight]="600" color="white"></app-typografie>
+            <app-typografie text="Explains usage and installation." size="xsmall" [weight]="400"
+              color="grey"></app-typografie>
+          </div>
+        </label>
+
+        <!-- Original Work -->
+        <label class="custom-checkbox">
+          <input type="checkbox" formControlName="isOriginalWork">
+          <span class="checkmark"></span>
+          <div class="checkbox-text">
+            <app-typografie text="Original Work" size="small" [weight]="600" color="white"></app-typografie>
+            <app-typografie text="I own the rights to this code." size="xsmall" [weight]="400"
+              color="grey"></app-typografie>
+          </div>
+        </label>
+
+        <!-- Publish Agreement -->
+        <label class="custom-checkbox">
+          <input type="checkbox" formControlName="agreesToPublish">
+          <span class="checkmark"></span>
+          <div class="checkbox-text">
+            <app-typografie text="Agreement" size="small" [weight]="600" color="white"></app-typografie>
+            <app-typografie text="I agree to publish under my name." size="xsmall" [weight]="400"
+              color="grey"></app-typografie>
+          </div>
+        </label>
+      </div>
+
+      <div class="action-area">
+        <app-auth-btn [formInvalid]="contributionForm.invalid" [buttonText]="'Create Issue on GitHub'"
+          [loadingText]="'Preparing...'"></app-auth-btn>
+
+        <div class="info-text">
+          <app-typografie text="This will open a new issue in the <strong>ADEN-Library</strong> repository."
+            size="xsmall" color="grey">
+          </app-typografie>
+        </div>
+      </div>
+    </div>
+
+  </form>
+</div>
+
+@if (showUnsavedDialog()) {
+  <app-unsaved-changes (decision)="handleUnsavedDecision($event)"></app-unsaved-changes>
+}

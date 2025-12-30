@@ -1,0 +1,49 @@
+<div class="code-wrapper" [class.locked]="!canView()">
+
+  <!-- Scroll Area -->
+  <div class="code-scroller">
+
+    @if(mode() === 'install') {
+      <!-- INSTALL TAB -->
+      <app-code-highlight
+        language="bash"
+        [code]="canView() ? codeInstall() : 'npm install locked-package'">
+      </app-code-highlight>
+
+    } @else {
+      <!-- CODE TAB -->
+      <!--
+           HIER WAR DER FEHLER:
+           Wir nutzen jetzt currentCodeDisplay().
+           Das computed Signal kümmert sich um die Logik.
+      -->
+      <app-code-highlight
+        [language]="lang()"
+        [code]="currentCodeDisplay()">
+      </app-code-highlight>
+    }
+  </div>
+
+  <!-- LOCKED OVERLAY (Bleibt genau wie es war) -->
+  @if (!canView()) {
+    <div class="lock-overlay">
+      <div class="lock-content">
+        <div class="lock-icon-circle">🔒</div>
+
+        @if (isPremium()) {
+          <h3>Pro Component</h3>
+          <p>Upgrade to Pro to access this premium component source code.</p>
+          <button class="unlock-btn gradient" (click)="handleAccessAction()">
+            Get Pro Access 🚀
+          </button>
+        } @else {
+          <h3>Login Required</h3>
+          <p>Join our community for free to copy this code.</p>
+          <button class="unlock-btn outline" (click)="handleAccessAction()">
+            Login / Sign Up
+          </button>
+        }
+      </div>
+    </div>
+  }
+</div>

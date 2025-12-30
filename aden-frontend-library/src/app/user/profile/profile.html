@@ -1,0 +1,47 @@
+<div class="profile-container fade-in">
+
+  @if (userService.loading()) {
+  <div class="loading-overlay">
+    <div class="spinner"></div>
+  </div>
+  }
+
+  @if (userService.profile(); as user) {
+
+  <app-profile-header></app-profile-header>
+
+  <div class="content-grid">
+    <div class="main-column">
+      <app-profile-library class="card" [createdComponents]="user.created_components || []"
+        [savedComponents]="user.saved_components || []"></app-profile-library>
+      <app-profile-settings class="card"></app-profile-settings>
+    </div>
+
+    <div class="side-column sidebar">
+      <app-profile-subscription class="card" [user]="user" (openUpgrade)="showUpgradeDialog.set(true)"></app-profile-subscription>
+      <app-profile-delete class="card" (open)="showDeleteDialog.set(true)"></app-profile-delete>
+      <app-profile-logout></app-profile-logout>
+    </div>
+
+  </div>
+
+  } @else {
+  <div class="empty-state">
+    <p>Profil konnte nicht geladen werden.</p>
+    <button (click)="userService.loadProfile()">Erneut versuchen</button>
+  </div>
+  }
+
+</div>
+
+@if (showDeleteDialog()) {
+<app-delete-account (close)="showDeleteDialog.set(false)"></app-delete-account>
+}
+
+@if (showUpgradeDialog()) {
+  <app-upgrade-dialog (close)="showUpgradeDialog.set(false)"></app-upgrade-dialog>
+}
+
+@if (showUnsavedDialog()) {
+  <app-unsaved-changes (decision)="handleUnsavedDecision($event)"></app-unsaved-changes>
+}

@@ -1,0 +1,105 @@
+.page-container {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.library-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  max-width: 400px;
+  padding: 40px;
+  background-color: var(--aden-bg);
+  border-radius: 12px;
+}
+
+:host {
+  --aden-bg: #0f0f0f;
+  --aden-surface: #1a1a1a;
+  --aden-border: #333333;
+  --aden-text: #e5e5e5;
+  --aden-primary: #4ade80; /* Neon Green */
+}
+
+.radio-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+}
+
+/* Verstecke das native Input */
+.aden-radio {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Der äußere Kreis */
+.radio-circle {
+  height: 20px;
+  width: 20px;
+  background-color: var(--aden-surface);
+  border: 2px solid var(--aden-border);
+  border-radius: 50%;
+  position: relative;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+/* Der innere Punkt (ursprünglich klein/unsichtbar) */
+.radio-circle::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--aden-primary);
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy effekt */
+}
+
+/* Hover Effekt */
+.radio-wrapper:hover .radio-circle {
+  border-color: #666;
+}
+
+/* Checked State - Äußerer Kreis */
+.aden-radio:checked + .radio-circle {
+  border-color: var(--aden-primary);
+  box-shadow: 0 0 12px rgba(74, 222, 128, 0.2); /* Sanfter Glow */
+}
+
+/* Checked State - Innerer Punkt erscheint */
+.aden-radio:checked + .radio-circle::after {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Label Text Styling */
+.label-text {
+  font-size: 1rem;
+  color: var(--aden-text);
+  font-weight: 400;
+  transition: color 0.2s;
+}
+
+.aden-radio:checked ~ .label-text {
+  color: #fff;
+  font-weight: 500;
+}
+
+/* Accessibility Focus */
+.aden-radio:focus-visible + .radio-circle {
+  outline: 2px solid var(--aden-primary);
+  outline-offset: 4px;
+}

@@ -1,0 +1,74 @@
+    <div class="library-container">
+
+      <form [formGroup]="accountForm" (ngSubmit)="onSubmit()" class="aden-form" novalidate>
+
+        <div class="form-header">
+          <h3>Create Account</h3>
+          <p>Join us to access exclusive features.</p>
+        </div>
+
+        <!-- Username -->
+        <div class="input-group">
+          <div class="field-wrapper">
+            <input type="text" id="username" class="aden-input floating-input" placeholder=" "
+              formControlName="username" [class.invalid]="isInvalid('username')" />
+            <label for="username" class="floating-label">Username</label>
+          </div>
+
+          @if (isInvalid('username')) {
+          <div class="error-feedback">
+            @if (accountForm.controls.username.errors?.['required']) {
+            <span>Username is required.</span>
+            }
+            @if (accountForm.controls.username.errors?.['minlength']) {
+            <span>Must be at least 3 characters.</span>
+            }
+          </div>
+          }
+        </div>
+
+        <!-- Email -->
+        <div class="input-group">
+          <div class="field-wrapper">
+            <input type="email" id="email" class="aden-input floating-input" placeholder=" " formControlName="email"
+              [class.invalid]="isInvalid('email')" />
+            <label for="email" class="floating-label">Email Address</label>
+          </div>
+
+          @if (isInvalid('email')) {
+          <div class="error-feedback">
+            @if (accountForm.controls.email.errors?.['required']) {
+            <span>Email is required.</span>
+            }
+            @if (accountForm.controls.email.errors?.['email']) {
+            <span>Please enter a valid email address.</span>
+            }
+          </div>
+          }
+        </div>
+
+        <!-- Password -->
+        <div class="input-group">
+          <div class="field-wrapper">
+            <input type="password" id="password" class="aden-input floating-input" placeholder=" "
+              formControlName="password" [class.invalid]="isInvalid('password')" />
+            <label for="password" class="floating-label">Password</label>
+          </div>
+
+          @if (isInvalid('password')) {
+          <div class="error-feedback">
+            <span>Password must be at least 6 characters.</span>
+          </div>
+          }
+        </div>
+
+        <!-- Submit -->
+        <div class="form-actions">
+          <button type="submit" class="aden-btn primary" [disabled]="accountForm.invalid">
+            Create Account
+          </button>
+        </div>
+
+      </form>
+
+    </div>

@@ -1,0 +1,54 @@
+@mixin grid-template($layout) {
+    grid-template-areas: $layout;
+}
+
+@mixin apply-grid() {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: repeat(6, 1fr);
+
+    @include grid-template("item1 item1 item2 item2 item2 item2"
+        "item1 item1 item4 item4 item5 item5"
+        "item3 item3 item6 item6 item7 item7"
+    );
+
+    @media (max-width: 960px) {
+        grid-template-columns: repeat(2, 1fr);
+        @include grid-template("item2 item2"
+            "item1 item3"
+            "item4 item5"
+            "item6 item7"
+        );
+    }
+
+    @media (max-width: 480px) {
+        grid-template-columns: 1fr;
+        @include grid-template("item2"
+            "item1"
+            "item3"
+            "item4"
+            "item5"
+            "item6"
+            "item7"
+        );
+    }
+}
+
+.grid-layout-container {
+    width: 100%;
+    @include apply-grid();
+}
+
+@for $i from 1 through 7 {
+    .item#{$i} {
+        grid-area: item#{$i};
+    }
+}
+
+.item {
+    /* Styling (Aden Theme) */
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 20px;
+    padding: 24px;
+}

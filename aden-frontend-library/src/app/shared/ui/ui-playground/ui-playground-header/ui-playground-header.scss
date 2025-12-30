@@ -1,0 +1,182 @@
+// ui-playground-header.scss
+
+// WICHTIG: Diese Variable muss hier definiert werden, da sie nicht vererbt wird!
+$gold-gradient: linear-gradient(135deg, #FFD700 0%, #FDB931 100%);
+
+.meta-header {
+  padding: 20px 24px;
+  background-color: var(--surface-card);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
+.meta-left {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  .title-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .comp-title {
+    font-family: var(--main-font);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--primary-white);
+    margin: 0;
+  }
+
+  .comp-desc {
+    font-family: var(--main-font);
+    font-size: 14px;
+    color: var(--text-muted);
+    margin: 0;
+    max-width: 500px;
+    line-height: 1.5;
+  }
+
+  .badge {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 800;
+    padding: 3px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+
+    &.pro {
+      // Hier wird die Variable oben genutzt
+      background: $gold-gradient;
+      color: var(--primary-black);
+      box-shadow: 0 0 15px rgba(253, 185, 49, 0.15);
+    }
+
+    &.free {
+      background: rgba(74, 222, 128, 0.15);
+      color: var(--neon-green);
+      border: 1px solid rgba(74, 222, 128, 0.2);
+    }
+  }
+}
+
+.meta-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* --- ACTIONS (Like/Save) --- */
+.action-group {
+  display: flex;
+  gap: 8px;
+
+  .action-btn {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+    height: 36px;
+    padding: 0 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--main-font);
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: var(--bg-hover);
+      color: var(--primary-white);
+      border-color: var(--text-muted);
+    }
+
+    &.active {
+      border-color: rgba(59, 130, 246, 0.5);
+      background: rgba(59, 130, 246, 0.1);
+      color: var(--accent-color);
+
+      .heart-icon {
+        color: var(--danger-color);
+      }
+    }
+
+    .heart-icon {
+      font-size: 16px;
+      transition: color 0.2s;
+    }
+
+    .count {
+      font-size: 12px;
+      font-weight: 600;
+    }
+  }
+}
+
+.divider {
+  width: 1px;
+  height: 24px;
+  background: var(--border-color);
+}
+
+/* --- AUTHOR CHIP --- */
+.author-chip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 12px 4px 4px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border-color);
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+
+  .author-img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--border-color);
+  }
+
+  .author-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 1.2;
+
+    .by-label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+    }
+
+    .author-name {
+      font-family: var(--main-font);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--primary-white);
+    }
+  }
+
+  &:hover {
+    background: var(--bg-hover);
+    border-color: var(--text-muted);
+    transform: translateY(-1px);
+
+    .author-name {
+      color: var(--accent-color);
+    }
+  }
+}

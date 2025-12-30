@@ -1,0 +1,129 @@
+:host {
+    --color-primary: #1a73e8;
+    --color-secondary: #5f6368;
+    --color-success: #34a853;
+    --color-warning: #fbbc04;
+    --color-error: #ea4335;
+    --color-white: #ffffff;
+    --color-black: #000000;
+    --color-text-light: #f8f9fa;
+    --color-text-dark: #202124;
+
+    --font-size-xs: 12px;
+    --font-size-sm: 14px;
+    --font-size-base: 16px;
+    --font-size-lg: 18px;
+    --font-size-xl: 24px;
+    --font-size-2xl: 32px;
+    --font-size-3xl: 42px;
+}
+
+.text-style {
+    font-family: Arial, sans-serif;
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+.xs {
+    font-size: var(--font-size-xs);
+
+    @media (max-width: 480px) {
+        font-size: 11px;
+    }
+}
+
+.small {
+    font-size: var(--font-size-sm);
+
+    @media (max-width: 480px) {
+        font-size: var(--font-size-xs);
+    }
+}
+
+.base {
+    font-size: var(--font-size-base);
+
+    @media (max-width: 480px) {
+        font-size: var(--font-size-sm);
+    }
+}
+
+.large {
+    font-size: var(--font-size-lg);
+
+    @media (max-width: 480px) {
+        font-size: var(--font-size-base);
+    }
+}
+
+.xl {
+    font-size: var(--font-size-xl);
+
+    @media (max-width: 640px) {
+        font-size: var(--font-size-lg);
+    }
+
+    @media (max-width: 480px) {
+        font-size: var(--font-size-base);
+    }
+}
+
+.xxl {
+    font-size: var(--font-size-2xl);
+
+    @media (max-width: 640px) {
+        font-size: var(--font-size-xl);
+    }
+
+    @media (max-width: 480px) {
+        font-size: var(--font-size-lg);
+    }
+}
+
+.xxxl {
+    font-size: var(--font-size-3xl);
+
+    @media (max-width: 640px) {
+        font-size: var(--font-size-2xl);
+    }
+
+    @media (max-width: 480px) {
+        font-size: var(--font-size-xl);
+    }
+}
+
+.primary {
+    color: var(--color-primary);
+}
+
+.secondary {
+    color: var(--color-secondary);
+}
+
+.success {
+    color: var(--color-success);
+}
+
+.warning {
+    color: var(--color-warning);
+}
+
+.error {
+    color: var(--color-error);
+}
+
+.white {
+    color: var(--color-white);
+}
+
+.black {
+    color: var(--color-black);
+}
+
+.text-light {
+    color: var(--color-text-light);
+}
+
+.text-dark {
+    color: var(--color-text-dark);
+}

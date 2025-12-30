@@ -1,0 +1,17 @@
+<div class="viewer-container fade-in">
+      @if (selectedComponent(); as Comp) {
+        <!-- Back Button -->
+        <button class="back-btn" (click)="goBack()">← Back to Library</button>
+
+        <!-- Hier wird die Component dynamisch gerendert -->
+        <div class="component-stage">
+          <ng-container *ngComponentOutlet="Comp"></ng-container>
+        </div>
+      } @else {
+        <div class="error-state">
+          <h2>Component not found</h2>
+          <p>The slug "{{ currentSlug }}" does not match any registered component.</p>
+          <button (click)="goBack()">Go Back</button>
+        </div>
+      }
+    </div>

@@ -1,0 +1,126 @@
+.page-container {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.library-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 100%;
+  max-width: 450px;
+  padding: 30px;
+  background-color: var(--aden-bg);
+  border-radius: 12px;
+}
+
+:host {
+  --aden-bg: #0f0f0f;
+  --aden-surface: #1a1a1a;
+  --aden-border: #333333;
+  --aden-text: #e5e5e5;
+  --aden-muted: #888;
+  --aden-primary: #4ade80;
+}
+
+.progress-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Labels */
+.label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-size: 0.9rem;
+  color: var(--aden-text);
+  margin-bottom: 4px;
+}
+
+.percentage {
+  color: var(--aden-primary);
+  font-weight: 600;
+  font-family: monospace;
+}
+
+/* Track Styling */
+.progress-track {
+  width: 100%;
+  height: 8px;
+  background-color: var(--aden-surface);
+  border: 1px solid var(--aden-border);
+  border-radius: 99px;
+  overflow: hidden; /* Ensures bar stays inside rounded corners */
+  position: relative;
+}
+
+/* Bar Styling */
+.progress-bar {
+  height: 100%;
+  background-color: var(--aden-primary);
+  border-radius: 99px;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 10px rgba(74, 222, 128, 0.3); /* Neon Glow */
+}
+
+/* Variant: Striped Animation */
+.progress-bar.striped {
+  background-image: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.15) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.15) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-size: 20px 20px;
+  animation: moveStripes 1s linear infinite;
+}
+
+@keyframes moveStripes {
+  0% { background-position: 0 0; }
+  100% { background-position: 20px 0; }
+}
+
+/* Variant: Indeterminate */
+.progress-bar.indeterminate {
+  width: 30%;
+  position: absolute;
+  animation: indeterminate 1.5s infinite ease-in-out;
+}
+
+@keyframes indeterminate {
+  0% { left: -30%; }
+  50% { left: 100%; }
+  100% { left: -30%; }
+}
+
+/* Controls for Demo */
+.controls {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.control-btn {
+  background: var(--aden-surface);
+  border: 1px solid var(--aden-border);
+  color: var(--aden-muted);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.control-btn:hover {
+  color: var(--aden-primary);
+  border-color: var(--aden-primary);
+}

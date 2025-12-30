@@ -1,0 +1,125 @@
+<div class="page-container onest-font">
+
+  <app-headline-guides
+    [badgeText]="'Advanced SEO'"
+    [headline]="'Google Sitelinks (JSON-LD)'"
+    [subheadline]="'From a simple link to a dominating search result. Learn how to help Google understand your site structure and display sitelinks.'">
+  </app-headline-guides>
+
+  <!-- 1. INTRO -->
+  <section class="content-section">
+    <p class="intro-text">
+      Have you ever wondered why Amazon or Wikipedia look so massive on Google?
+      They have 6 additional links (sitelinks) or even a search bar under the main link.
+    </p>
+    <p class="intro-text" style="margin-top: 16px;">
+      The secret is <strong>Structured Data (JSON-LD)</strong>. This is invisible code written specifically for machines (Google bots).
+      We implement a fully automated system that generates this data.
+    </p>
+  </section>
+
+  <!-- 2. DEMO: THE GOAL -->
+  <section class="demo-section">
+    <h2>1. The Goal: Dominance in the SERPs</h2>
+    <p class="sub-text">
+      This is what a result looks like when JSON-LD is implemented correctly. Google recognizes the hierarchy (breadcrumbs) and important subpages.
+    </p>
+
+    <!-- Google Mockup -->
+    <div class="google-result-card">
+      <div class="url-row">
+        <div class="icon">A</div>
+        <div class="bread">
+          <span>adenui.com</span>
+          <span class="divider">›</span>
+          <span>Components</span>
+          <span class="divider">›</span>
+          <span>Button</span>
+        </div>
+      </div>
+      <h3 class="result-title">ADEN UI - The Ultimate Component Library</h3>
+      <p class="result-desc">
+        Build better apps in less time. Fully accessible, SSR-ready and performant Angular components.
+      </p>
+
+      <!-- Sitelinks Grid -->
+      <div class="sitelinks-grid">
+        <div class="sl-item">
+          <a href="javascript:void(0)">Components</a>
+          <p>Browse our collection of 50+ inputs...</p>
+        </div>
+        <div class="sl-item">
+          <a href="javascript:void(0)">Guides</a>
+          <p>Learn everything about SSR & SEO...</p>
+        </div>
+        <div class="sl-item">
+          <a href="javascript:void(0)">Showcase</a>
+          <p>See what others have built...</p>
+        </div>
+        <div class="sl-item">
+          <a href="javascript:void(0)">Login</a>
+          <p>Access your dashboard and settings...</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. ARCHITECTURE -->
+  <section class="code-section">
+    <h2>2. The Architecture: The Auto-Pilot</h2>
+    <p class="sub-text">
+      We don't want to manually write JSON-LD into every component. That would be unmaintainable.
+      Instead, we build a **service** that runs in the background like a watchdog. It monitors the router and automatically generates breadcrumbs.
+    </p>
+
+    <app-code-block-guide
+      filename="json-ld.service.ts"
+      [code]="serviceCode"
+      language="typescript">
+    </app-code-block-guide>
+  </section>
+
+  <!-- 4. ROUTING -->
+  <section class="code-section">
+    <h2>3. Configuration in the Routes</h2>
+    <p class="sub-text">
+      All we need to do now is give our routes a name.
+      We use the <code>data</code> object. Our service automatically reads the <code>breadcrumb</code> field.
+    </p>
+
+    <app-code-block-guide
+      filename="app.routes.ts"
+      [code]="routesCode"
+      language="typescript">
+    </app-code-block-guide>
+  </section>
+
+  <!-- 5. INTEGRATION -->
+  <section class="code-section">
+    <h2>4. Integration (One-Time)</h2>
+    <p class="sub-text">
+      To start the service, we need to inject it once in the <code>AppComponent</code> ("wake it up").
+      Additionally, we set the special "WebSite" schema on the homepage (Home) so that Google recognizes our brand.
+    </p>
+
+    <app-code-block-guide
+      filename="app.component.ts"
+      [code]="integrationCode"
+      language="typescript">
+    </app-code-block-guide>
+
+    <!-- Notice OHNE Link -->
+    <app-notice [noticeType]="'tipp'"
+      [noticeText]="'<strong>Testing:</strong> To check if everything works, use the official validation tool. Simply paste your generated code (from View Source) there.'">
+    </app-notice>
+
+    <!-- Der Link AUSSERHALB -->
+    <div class="external-link-box">
+      <a href="https://search.google.com/test/rich-results" target="_blank" class="neon-link">
+        Open Google Rich Results Test ↗
+      </a>
+    </div>
+
+  </section>
+
+</div>

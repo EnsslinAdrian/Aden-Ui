@@ -1,0 +1,65 @@
+<div class="page-container onest-font">
+
+  <app-headline-guides [badgeText]="'SEO & Security'" [headline]="'robots.txt'"
+    [subheadline]="'The &quot;No Trespassing&quot; sign for your app. Control exactly which areas Google allowed to see and which remain private.'">
+  </app-headline-guides>
+
+  <!-- 1. INTRO -->
+  <section class="content-section">
+    <p class="intro-text">
+      I used to think: "If I don't link it, Google won't find it."
+      <br>Wrong. Google finds everything. There is nothing more embarrassing than a customer googling their company name
+      and landing on your internal admin login page.
+    </p>
+    <p class="intro-text" style="margin-top: 16px;">
+      The <code>robots.txt</code> is the very first file a crawler requests. It acts as the gatekeeper. It says: "Hello
+      Google, the blog is public, but the folder <code>/profile</code> is strictly off-limits."
+    </p>
+  </section>
+
+  <!-- 2. DEMO -->
+  <section class="demo-section">
+    <h2>1. Crawler Simulator</h2>
+    <p class="sub-text">
+      Play the gatekeeper. Edit the rules on the left and test on the right with different URLs (e.g.,
+      <code>/admin/dashboard</code>) to see if the bot gets blocked (Disallow) or passed (Allow).
+    </p>
+    <app-crawler-simulator style="width: 100%;"></app-crawler-simulator>
+  </section>
+
+  <!-- 3. IMPLEMENTATION -->
+  <section class="code-section">
+    <h2>2. Implementation</h2>
+    <p class="sub-text">
+      Just like the <code>.htaccess</code>, this file must physically exist in the root of the deployed app. In Angular,
+      this means it belongs in the <code>public/</code> folder.
+    </p>
+
+    <!-- Folder Visualization -->
+    <div class="folder-structure-viz">
+      <div class="root">my-angular-project/</div>
+      <div class="tree">
+        <div>├── src/</div>
+        <div>├── angular.json</div>
+        <div class="folder highlight">├── public/</div>
+        <div class="file highlight">│ ├── robots.txt <span class="badge">New</span></div>
+        <div class="file">│ ├── .htaccess</div>
+        <div class="file">│ └── favicon.ico</div>
+      </div>
+    </div>
+
+    <h3 style="margin-top: 32px;">The Code</h3>
+    <p class="sub-text">
+      The syntax is simple text. <code>User-agent: *</code> applies to all bots. Then follow the permissions.
+    </p>
+
+    <app-code-block-guide filename="public/robots.txt" [code]="robotsTxtCode" language="yaml">
+    </app-code-block-guide>
+
+    <app-notice [noticeType]="'tipp'"
+      [noticeText]="'<strong>Link your Sitemap:</strong> Always add the absolute path to your sitemap at the bottom. This is the fastest way to let Google know about new pages in your app.'">
+    </app-notice>
+
+  </section>
+
+</div>

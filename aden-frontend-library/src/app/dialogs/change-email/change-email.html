@@ -1,0 +1,31 @@
+@if (step() === 'input') {
+
+<div class="dialog-overlay fade-in" (click)="onCancel()">
+  <div class="dialog-card scale-in" (click)="$event.stopPropagation()">
+
+    <div class="dialog-header">
+      <h3>Change Email Address</h3>
+      <app-close-btn (click)="onCancel()"></app-close-btn>
+    </div>
+
+    <div class="dialog-body">
+      <app-typografie text="Enter your new email address. We will send a verification link to confirm the change." size="small" [weight]="400" color="grey" align="left"></app-typografie>
+
+      <form [formGroup]="emailForm">
+        <app-auth-inputs type="email" name="newEmail" label="New Email Address" placeholder="new.name@example.com"></app-auth-inputs>
+      </form>
+    </div>
+
+    <div class="dialog-footer">
+      <app-cancel-btn (click)="onCancel()"></app-cancel-btn>
+      <app-auth-btn [isLoading]="isLoading()" [formInvalid]="emailForm.invalid" [buttonText]="'Update Email'" [loadingText]="'Updating...'" (click)="onSubmit()"></app-auth-btn>
+    </div>
+
+  </div>
+</div>
+}
+
+@if (step() === 'reauth') {
+  <app-re-authenticate (authenticated)="onReAuthSuccess()" (cancel)="onCancel()"></app-re-authenticate>
+}
+

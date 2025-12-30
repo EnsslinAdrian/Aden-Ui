@@ -1,0 +1,97 @@
+services:
+  frontend:
+    build:
+      context: ./aden-frontend-library
+      args:
+        API_URL: ${FRONTEND_API_URL}
+    restart: unless-stopped
+    ports:
+      - "8001:80"
+    depends_on:
+      - backend
+    networks:
+      - backend-network
+
+  backend:
+    build:
+      context: ./aden-backend-library
+      dockerfile: backend.Dockerfile
+    image: ${PROJECT_NAME}_backend
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - "8002:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - backend-network
+    volumes:
+      - ./aden-backend-library/media:/app/media
+      - ./aden-backend-library/static:/app/static
+
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    networks:
+      - backend-network
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $DB_USER -d $DB_NAME"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--requirepass", "${REDIS_PASSWORD}"]
+    restart: unless-stopped
+    networks:
+      - backend-network
+    environment:
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+    expose:
+      - "6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "${REDIS_PASSWORD}", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  celery:
+      image: ${PROJECT_NAME}_backend
+      restart: unless-stopped
+      entrypoint: ./celery.entrypoint.sh
+      env_file: .env
+      depends_on:
+        db:
+          condition: service_healthy
+        redis:
+          condition: service_healthy
+      networks:
+        - backend-network
+
+  celery_beat:
+    image: ${PROJECT_NAME}_backend
+    restart: unless-stopped
+    entrypoint: ./celery_beat.entrypoint.sh
+    env_file: .env
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - backend-network
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  backend-network:

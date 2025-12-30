@@ -1,0 +1,17 @@
+.error-banner {
+  background: rgba(239, 68, 68, 0.1); // Roter Hintergrund transparent
+  border: 1px solid rgba(239, 68, 68, 0.3); // Roter Rand
+  color: #fca5a5; // Heller roter Text
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  svg {
+    stroke: #fca5a5;
+    min-width: 16px;
+  }
+}

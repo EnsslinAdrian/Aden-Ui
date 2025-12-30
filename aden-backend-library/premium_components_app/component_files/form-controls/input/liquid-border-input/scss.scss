@@ -1,0 +1,87 @@
+:host {
+  --aden-bg: #0f0f0f;
+  --aden-surface: #1a1a1a;
+  --aden-border: #333333;
+  --aden-text: #e5e5e5;
+  --aden-placeholder: #666;
+  --aden-primary: #4ade80;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-label {
+  font-size: 0.9rem;
+  color: #888;
+  font-weight: 500;
+  margin-left: 2px;
+}
+
+.aden-input {
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 1rem;
+  color: var(--aden-text);
+  background-color: var(--aden-surface);
+  border: 1px solid var(--aden-border);
+  border-radius: 8px;
+  outline: none;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+.aden-input::placeholder {
+  color: var(--aden-placeholder);
+}
+
+.liquid-wrapper {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 2px;
+  background-color: var(--aden-surface);
+  box-shadow: 0 0 0 1px var(--aden-border);
+  transition: box-shadow 0.3s ease;
+}
+
+.liquid-bg {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    transparent,
+    transparent,
+    transparent,
+    var(--aden-primary)
+  );
+  animation: rotate 4s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.liquid-input {
+  position: relative;
+  border: none !important;
+  background-color: var(--aden-surface);
+  z-index: 2;
+  border-radius: 8px;
+}
+
+.liquid-wrapper:focus-within {
+  box-shadow: none;
+}
+
+.liquid-wrapper:focus-within .liquid-bg {
+  opacity: 1;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}

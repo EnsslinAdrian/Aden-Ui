@@ -1,0 +1,123 @@
+.page-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  box-sizing: border-box;
+  color: var(--primary-white);
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+
+.custom-pipe-demo {
+  margin-top: 40px;
+  margin-bottom: 24px;
+  background-color: var(--surface-card);
+  border: 1px solid var(--ui-border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.demo-header {
+  background-color: var(--terminal-header);
+  padding: 12px 20px;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--primary-white);
+  border-bottom: 1px solid var(--ui-border);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  .icon { font-size: 1.2rem; }
+}
+
+.demo-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  label {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    strong { color: var(--neon-green); }
+  }
+
+  .range-slider {
+    width: 100%;
+    max-width: 300px;
+    height: 6px;
+    background: var(--ui-border);
+    border-radius: 3px;
+    outline: none;
+    -webkit-appearance: none;
+
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      background: var(--neon-green);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: transform 0.1s;
+      &:hover { transform: scale(1.2); }
+    }
+  }
+}
+
+.result-box {
+  background: rgba(0,0,0,0.2);
+  border: 1px dashed var(--ui-border);
+  border-radius: 8px;
+  padding: 16px;
+
+  .label {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+    font-weight: 600;
+  }
+
+  .val {
+    font-family: var(--main-font);
+    line-height: 1.5;
+    color: var(--text-muted);
+
+    &.raw { opacity: 0.6; font-size: 0.9rem; font-style: italic; }
+
+    &.result {
+      color: var(--primary-white);
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--neon-green);
+    }
+  }
+
+  .separator {
+    height: 1px;
+    background: var(--ui-border);
+    margin: 12px 0;
+    opacity: 0.5;
+  }
+}
+
+.sub-text {
+  margin-top: 12px;
+  color: var(--primary-white-70);
+  font-size: 16px;
+
+  strong {
+    color: var(--primary-white-90);
+  }
+}

@@ -1,0 +1,132 @@
+<div class="page-container onest-font">
+
+  <app-headline-guides
+    [badgeText]="'Architecture'"
+    [headline]="'Project Structure'"
+    [subheadline]="'Structure is subjective, but consistency is mandatory. This is the blueprint of the Aden Library.'">
+  </app-headline-guides>
+
+  <!-- 1. INTRO: PERSONAL VIEW -->
+  <section class="content-section">
+    <p class="intro-text">
+      The structure of a project is the foundation. If the foundation is shaky, the house will eventually collapse.
+      I've chosen an architecture here that combines <strong>Angular Best Practices</strong> with a strict separation of "View" (App) and "Data" (Root-Level).
+    </p>
+    <p class="intro-text" style="margin-top: 16px;">
+      Especially in large libraries, it's important to immediately recognize: Is this a component for the user? Is this a global service? Or is this just configuration? Take a look at the Explorer and click through.
+    </p>
+  </section>
+
+  <!-- 2. EXPLORER SECTION -->
+  <section class="explorer-section">
+
+    <!-- LEFT: Tree -->
+    <div class="tree-panel">
+      <div class="panel-header">Explorer</div>
+      <div class="tree-content">
+        <ul>
+          @for (node of rootTree; track node.name) {
+            <ng-container *ngTemplateOutlet="treeNode; context: { $implicit: node }"></ng-container>
+          }
+        </ul>
+      </div>
+    </div>
+
+    <!-- RIGHT: Preview -->
+    <div class="preview-panel">
+      <div class="panel-header">
+        <span class="file-tab">{{ selectedFileTitle }}</span>
+      </div>
+      <div class="code-viewer">
+        <pre><code>{{ selectedFileContent }}</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. DEEP DIVE: THE EXPLANATION -->
+  <section class="content-section">
+    <h2>Architecture Deep Dive</h2>
+    <p class="sub-text">
+      Here are the reasons why my folders are arranged exactly this way. I strongly distinguish between "Dumb Components" (which only display) and "Smart Features" (which manage logic).
+    </p>
+
+    <div class="structure-breakdown">
+
+      <h3>📂 src/service & src/interface (Root Level)</h3>
+      <p class="sub-text">
+        You might wonder why these folders are located <strong>outside</strong> of <code>src/app</code>. This is intentional.
+        I'm creating a physical barrier. The app (UI) consumes the services, but the services are completely independent of the UI structure. This massively prevents "spaghetti code" and circular dependencies.
+      </p>
+
+      <h3>📂 src/app/shared (The Library)</h3>
+      <p class="sub-text">
+        Here's my toolbox. Everything in here (Feedback, Inputs, Layout) is built to be "dumb". These components know nothing about logged-in users or databases. They only render what you give them. This makes them extremely reusable.
+      </p>
+
+      <h3>📂 src/app/dialogs & src/app/user (Features)</h3>
+      <p class="sub-text">
+        In contrast to the library, these are <strong>Feature Modules</strong>. The <code>user</code> folder contains, for example, the complex <code>member-profil</code>. These components are "smart", they communicate with services and manage business logic.
+      </p>
+
+      <h3>📂 public (Static Assets)</h3>
+      <p class="sub-text">
+        Static resources like fonts and images are located here, but also configuration files for the server (<code>.htaccess</code>, <code>robots.txt</code>). The clean subdivision into <code>img/icons</code> and <code>img/logo</code> helps me keep track of hundreds of assets.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- 4. TIP -->
+  <section class="code-section">
+    <app-notice [noticeType]="'tipp'"
+      [noticeText]="'<strong>Use Environments:</strong> I often see hardcoded URLs in services. Always use the <code>environments</code> folder for API URLs. This way I can switch between Dev and Prod without having to change a single line of code.'">
+    </app-notice>
+  </section>
+
+  <!-- RECURSIVE TEMPLATE (LOGIC FOR THE TREE) -->
+  <ng-template #treeNode let-node>
+    <li>
+      <div class="node-row"
+           [class.is-folder]="node.type === 'folder'"
+           [class.active]="selectedFileTitle === node.name"
+           [class.highlight]="node.highlight"
+           (click)="toggleFolder(node)">
+
+        <span class="icon">
+          @if (node.type === 'folder') {
+            {{ node.isOpen ? '📂' : '📁' }}
+          } @else {
+            @if (node.name.endsWith('.html')) {
+              <div class="file-icon"><img src="/img/icons/code/html-5.svg" alt="HTML" /></div>
+            }
+            @else if (node.name.endsWith('.scss')) {
+              <div class="file-icon"><img src="/img/icons/code/scss.svg" alt="SCSS" /></div>
+            }
+            @else if (node.name.endsWith('.ts')) {
+              <div class="file-icon"><img src="/img/icons/code/icons8-typescript-48.png" alt="TS" /></div>
+            }
+            @else if (node.name.endsWith('.json')) {
+              <div class="file-icon"><img src="/img/icons/code/braces.svg" alt="JSON" /></div>
+            }
+            @else if (node.name.endsWith('.gitignore')) {
+              <div class="file-icon"><img src="/img/icons/code/icons8-git-48 (1).png" alt="GIT" /></div>
+            }
+            @else if (node.name.endsWith('.ico')) { ⭐ }
+            @else if (node.name.endsWith('.htaccess')) { ⚙️ }
+            @else { 📄 }
+          }
+        </span>
+        <span class="node-name">{{ node.name }}</span>
+      </div>
+
+      @if (node.type === 'folder' && node.isOpen && node.children) {
+        <ul class="nested">
+          @for (child of node.children; track child.name) {
+            <ng-container *ngTemplateOutlet="treeNode; context: { $implicit: child }"></ng-container>
+          }
+        </ul>
+      }
+    </li>
+  </ng-template>
+
+</div>

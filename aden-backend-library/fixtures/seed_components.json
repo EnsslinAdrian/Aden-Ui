@@ -1,0 +1,506 @@
+[
+{
+  "model": "meta_components_app.component",
+  "pk": 1,
+  "fields": {
+    "author": 1,
+    "title": "Status Badges",
+    "slug": "status-badges",
+    "likes_count": 1,
+    "category": "feedback_indicators",
+    "subcategory": "badge",
+    "is_premium": false,
+    "created_at": "2025-12-08T00:04:31.765Z"
+  }
+},
+{
+  "model": "meta_components_app.component",
+  "pk": 2,
+  "fields": {
+    "author": 1,
+    "title": "Confetti Explosion Effect",
+    "slug": "confetti-explosion-effect",
+    "likes_count": 1,
+    "category": "feedback_indicators",
+    "subcategory": "confetti",
+    "is_premium": false,
+    "created_at": "2025-12-08T00:08:25.094Z"
+  }
+},
+{
+  "model": "meta_components_app.component",
+  "pk": 3,
+  "fields": {
+    "author": 1,
+    "title": "GSAP Burst Confetti",
+    "slug": "gsap-burst-confetti",
+    "likes_count": 0,
+    "category": "feedback_indicators",
+    "subcategory": "confetti",
+    "is_premium": false,
+    "created_at": "2025-12-08T00:09:03.999Z"
+  }
+},
+{
+  "model": "meta_components_app.component",
+  "pk": 4,
+  "fields": {
+    "author": 1,
+    "title": "Neon Blur Dialog",
+    "slug": "neon-blur-dialog",
+    "likes_count": 1,
+    "category": "feedback_indicators",
+    "subcategory": "dialog",
+    "is_premium": false,
+    "created_at": "2025-12-08T00:09:29.505Z"
+  }
+},
+{
+  "model": "meta_components_app.component",
+  "pk": 5,
+  "fields": {
+    "author": 1,
+    "title": "Neon Progress Bar",
+    "slug": "neon-progress-bar",
+    "likes_count": 0,
+    "category": "feedback_indicators",
+    "subcategory": "progress",
+    "is_premium": false,
+    "created_at": "2025-12-08T00:10:01.564Z"
+  }
+},
+{
+  "model": "meta_components_app.component",
+  "pk": 6,
+  "fields": {
+    "author": 1,
+    "title": "Neon Snackbar",
+    "slug": "neon-snackbar",
+    "likes_count": 0,
+    "category": "feedback_indicators",
+    "subcategory": "snackbar",
+    "is_premium": false,
+    "created_at": "2025-12-08T00:10:28.734Z"
+  }
+},
+{
+  "model": "meta_components_app.component",
+  "pk": 7,
+  "fields": {
+    "author": 1,
+    "title": "Neon Tooltip",
+    "slug": "neon-tooltip",
+    "likes_count": 0,
+    "category": "feedback_indicators",
+    "subcategory": "tooltip",
+    "is_premium": false,
+    "created_at": "2025-12-08T00:11:12.967Z"
+  }
+},
+{
+  "model": "meta_components_app.component",
+  "pk": 8,
+  "fields": {
+    "author": 1,
+    "title": "Smart Autocomplete",
+    "slug": "smart-autocomplete",
+    "likes_count": 2,
+    "category": "form_controls",
+    "subcategory": "autocomplete",
+    "is_premium": true,
+    "created_at": "2025-12-08T00:11:36.508Z"
+  }
+},
+{
+  "model": "meta_components_app.component",
+  "pk": 9,
+  "fields": {
+    "author": 1,
+    "title": "Neon Glow Hover Button",
+    "slug": "neon-glow-hover-button",
+    "likes_count": 0,
+    "category": "form_controls",
+    "subcategory": "button",
+    "is_premium": false,
+    "created_at": "2025-12-08T00:12:00.537Z"
+  }
+},
+{
+  "model": "meta_components_app.component",
+  "pk": 10,
+  "fields": {
+    "author": 1,
+    "title": "GSAP Reactive Hover Button",
+    "slug": "gsap-reactive-hover-button",
+    "likes_count": 0,
+    "category": "form_controls",
+    "subcategory": "button",
+    "is_premium": false,
+    "created_at": "2025-12-08T00:12:23.979Z"
+  }
+},
+{
+  "model": "meta_components_app.component",
+  "pk": 11,
+  "fields": {
+    "author": 1,
+    "title": "Neon Checkbox",
+    "slug": "neon-checkbox",
+    "likes_count": 1,
+    "category": "form_controls",
+    "subcategory": "checkbox",
+    "is_premium": false,
+    "created_at": "2025-12-08T00:12:47.996Z"
+  }
+},
+{
+  "model": "meta_components_app.component",
+  "pk": 12,
+  "fields": {
+    "author": 1,
+    "title": "Neon Validation Form",
+    "slug": "neon-validation-form",
+    "likes_count": 0,
+    "category": "form_controls",
+    "subcategory": "formfield",
+    "is_premium": false,
+    "created_at": "2025-12-08T00:13:12.977Z"
+  }
+},
+{
+  "model": "meta_components_app.component",
+  "pk": 13,
+  "fields": {
+    "author": 1,
+    "title": "Liquid Border Input",
+    "slug": "liquid-border-input",
+    "likes_count": 0,
+    "category": "form_controls",
+    "subcategory": "input",
+    "is_premium": false,
+    "created_at": "2025-12-08T00:13:42.327Z"
+  }
+},
+{
+  "model": "meta_components_app.component",
+  "pk": 14,
+  "fields": {
+    "author": 1,
+    "title": "Circuit Loader Input",
+    "slug": "circuit-loader-input",
+    "likes_count": 0,
+    "category": "form_controls",
+    "subcategory": "input",
+    "is_premium": false,
+    "created_at": "2025-12-08T00:14:11.034Z"
+  }
+},
+{
+  "model": "meta_components_app.component",
+  "pk": 15,
+  "fields": {
+    "author": 1,
+    "title": "Floating Label Date Input",
+    "slug": "floating-label-date-input",
+    "likes_count": 0,
+    "category": "form_controls",
+    "subcategory": "input",
+    "is_premium": false,
+    "created_at": "2025-12-08T00:14:37.785Z"
+  }
+},
+{
+  "model": "meta_components_app.component",
+  "pk": 16,
+  "fields": {
+    "author": 1,
+    "title": "Password Input with Toggle",
+    "slug": "password-input-with-toggle",
+    "likes_count": 0,
+    "category": "form_controls",
+    "subcategory": "input",
+    "is_premium": false,
+    "created_at": "2025-12-08T00:14:59.259Z"
+  }
+},
+{
+  "model": "meta_components_app.component",
+  "pk": 17,
+  "fields": {
+    "author": 1,
+    "title": "Floating Label Input",
+    "slug": "floating-label-input",
+    "likes_count": 0,
+    "category": "form_controls",
+    "subcategory": "input",
+    "is_premium": false,
+    "created_at": "2025-12-08T00:15:25.039Z"
+  }
+},
+{
+  "model": "meta_components_app.component",
+  "pk": 18,
+  "fields": {
+    "author": 1,
+    "title": "Rounded Icon Search",
+    "slug": "rounded-icon-search",
+    "likes_count": 0,
+    "category": "form_controls",
+    "subcategory": "input",
+    "is_premium": false,
+    "created_at": "2025-12-08T00:15:47.492Z"
+  }
+},
+{
+  "model": "meta_components_app.component",
+  "pk": 19,
+  "fields": {
+    "author": 1,
+    "title": "Neon Focus Input",
+    "slug": "neon-focus-input",
+    "likes_count": 0,
+    "category": "form_controls",
+    "subcategory": "input",
+    "is_premium": false,
+    "created_at": "2025-12-08T00:16:08.386Z"
+  }
+},
+{
+  "model": "meta_components_app.component",
+  "pk": 20,
+  "fields": {
+    "author": 1,
+    "title": "Text Input - Neon Style",
+    "slug": "text-input-neon-style",
+    "likes_count": 0,
+    "category": "form_controls",
+    "subcategory": "input",
+    "is_premium": false,
+    "created_at": "2025-12-08T00:16:27.423Z"
+  }
+},
+{
+  "model": "meta_components_app.component",
+  "pk": 21,
+  "fields": {
+    "author": 1,
+    "title": "Neon Radio Input",
+    "slug": "neon-radio-input",
+    "likes_count": 2,
+    "category": "form_controls",
+    "subcategory": "radio",
+    "is_premium": false,
+    "created_at": "2025-12-08T00:16:53.617Z"
+  }
+},
+{
+  "model": "meta_components_app.component",
+  "pk": 22,
+  "fields": {
+    "author": 1,
+    "title": "Neon Range Slider",
+    "slug": "neon-range-slider",
+    "likes_count": 0,
+    "category": "form_controls",
+    "subcategory": "range",
+    "is_premium": false,
+    "created_at": "2025-12-10T23:06:28.704Z"
+  }
+},
+{
+  "model": "meta_components_app.component",
+  "pk": 23,
+  "fields": {
+    "author": 1,
+    "title": "Content Carousel",
+    "slug": "content-carousel",
+    "likes_count": 0,
+    "category": "form_controls",
+    "subcategory": "slider",
+    "is_premium": false,
+    "created_at": "2025-12-10T23:11:53.420Z"
+  }
+},
+{
+  "model": "meta_components_app.component",
+  "pk": 24,
+  "fields": {
+    "author": 1,
+    "title": "Multi-Item Slider",
+    "slug": "multi-item-slider",
+    "likes_count": 0,
+    "category": "form_controls",
+    "subcategory": "slider",
+    "is_premium": false,
+    "created_at": "2025-12-10T23:12:20.151Z"
+  }
+},
+{
+  "model": "meta_components_app.component",
+  "pk": 25,
+  "fields": {
+    "author": 1,
+    "title": "Dynamic Expansion Panel",
+    "slug": "dynamic-expansion-panel",
+    "likes_count": 0,
+    "category": "layout",
+    "subcategory": "expansion_panel",
+    "is_premium": false,
+    "created_at": "2025-12-10T23:47:45.925Z"
+  }
+},
+{
+  "model": "meta_components_app.component",
+  "pk": 26,
+  "fields": {
+    "author": 1,
+    "title": "Neon Expansion Panel",
+    "slug": "neon-expansion-panel",
+    "likes_count": 0,
+    "category": "layout",
+    "subcategory": "expansion_panel",
+    "is_premium": false,
+    "created_at": "2025-12-10T23:48:41.046Z"
+  }
+},
+{
+  "model": "meta_components_app.component",
+  "pk": 27,
+  "fields": {
+    "author": 1,
+    "title": "Custom Area Grid",
+    "slug": "custom-area-grid",
+    "likes_count": 0,
+    "category": "layout",
+    "subcategory": "grid",
+    "is_premium": false,
+    "created_at": "2025-12-11T00:12:18.664Z"
+  }
+},
+{
+  "model": "meta_components_app.component",
+  "pk": 28,
+  "fields": {
+    "author": 1,
+    "title": "Bento Grid System",
+    "slug": "bento-grid-system",
+    "likes_count": 0,
+    "category": "layout",
+    "subcategory": "grid",
+    "is_premium": false,
+    "created_at": "2025-12-11T00:12:32.016Z"
+  }
+},
+{
+  "model": "meta_components_app.component",
+  "pk": 29,
+  "fields": {
+    "author": 1,
+    "title": "Neon Scrollbar",
+    "slug": "neon-scrollbar",
+    "likes_count": 0,
+    "category": "layout",
+    "subcategory": "scrollbar",
+    "is_premium": false,
+    "created_at": "2025-12-11T00:17:58.751Z"
+  }
+},
+{
+  "model": "meta_components_app.component",
+  "pk": 30,
+  "fields": {
+    "author": 1,
+    "title": "Neon Rail Scrollbar",
+    "slug": "neon-rail-scrollbar",
+    "likes_count": 0,
+    "category": "layout",
+    "subcategory": "scrollbar",
+    "is_premium": false,
+    "created_at": "2025-12-11T00:18:16.072Z"
+  }
+},
+{
+  "model": "meta_components_app.component",
+  "pk": 31,
+  "fields": {
+    "author": 1,
+    "title": "Neon Dropzone",
+    "slug": "neon-dropzone",
+    "likes_count": 0,
+    "category": "media_interaction",
+    "subcategory": "drag_and_drop",
+    "is_premium": false,
+    "created_at": "2025-12-11T00:27:18.461Z"
+  }
+},
+{
+  "model": "meta_components_app.component",
+  "pk": 32,
+  "fields": {
+    "author": 1,
+    "title": "Kanban Drag & Drop",
+    "slug": "kanban-drag-drop",
+    "likes_count": 0,
+    "category": "media_interaction",
+    "subcategory": "drag_and_drop",
+    "is_premium": false,
+    "created_at": "2025-12-11T00:27:37.239Z"
+  }
+},
+{
+  "model": "meta_components_app.component",
+  "pk": 33,
+  "fields": {
+    "author": 1,
+    "title": "Neon Dropdown Menu",
+    "slug": "neon-dropdown-menu",
+    "likes_count": 0,
+    "category": "navigation",
+    "subcategory": "menu",
+    "is_premium": false,
+    "created_at": "2025-12-11T00:35:49.710Z"
+  }
+},
+{
+  "model": "meta_components_app.component",
+  "pk": 34,
+  "fields": {
+    "author": 1,
+    "title": "Tab Navigation",
+    "slug": "tab-navigation",
+    "likes_count": 0,
+    "category": "navigation",
+    "subcategory": "tap",
+    "is_premium": false,
+    "created_at": "2025-12-11T00:39:30.978Z"
+  }
+},
+{
+  "model": "meta_components_app.component",
+  "pk": 35,
+  "fields": {
+    "author": 1,
+    "title": "Neon Tabs",
+    "slug": "neon-tabs",
+    "likes_count": 0,
+    "category": "navigation",
+    "subcategory": "tap",
+    "is_premium": false,
+    "created_at": "2025-12-11T00:40:12.955Z"
+  }
+},
+{
+  "model": "meta_components_app.component",
+  "pk": 36,
+  "fields": {
+    "author": 1,
+    "title": "Interactive Typography",
+    "slug": "interactive-typography",
+    "likes_count": 0,
+    "category": "typography",
+    "subcategory": "text_component",
+    "is_premium": false,
+    "created_at": "2025-12-11T00:49:04.832Z"
+  }
+}
+]

@@ -1,0 +1,30 @@
+<div class="simulator-container">
+
+  <div class="actions">
+    <span class="label">Try a command:</span>
+    <button class="aden-btn" (click)="runCommand('ng g c user', 'component')">Generate Component</button>
+    <button class="aden-btn" (click)="runCommand('ng g s auth', 'service')">Generate Service</button>
+    <button class="aden-btn success" (click)="runCommand('ng build', 'build')">Build Production</button>
+    <button class="aden-btn ghost" (click)="clear()">Clear</button>
+  </div>
+
+  <div class="terminal-window">
+    <div class="terminal-header">
+      <div class="circles">
+        <span class="red"></span><span class="yellow"></span><span class="green"></span>
+      </div>
+      <span class="title">bash — 80x24</span>
+    </div>
+    <div class="terminal-body">
+      @for (line of logs(); track $index) {
+        <div class="log-line" [class.cursor]="$last && line.endsWith('_')">
+          {{ line.replace('_', '') }}
+          @if ($last && line.endsWith('_')) {
+          <span class="blink">█</span>
+          }
+        </div>
+      }
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,181 @@
+.playground-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 32px;
+
+  @media (max-width: 800px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-container {
+  background-color: var(--surface-card); /* War --aden-surface */
+  border: 1px solid var(--ui-border);    /* War --aden-border */
+  border-radius: 12px;
+  padding: 30px;
+}
+
+.input-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--primary-white); /* War #fff */
+}
+
+.req {
+  color: var(--danger-color); /* War --aden-error */
+}
+
+.aden-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  border-radius: 6px;
+  /* Inputs bekommen den tiefen Terminal-Background für Kontrast zur Card */
+  background: var(--terminal-bg); /* War #000 */
+  border: 1px solid var(--ui-border); /* War --aden-border */
+  color: var(--primary-white); /* War #fff */
+  outline: none;
+  transition: border-color 0.2s;
+  font-family: var(--font-mono); /* Optional: Mono-Font für Inputs sieht technischer aus */
+
+  &.ng-invalid.ng-touched,
+  &.invalid {
+    border-color: var(--danger-color);
+  }
+
+  &.ng-valid.ng-touched {
+    border-color: var(--neon-green);
+  }
+}
+
+.error-msg {
+  color: var(--danger-color); /* War --aden-error */
+  font-size: 0.8rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.aden-btn {
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+
+.aden-btn.primary {
+  background: var(--neon-green); /* War --aden-primary */
+  color: var(--primary-black);   /* War #000 */
+
+  &:disabled {
+    background: var(--ui-border); /* War #333 */
+    color: var(--text-muted);     /* War #666 */
+    cursor: not-allowed;
+  }
+}
+
+.aden-btn.ghost {
+  background: transparent;
+  border: 1px solid var(--ui-border); /* War --aden-border */
+  color: var(--text-muted); /* War #ccc */
+
+  &:hover {
+    border-color: var(--text-muted); /* War #666 */
+    color: var(--primary-white);     /* War #fff */
+  }
+}
+
+.check {
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+
+.debug-container {
+  background-color: var(--terminal-bg); /* War --aden-debug-bg (#0a0a0a) */
+  border: 1px solid var(--ui-border);   /* War --aden-border */
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.debug-header {
+  background: var(--terminal-header); /* War #151515 */
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--ui-border); /* War --aden-border */
+  font-family: var(--font-mono);
+  color: var(--text-muted); /* War --aden-muted */
+  font-size: 0.9rem;
+}
+
+.debug-content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.debug-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: 0.8rem;
+  color: var(--text-muted); /* War #666 */
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.value.badge {
+  align-self: flex-start;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+.value.valid {
+  color: var(--neon-green); /* War --aden-primary */
+  background: rgba(74, 222, 128, 0.1); /* Transparentes Neon-Grün */
+}
+
+.value.invalid {
+  color: var(--danger-color); /* War --aden-error */
+  background: rgba(239, 68, 68, 0.1); /* Transparentes Rot */
+}
+
+.json-box {
+  background: var(--code-bg); /* War #111 */
+  border: 1px solid var(--ui-border); /* War #222 */
+  border-radius: 6px;
+  padding: 10px;
+  margin: 0;
+  font-family: var(--font-mono); /* War 'Fira Code' */
+  font-size: 0.85rem;
+  color: var(--neon-green); /* War --aden-primary */
+  min-height: 24px;
+}
+
+.debug-divider {
+  height: 1px;
+  background: var(--ui-border); /* War #222 */
+  margin: 4px 0;
+}

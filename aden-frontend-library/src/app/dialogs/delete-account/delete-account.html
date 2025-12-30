@@ -1,0 +1,39 @@
+@if (step() === 'confirm') {
+<div class="dialog-overlay fade-in" (click)="onCancel()">
+  <div class="dialog-card scale-in" (click)="$event.stopPropagation()">
+
+    <div class="dialog-header danger">
+      <h3>Delete Account</h3>
+      <app-close-btn (click)="onCancel()"></app-close-btn>
+    </div>
+
+    <div class="dialog-body">
+
+      <div class="warning-box">
+        <app-typografie text="⚠️" size="xmedium" [weight]="600" color="red" align="left"></app-typografie>
+        <div class="text">
+          <app-typografie text="This action is irreversible." size="small" [weight]="600" color="red" align="left"></app-typografie>
+          <app-typografie text="You are about to permanently delete your account, all your saved components, and your Pro subscription. This data cannot be recovered." size="xsmall" [weight]="400" color="grey" align="left"></app-typografie>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Type <span class="highlight-danger">{{ requiredWord }}</span> to confirm</label>
+        <input type="text" [ngModel]="confirmationInput()" (ngModelChange)="confirmationInput.set($event)" placeholder="Type DELETE" class="danger-input" autoFocus>
+      </div>
+
+    </div>
+
+
+    <div class="dialog-footer">
+      <app-cancel-btn (click)="onCancel()"></app-cancel-btn>
+      <app-warning-btn [disabled]="!isValid() || isLoading()" [text]="'Permanently Delete'" (click)="onInitiateDelete()"></app-warning-btn>
+    </div>
+
+  </div>
+</div>
+}
+
+@if (step() === 'reauth') {
+<app-re-authenticate (authenticated)="onReAuthSuccess()" (cancel)="onCancel()"></app-re-authenticate>
+}

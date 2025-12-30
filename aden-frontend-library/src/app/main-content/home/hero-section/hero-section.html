@@ -1,0 +1,27 @@
+<section class="hero-section">
+  <div #animItem class="badge">
+    <app-typografie text="Angular 18+ Ready" size="xsmall" color="white" [weight]="100"></app-typografie>
+  </div>
+
+  <div #animItem class="main-title">
+    <app-typografie text="Minimalism meets" size="xlarge" color="grey" [weight]="900" align="center"></app-typografie>
+    <app-typografie #animItem text="Performance" size="xlarge" color="white" [weight]="900" align="center"></app-typografie>
+  </div>
+
+  <div #animItem>
+    <!-- Text Update: Erwähnt jetzt auch Guides & Mastery -->
+    <app-typografie
+      text="Stop fighting with bloated libraries. <br>
+      Get high-performance components, deep-dive Angular guides, and total control over your code. <br>
+      <strong>Copy. Paste. Learn. Ship.</strong>"
+      size="medium" color="grey" [weight]="400"
+      align="center">
+    </app-typografie>
+  </div>
+
+  <div #animItem class="cta-row">
+    <a routerLink="/components" class="btn-primary onest-font">Browse Components</a>
+    <!-- Neuer Text für den zweiten Button -->
+    <a routerLink="/guides" class="btn-ghost onest-font">Explore Guides</a>
+  </div>
+</section>

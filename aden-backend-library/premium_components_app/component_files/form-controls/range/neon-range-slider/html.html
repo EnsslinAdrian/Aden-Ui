@@ -1,0 +1,7 @@
+<div class="slider-group" [style.--progress]="volume + '%'">
+    <div class="slider-header">
+        <label>Volume</label>
+        <span class="value-display">{{ volume }}%</span>
+    </div>
+    <input type="range" min="0" max="100" [(ngModel)]="volume" class="aden-slider">
+</div>

@@ -1,0 +1,124 @@
+.page-container {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.library-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 500px;
+  padding: 20px;
+  background-color: var(--aden-bg);
+  border-radius: 12px;
+}
+
+:host {
+  --aden-bg: #0f0f0f;
+  --aden-surface: #1a1a1a;
+  --aden-border: #333333;
+  --aden-text: #e5e5e5;
+  --aden-muted: #888;
+  --aden-primary: #4ade80;
+}
+
+.expansion-group {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.expansion-panel {
+  background-color: var(--aden-surface);
+  border: 1px solid var(--aden-border);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.expansion-panel.expanded {
+  border-color: var(--aden-primary);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Header Styling */
+.panel-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--aden-text);
+  transition: background-color 0.2s;
+}
+
+.panel-header:hover {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.panel-title {
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.expansion-panel.expanded .panel-title {
+  color: var(--aden-primary);
+}
+
+/* Icon Animation */
+.icon-wrapper {
+  display: flex;
+  align-items: center;
+  color: var(--aden-muted);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s;
+}
+
+.icon-wrapper svg {
+  width: 20px;
+  height: 20px;
+}
+
+.expansion-panel.expanded .icon-wrapper {
+  transform: rotate(180deg);
+  color: var(--aden-primary);
+}
+
+/* Content Animation (Grid Trick) */
+.panel-body-wrapper {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.expansion-panel.expanded .panel-body-wrapper {
+  grid-template-rows: 1fr;
+}
+
+.panel-body {
+  overflow: hidden;
+  color: var(--aden-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Inner padding only applied to the content element to avoid animation jumps */
+.panel-body p {
+  padding: 0 16px 16px 16px;
+  margin: 0;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.3s 0.1s, transform 0.3s 0.1s;
+}
+
+.expansion-panel.expanded .panel-body p {
+  opacity: 1;
+  transform: translateY(0);
+}

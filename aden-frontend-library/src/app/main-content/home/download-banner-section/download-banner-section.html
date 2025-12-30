@@ -1,0 +1,51 @@
+<section #animItem class="download-section onest-font">
+
+  <div class="cta-card">
+    <div class="glow-bg"></div>
+
+    <div class="cta-content">
+
+      <div class="info-group">
+        <div class="icon-circle">
+          <img src="img/icons/home/desktop.svg" alt="Desktop App">
+        </div>
+
+        <div class="text-content">
+          <div class="header-row">
+            <h3>Offline Documentation</h3>
+            <!-- WICHTIG: Beta & Pro Badge -->
+            <div class="badge-container">
+              <app-pro-badge></app-pro-badge>
+              <span class="badge beta">BETA</span>
+            </div>
+          </div>
+          <!-- Text angepasst: Erklärt, dass es im Profil verfügbar ist -->
+          <app-typografie
+            text="Access the full library offline. Perfect for travel or low-connectivity zones. <br> Available exclusively for Pro members via the dashboard."
+            size="small" color="grey" [weight]="400">
+          </app-typografie>
+        </div>
+      </div>
+
+      <!-- Rechte Seite: Action -->
+<div class="action-group">
+
+        <!-- FALL A: User ist eingeloggt UND hat Premium -->
+        @if (auth.isLoggedIn() && profile.isPremiumUser()) {
+          <button (click)="handleAction()" class="btn-download">
+            <span>Go to Dashboard</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        }
+
+        <!-- FALL B: Sonst (Gast ODER Free User) -> Zeige Upgrade Button -->
+        @else {
+          <button (click)="handleAction()" class="btn-upgrade">Upgrade to PRO 🚀</button>
+        }
+
+        <div class="os-info">Windows & Linux • macOS coming soon</div>
+      </div>
+
+    </div>
+  </div>
+</section>

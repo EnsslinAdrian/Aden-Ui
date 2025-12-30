@@ -1,0 +1,44 @@
+<aside>
+
+  <app-sidebar-search [(search)]="search" (keydownEvent)="onKeydown($event)"></app-sidebar-search>
+
+  <div class="library-nav-container custom-scrollbar">
+
+    @for(category of filteredCategories; track category.title) {
+    <div class="category-block">
+
+      <div class="category-title">
+        <app-typografie [text]="category.title" size="xsmall" color="white" [weight]="400"
+          [align]="'left'"></app-typografie>
+      </div>
+
+      <ul class="component-list">
+        @for(component of category.components; track component.name) {
+        <li>
+          <a class="component-link" [routerLink]="component.route" [class.active]="isActive(component)"
+            [class.keyboard-active]="isFocused(component)"
+            [class.locked]="component.premium && !userProfile.isPremiumUser()" (click)="handleLinkClick()">
+
+            <span [innerHTML]="component.name | highlight: search"></span>
+
+            @if (component.premium && !userProfile.isPremiumUser()) {
+            <svg class="lock-svg" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+            }
+          </a>
+
+        </li>
+        }
+      </ul>
+
+    </div>
+    }
+
+  </div>
+
+  <app-sidebar-footer></app-sidebar-footer>
+
+</aside>

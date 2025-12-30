@@ -1,0 +1,45 @@
+    <div class="page-container onest-font">
+          <app-ui-playground [htmlCode]="codeHtml" [scssCode]="codeScss" [meta]="meta">
+
+            <div class="library-container">
+
+                <!-- Section 1: Standard Status Badges -->
+                <div class="badge-row">
+                    <span class="aden-badge success">Active</span>
+                    <span class="aden-badge warning">Pending</span>
+                    <span class="aden-badge error">Failed</span>
+                    <span class="aden-badge info">Beta</span>
+                </div>
+
+                <!-- Section 2: Dot Status Badges (with Pulse) -->
+                <div class="badge-row">
+                    <div class="status-item">
+                        <span class="status-dot online"></span>
+                        <span>System Online</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-dot busy"></span>
+                        <span>Processing</span>
+                    </div>
+                </div>
+
+                <!-- Section 3: Notification Counter -->
+                <div class="badge-row">
+                    <button class="icon-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                        </svg>
+                        <span class="count-badge">3</span>
+                    </button>
+
+                    <!-- Text Version -->
+                    <span class="aden-badge success rounded">
+                        New v2.0
+                    </span>
+                </div>
+
+            </div>
+
+        </app-ui-playground>
+    </div>

@@ -1,0 +1,36 @@
+:host {
+    --aden-surface: #1a1a1a;
+    --aden-border: #333333;
+    --aden-primary: #4ade80;
+}
+
+.aden-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-auto-rows: minmax(140px, auto);
+    gap: 24px;
+}
+
+.grid-card {
+    background-color: var(--aden-surface);
+    border: 1px solid var(--aden-border);
+    border-radius: 16px;
+    padding: 24px;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.grid-card:hover {
+    transform: translateY(-4px);
+    border-color: #555;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+@media (min-width: 768px) {
+    .col-span-2 {
+        grid-column: span 2;
+    }
+
+    .row-span-2 {
+        grid-row: span 2;
+    }
+}

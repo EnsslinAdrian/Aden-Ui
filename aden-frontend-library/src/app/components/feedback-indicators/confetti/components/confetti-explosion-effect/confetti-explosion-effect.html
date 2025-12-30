@@ -1,0 +1,20 @@
+<div class="page-container onest-font">
+        <app-ui-playground [htmlCode]="codeHtml" [scssCode]="codeScss" [tsCode]="codeTs" [meta]="meta">
+
+            <div class="library-container">
+
+                <div class="content-box">
+                    <h3>Celebrate Success!</h3>
+                    <p>Click the button to trigger the particle effect.</p>
+                    <button class="aden-btn" (click)="startConfetti()">
+                        Trigger Confetti
+                    </button>
+                </div>
+
+                <!-- Canvas liegt über dem Inhalt -->
+                <canvas #confettiCanvas class="confetti-canvas"></canvas>
+
+            </div>
+
+        </app-ui-playground>
+    </div>

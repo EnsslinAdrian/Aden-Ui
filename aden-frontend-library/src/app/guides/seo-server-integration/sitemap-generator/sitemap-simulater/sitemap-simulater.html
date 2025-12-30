@@ -1,0 +1,42 @@
+<section class="demo-section">
+
+
+  <div class="playground-grid">
+
+    <div class="config-pane">
+
+      <div class="input-group">
+        <label>Base Domain</label>
+        <input type="text" [(ngModel)]="baseUrl" class="aden-input" placeholder="https://mysite.com">
+      </div>
+
+      <div class="route-list-header">
+        <span>Active Routes</span>
+        <button class="aden-btn-small" (click)="addRoute()">+ Add Route</button>
+      </div>
+
+      <div class="route-list">
+        @for (route of routes; track $index) {
+        <div class="route-item fade-in">
+          <div class="route-inputs">
+            <input type="text" [(ngModel)]="route.path" class="aden-input path" placeholder="/path">
+            <select [(ngModel)]="route.changefreq" class="aden-select">
+              @for (freq of frequencies; track freq) {
+              <option [value]="freq">{{ freq }}</option>
+              }
+            </select>
+            <input type="number" [(ngModel)]="route.priority" step="0.1" min="0" max="1" class="aden-input prio">
+          </div>
+          <button class="delete-btn" (click)="removeRoute($index)">✕</button>
+        </div>
+        }
+      </div>
+    </div>
+
+    <div class="preview-pane">
+      <div class="pane-header">sitemap.xml Preview</div>
+      <textarea class="code-editor" readonly [value]="xmlOutput"></textarea>
+    </div>
+
+  </div>
+</section>

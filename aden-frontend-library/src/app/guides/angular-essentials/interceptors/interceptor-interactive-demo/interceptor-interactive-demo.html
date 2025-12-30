@@ -1,0 +1,70 @@
+  <section class="demo-section">
+ 
+
+    <!-- Controls -->
+    <div class="controls-bar">
+      <div class="toggle-wrapper" (click)="toggleToken()">
+        <div class="checkbox" [class.checked]="hasAuthToken">
+          @if(hasAuthToken) { <span>✓</span> }
+        </div>
+        <span class="label">User has Auth Token</span>
+      </div>
+
+      <button class="aden-btn" (click)="startRequest()" [disabled]="isProcessing">
+        {{ isProcessing ? 'Sending...' : 'Start HTTP Request' }}
+      </button>
+    </div>
+
+    <!-- Visual Pipeline -->
+    <div class="pipeline-container">
+
+      <!-- Nodes -->
+      <div class="node client">
+        <span class="icon">💻</span>
+        <span class="name">App</span>
+      </div>
+
+      <div class="connection-line">
+        <!-- The Moving Packet -->
+        <div class="packet"
+             [class.step-1]="animationStep >= 1"
+             [class.step-2]="animationStep >= 2"
+             [class.step-3]="animationStep === 3"
+             [class.has-token]="hasAuthToken && animationStep >= 2"
+             [class.error]="!hasAuthToken && animationStep === 3">
+
+             @if(animationStep === 3 && !hasAuthToken) { <span>401</span> }
+             @else if(animationStep >= 2 && hasAuthToken) { <span>🔑</span> }
+             @else { <span>GET</span> }
+        </div>
+      </div>
+
+      <div class="node interceptor">
+        <span class="icon">🛡️</span>
+        <span class="name">Interceptor</span>
+        <div class="wall"></div>
+      </div>
+
+      <div class="connection-line"></div>
+
+      <div class="node server">
+        <span class="icon">☁️</span>
+        <span class="name">API Server</span>
+      </div>
+
+    </div>
+
+    <!-- Console Log -->
+    <div class="console-log">
+      <div class="console-header">DevTools Network Log</div>
+      <div class="logs-content">
+        @for (log of logs; track log) {
+          <div class="log-line">{{ log }}</div>
+        }
+        @if (logs.length === 0) {
+          <div class="log-line placeholder">Waiting for request...</div>
+        }
+      </div>
+    </div>
+
+  </section>

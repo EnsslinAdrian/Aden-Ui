@@ -1,0 +1,93 @@
+<div class="page-container onest-font">
+
+  <app-headline-guides [badgeText]="'Angular Core'" [headline]="'Routing'"
+    [subheadline]="'From static HTML to a real app. The router is the nervous system of your application – it decides what is displayed when, without reloading.'">
+  </app-headline-guides>
+
+  <!-- 1. INTRO -->
+  <section class="content-section">
+    <p class="intro-text">
+      Do you remember old websites? Every click meant: white screen, waiting, page reload.
+      In a Single Page Application (SPA) like Angular, we want to avoid that at all costs. We want the fluid feel of a
+      native app.
+    </p>
+    <p class="intro-text" style="margin-top: 16px;">
+      I always imagine the router as a <strong>director</strong>. The URL at the top of the browser is the script.
+      When the URL changes, the director throws the old component off the stage and brings the new one in.
+      The rest of the app (Header, Sidebar) remains untouched.
+    </p>
+  </section>
+
+  <!-- 2. DEMO -->
+  <section class="demo-section">
+    <h2>1. The Simulation</h2>
+    <p class="sub-text">
+      Observe what happens in the mockup below. Click on the links. You will see: The header remains static, only the
+      content in the "Outlet" changes. The URL switches, but the browser does not reload.
+    </p>
+
+    <app-routing-interactive-demo></app-routing-interactive-demo>
+  </section>
+
+  <!-- 3. IMPLEMENTATION -->
+  <section class="code-section">
+    <h2>2. Implementation</h2>
+    <p class="sub-text">
+      To make this work, I always need three things: A <strong>map</strong> (Where does it go?), a
+      <strong>placeholder</strong> (Where is it displayed?), and a <strong>trigger</strong> (How do I get there?).
+    </p>
+
+    <h3 style="margin-top: 24px;">The Map (app.routes.ts)</h3>
+    <p class="sub-text">
+      First, I define the rules. Which URL belongs to which component?
+      The <strong>wildcard route</strong> (<code>**</code>) is essential. It catches all typos (404) and redirects the
+      user back to safety.
+    </p>
+    <app-code-block-guide filename="app.routes.ts" [code]="routesConfigCode" language="typescript">
+    </app-code-block-guide>
+
+    <h3 style="margin-top: 32px;">Stage & Trigger (app.component.html)</h3>
+    <p class="sub-text">
+      Now I need the place where the components should appear. That is the <code>&lt;router-outlet&gt;</code>.
+      For navigation, I use the <code>routerLink</code> directive. <strong>Never use <code>href</code></strong>, as it
+      would restart the entire Angular application.
+    </p>
+    <app-code-block-guide filename="app.component.html" [code]="routerOutletLinksCode" language="html">
+    </app-code-block-guide>
+
+    <app-notice [noticeType]="'tipp'"
+      [noticeText]="'<strong>Pro Tip:</strong> Use <code>routerLinkActive=\'active\'</code>. Angular automatically adds the class <code>active</code> to the link when you are on that route. Perfect for highlighting the current menu item.'">
+    </app-notice>
+
+  </section>
+
+  <!-- 4. ENTERPRISE ARCHITECTURE -->
+  <section class="code-section">
+    <h2>3. Enterprise Architecture: Modularization</h2>
+    <p class="sub-text">
+      As your app grows, the <code>app.routes.ts</code> file quickly becomes huge and confusing.
+      The solution: We outsource routes into thematic files (e.g., Auth, Admin, User) and merge them at the end.
+    </p>
+
+    <h3 style="margin-top: 24px;">Step A: Outsourcing</h3>
+    <p class="sub-text">
+      Create, for example, an <code>auth.routes.ts</code> file just for login and register logic.
+    </p>
+    <app-code-block-guide filename="routes/auth.routes.ts" [code]="subRouteCode" language="typescript">
+    </app-code-block-guide>
+
+    <h3 style="margin-top: 32px;">Step B: Merging (Spread Operator)</h3>
+    <p class="sub-text">
+      In the main file, we import the lists and use the JavaScript spread operator (<code>...</code>) to unpack the
+      arrays into a single flat list. This keeps the main file extremely clean and readable.
+    </p>
+    <app-code-block-guide filename="app.routes.ts" [code]="mainRouteCode" language="typescript">
+    </app-code-block-guide>
+
+    <app-notice [noticeType]="'tipp'"
+      [noticeText]="'<strong>Route Order:</strong> Make sure the wildcard route (<code>**</code>) is always at the very end of your merged list. Angular processes routes from top to bottom. If the wildcard is at the top, it will catch every route below it (causing a 404).'">
+    </app-notice>
+
+  </section>
+
+</div>

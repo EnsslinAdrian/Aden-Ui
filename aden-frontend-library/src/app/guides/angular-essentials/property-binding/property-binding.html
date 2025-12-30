@@ -1,0 +1,63 @@
+<div class="page-container onest-font">
+
+  <app-headline-guides [badgeText]="'Template Syntax'" [headline]="'Property Binding'"
+    [subheadline]="'Make your HTML dynamic. Property Binding is the remote control that allows you to manipulate HTML elements directly from your TypeScript code.'">
+  </app-headline-guides>
+
+  <!-- 1. INTRO: THE STORY -->
+  <section class="content-section">
+    <p class="intro-text">
+      In static HTML, everything is fixed: <code>&lt;img src="logo.png"&gt;</code>. But in a real app, things change.
+      The user uploads a new profile picture, or a button needs to be disabled while saving.
+    </p>
+    <p class="intro-text" style="margin-top: 16px;">
+      For this, we use <strong>square brackets</strong> <code>[ ]</code>.
+      They tell Angular: "Hey, stop! This is no longer plain text. Evaluate this as TypeScript code."
+      With this, we connect ("bind") a variable from our class directly to the HTML attribute.
+    </p>
+  </section>
+
+  <!-- 2. DEMO -->
+  <section class="demo-section">
+    <h2>1. The Simulation</h2>
+    <p class="sub-text">
+      Change the values on the left in the "TypeScript Panel". Observe on the right how the HTML element reacts
+      immediately. Pay special attention to the <code>disabled</code> status of the button.
+    </p>
+
+    <app-property-binding-interactive-demo></app-property-binding-interactive-demo>
+  </section>
+
+  <!-- 3. IMPLEMENTATION -->
+  <section class="code-section">
+    <h2>2. Implementation</h2>
+    <p class="sub-text">
+      There are two ways I use binding in everyday life: For standard HTML properties and for cosmetic changes
+      (classes/styles).
+    </p>
+
+    <h3 style="margin-top: 24px;">Standard Binding</h3>
+    <p class="sub-text">
+      This is used constantly for <code>src</code>, <code>href</code>, <code>value</code>, or to pass data to child
+      components via <code>@Input</code>.
+      <br><strong>Crucial:</strong> For boolean attributes (like <code>disabled</code>, <code>checked</code>,
+      <code>hidden</code>), you MUST use this syntax. Interpolation (<code>{{ '...' }}</code>) does not work there.
+    </p>
+    <app-code-block-guide filename="template.html" [code]="standardBindingCode" language="html">
+    </app-code-block-guide>
+
+    <h3 style="margin-top: 32px;">Class & Style Binding</h3>
+    <p class="sub-text">
+      Instead of building complicated strings for <code>class="..."</code>, Angular offers an elegant syntax.
+      <code>[class.my-class]="condition"</code> is extremely readable and clean.
+    </p>
+    <app-code-block-guide filename="template.html" [code]="specialBindingCode" language="html">
+    </app-code-block-guide>
+
+    <app-notice [noticeType]="'tipp'"
+      [noticeText]="'<strong>Interpolation vs. Binding:</strong> When to use what? <br>Use <strong>Interpolation</strong> <code>{{ value }}</code> only when you want to output text (e.g. inside a <code>p</code> tag). <br> Use <strong>Binding</strong> <code>[property]=&quot;value&quot;</code> whenever you want to change the behavior or attributes of an HTML tag.'">
+    </app-notice>
+
+  </section>
+
+</div>

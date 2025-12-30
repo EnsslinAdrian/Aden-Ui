@@ -1,0 +1,13 @@
+    <div class="page-container onest-font">
+        <app-ui-playground [htmlCode]="codeHtml" [scssCode]="codeScss" [meta]="meta">
+
+            <div class="library-container">
+              <div class="input-group floating-group">
+                <!-- 'required' ist wichtig für den Floating-Label-Effekt bei Date-Inputs in manchen Browsern -->
+                <input type="date" id="birthdate" class="aden-input floating-input" placeholder=" " required>
+                <label for="birthdate" class="floating-label">Birth Date</label>
+              </div>
+           </div>
+
+        </app-ui-playground>
+    </div>

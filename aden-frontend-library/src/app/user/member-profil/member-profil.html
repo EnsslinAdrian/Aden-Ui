@@ -1,0 +1,23 @@
+<div class="profile-container fade-in">
+
+  @if (loading()) {
+  <div class="loading-overlay">
+    <div class="spinner"></div>
+  </div>
+  } @else if (member(); as user) {
+
+  <!-- HEADER: Identisch zum Private Profile -->
+  <app-member-profil-header [user]="user" [createdCount]="memberComponents().length"></app-member-profil-header>
+
+  <!-- CONTENT GRID (Wie vorhin besprochen) -->
+  <div class="profile-body">
+
+    <!-- SIDEBAR -->
+    <app-member-profil-sidebar class="sidebar" [user]="user"></app-member-profil-sidebar>
+
+    <!-- MAIN CONTENT -->
+    <app-member-profil-library [components]="memberComponents()" [userFirstName]="member().first_name">
+    </app-member-profil-library>
+  </div>
+  }
+</div>

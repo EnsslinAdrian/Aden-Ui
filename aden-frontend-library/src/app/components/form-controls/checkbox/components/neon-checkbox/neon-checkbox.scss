@@ -1,0 +1,108 @@
+.page-container {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.library-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px; /* Abstand zwischen den Checkboxen */
+  width: 100%;
+  max-width: 400px;
+  padding: 40px;
+  background-color: var(--aden-bg);
+  border-radius: 12px;
+}
+
+:host {
+  --aden-bg: #0f0f0f;
+  --aden-surface: #1a1a1a;
+  --aden-border: #333333;
+  --aden-text: #e5e5e5;
+  --aden-primary: #4ade80; /* Neon Green */
+  --aden-primary-dark: #22c55e;
+}
+
+/* Wrapper für Label und Input */
+.checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+}
+
+/* Verstecke das native Input komplett */
+.aden-checkbox {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Die sichtbare Box */
+.checkmark-box {
+  height: 22px;
+  width: 22px;
+  background-color: var(--aden-surface);
+  border: 2px solid var(--aden-border);
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* SVG Icon styling */
+.checkmark-box svg {
+  width: 14px;
+  height: 14px;
+  color: #000; /* Schwarzer Haken für Kontrast auf Grün */
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hover State */
+.checkbox-wrapper:hover .checkmark-box {
+  border-color: #555;
+  background-color: #252525;
+}
+
+/* Checked State */
+.aden-checkbox:checked + .checkmark-box {
+  background-color: var(--aden-primary);
+  border-color: var(--aden-primary);
+  box-shadow: 0 0 10px rgba(74, 222, 128, 0.3); /* Grüner Glow */
+}
+
+/* Checked Icon Animation */
+.aden-checkbox:checked + .checkmark-box svg {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Label Text Styling */
+.label-text {
+  font-size: 0.95rem;
+  color: var(--aden-text);
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+/* Text wird heller wenn aktiv */
+.aden-checkbox:checked ~ .label-text {
+  color: #fff;
+}
+
+/* Focus State für Accessibility (Tastaturnutzung) */
+.aden-checkbox:focus-visible + .checkmark-box {
+  outline: 2px solid var(--aden-primary);
+  outline-offset: 2px;
+}

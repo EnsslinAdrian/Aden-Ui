@@ -1,0 +1,36 @@
+<div class="lock-overlay fade-in">
+  <div class="lock-card scale-in">
+
+    <!-- HEADER: AVATAR & INFO -->
+    <div class="user-header">
+      <div class="avatar-wrapper">
+        <img [src]="userAvatar()" alt="User Avatar" class="avatar-img">
+        <div class="lock-badge">🔒</div>
+      </div>
+      <h3>{{ userEmail() }}</h3>
+    </div>
+
+    <!-- BODY: FORMULAR -->
+    <div class="lock-body">
+      <app-typografie text="Please verify your password to continue." size="small" [weight]="400" color="grey" align="center"></app-typografie>
+
+      <form [formGroup]="reAuthForm" (ngSubmit)="onSubmit()">
+        @if (hasError()) { <app-error-banner errorMsg="Incorrect password. Please try again."></app-error-banner> }
+
+        <app-auth-inputs type="password" name="password" label="Password" placeholder="Enter your password"></app-auth-inputs>
+
+        <div style="margin-top: 24px;">
+          <app-auth-btn [isLoading]="isLoading()" [formInvalid]="reAuthForm.invalid" [buttonText]="'Unlock Session'" [loadingText]="'Verifying...'"></app-auth-btn>
+        </div>
+
+      </form>
+    </div>
+
+
+    <div class="lock-footer">
+      <app-cancel-btn (click)="onCancel()"></app-cancel-btn>
+      <button class="btn-link" (click)="onLogout()">Not you? Log out</button>
+    </div>
+
+  </div>
+</div>

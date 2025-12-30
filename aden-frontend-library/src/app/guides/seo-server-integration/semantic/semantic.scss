@@ -1,0 +1,109 @@
+.page-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  box-sizing: border-box;
+  color: var(--primary-white);
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.intro-text {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+h2 {
+    margin-bottom: 16px;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.sub-text {
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+
+/* Cheatsheet Grid */
+.cheatsheet-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.tag-card {
+    background: var(--surface-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 20px;
+    transition: transform 0.2s;
+
+    &:hover {
+        transform: translateY(-2px);
+        border-color: var(--text-muted);
+    }
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+
+    .tag-name {
+        color: var(--neon-blue);
+        font-family: var(--font-mono);
+        font-size: 1.1rem;
+        background: rgba(59, 130, 246, 0.1);
+        padding: 4px 8px;
+        border-radius: 6px;
+    }
+
+    .tag-cat {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        border: 1px solid var(--border-color);
+        padding: 2px 6px;
+        border-radius: 4px;
+    }
+}
+
+.tag-desc {
+    color: var(--primary-white);
+    margin-bottom: 16px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.usage-box {
+    font-size: 0.85rem;
+
+    .use-case {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        margin-bottom: 8px;
+        line-height: 1.4;
+
+        &.good { color: #86efac; } // Helles Grün
+        &.bad { color: #fca5a5; } // Helles Rot
+
+        .icon { font-size: 1rem; }
+    }
+}
+
+/* Comparison Grid */
+.comparison-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+    }
+}

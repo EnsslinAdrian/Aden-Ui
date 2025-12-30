@@ -1,0 +1,28 @@
+.danger-card {
+  border-color: rgba(239, 68, 68, 0.3);
+  padding: 24px;
+
+  h3 {
+    color: var(--danger-color);
+    font-size: 16px;
+    margin: 0 0 8px 0;
+  }
+
+
+  .btn-danger {
+    background: transparent;
+    border: 1px solid var(--danger-color);
+    color: var(--danger-color);
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 14px;
+
+    &:hover {
+      background: var(--danger-color);
+      color: white;
+    }
+  }
+}

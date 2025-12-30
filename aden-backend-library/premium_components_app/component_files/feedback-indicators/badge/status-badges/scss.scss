@@ -1,0 +1,83 @@
+
+:host {
+  --aden-bg: #0f0f0f;
+  --aden-surface: #1a1a1a;
+  --aden-success: #4ade80;
+  --aden-warning: #fbbf24;
+  --aden-error: #f87171;
+}
+
+/* Base Badge Style */
+.aden-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+  line-height: 1;
+}
+
+/* Color Variants */
+.aden-badge.success {
+  background-color: rgba(74, 222, 128, 0.1);
+  color: var(--aden-success);
+  border-color: rgba(74, 222, 128, 0.2);
+}
+
+.aden-badge.warning {
+  background-color: rgba(251, 191, 36, 0.1);
+  color: var(--aden-warning);
+  border-color: rgba(251, 191, 36, 0.2);
+}
+
+.aden-badge.error {
+  background-color: rgba(248, 113, 113, 0.1);
+  color: var(--aden-error);
+  border-color: rgba(248, 113, 113, 0.2);
+}
+
+/* Pulsing Dot */
+.status-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  position: relative;
+}
+
+.status-dot.online {
+  background-color: var(--aden-success);
+  box-shadow: 0 0 8px var(--aden-success);
+}
+
+.status-dot.online::after {
+  content: '';
+  position: absolute;
+  top: -2px; left: -2px; right: -2px; bottom: -2px;
+  border-radius: 50%;
+  border: 1px solid var(--aden-success);
+  animation: pulse 2s infinite;
+  opacity: 0;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+/* Counter Badge */
+.count-badge {
+  position: absolute;
+  top: -6px; right: -6px;
+  background-color: var(--aden-error);
+  color: #000;
+  font-size: 0.7rem;
+  font-weight: 700;
+  min-width: 18px; height: 18px;
+  border-radius: 9px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid var(--aden-bg);
+}
+  

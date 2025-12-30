@@ -1,0 +1,112 @@
+<div class="page-container onest-font">
+
+  <app-headline-guides [badgeText]="'Performance & SEO'" [headline]="'Server Side Rendering (SSR)'"
+    [subheadline]="'From an empty box to a fully furnished setup. SSR delivers ready-made HTML, makes Google happy, and makes your app feel faster.'">
+  </app-headline-guides>
+
+  <!-- 1. INTRO: THE STORY -->
+  <section class="content-section">
+    <p class="intro-text">
+      By default, Angular is like an IKEA package (CSR): The browser gets an empty box <br>
+      (<code>&lt;app-root&gt;&lt;/app-root&gt;</code>) and an instruction manual (JavaScript). The browser has to
+      assemble the page before the user sees anything.
+    </p>
+    <p class="intro-text" style="margin-top: 16px;">
+      <strong>The problem:</strong> Google bots, WhatsApp, and LinkedIn hate building furniture. <br>
+      They often only see the empty shell.
+      <br>
+      <strong>The solution (SSR):</strong> A Node.js server assembles the furniture and sends the finished sofa
+      to the browser. The user sees content immediately (First Contentful Paint).
+    </p>
+  </section>
+
+  <!-- 2. DEMO -->
+  <section class="demo-section">
+    <h2>1. CSR vs. SSR Comparison</h2>
+    <p class="sub-text">
+      Press "Reload". Notice how long it takes on the left for the text to appear (loading spinner). On the right, the
+      text is there immediately.
+      Switch to "Source Code": On the left, you see empty HTML; on the right, real content.
+    </p>
+
+    <app-ssr-interactive-demo></app-ssr-interactive-demo>
+  </section>
+
+  <!-- 3. INSTALLATION & ARCHITECTURE -->
+  <section class="code-section">
+    <h2>2. Installation & Architecture</h2>
+    <p class="sub-text">
+      Since Angular 17+, installation is a one-liner. This command automatically updates your app and creates
+      three new, important files.
+    </p>
+
+    <app-code-block-guide filename="Terminal" [code]="setupCommandCode" language="bash">
+    </app-code-block-guide>
+
+    <div class="feature-list-box">
+      <p style="margin-bottom: 12px; color: var(--primary-white); font-weight: 600;">What happens in the background?</p>
+      <ul class="feature-list">
+        <li><strong>server.ts:</strong> An Express server (Node.js). It acts as the bridge between the web and your Angular app.</li>
+        <li><strong>main.server.ts:</strong> The entry point for the server (replaces <code>main.ts</code> in the SSR context).</li>
+        <li><strong>app.routes.server.ts:</strong> The configuration for which routes are built live (SSR) or statically (Prerender).</li>
+      </ul>
+    </div>
+
+    <app-code-block-guide filename="The New Files" [code]="fileStructureCode" language="typescript">
+    </app-code-block-guide>
+  </section>
+
+  <!-- 4. SAFETY FIRST (GOLDEN RULE) -->
+  <section class="code-section">
+    <h2 style="color: #ef4444;">3. The Deadly Trap: Window & DOM</h2>
+    <p class="sub-text">
+      This is where 90% of developers fail. The Node.js server has <strong>no screen</strong>.
+      It doesn't know <code>window</code>, <code>document</code>, <code>localStorage</code>, or <code>canvas</code>.
+    </p>
+    <p class="sub-text">
+      If you start animations (GSAP) or Canvas while the server is rendering, the process crashes.
+      The solution is the "Golden Rule": <strong>Always check the platform!</strong>
+    </p>
+
+    <app-code-block-guide filename="Safe SSR Pattern" [code]="safeDomCode" language="typescript">
+    </app-code-block-guide>
+
+    <app-notice [noticeType]="'tipp'"
+      [noticeText]="'Use this pattern (<code>isPlatformBrowser</code>) wherever you have GSAP, Canvas, EventListeners, or <code>window</code> access.'">
+    </app-notice>
+  </section>
+
+  <!-- 5. ROUTING & BUILD -->
+  <section class="code-section">
+    <h2>4. Routing & Prerendering Errors</h2>
+    <p class="sub-text">
+      During the build (<code>npm run build</code>), Angular tries to prepare every page. This works great for <code>/home</code>.
+      <br>But for dynamic routes like <code>/profile/:username</code>, the build fails: <code style="color:#f87171">getPrerenderParams is missing</code>.
+    </p>
+    <p class="sub-text">
+      <strong>The solution:</strong> You need to tell Angular in <code>app.routes.server.ts</code> which routes should be calculated on the server (RenderMode.Server).
+    </p>
+
+    <app-code-block-guide filename="app.routes.server.ts" [code]="serverRoutesCode" language="typescript">
+    </app-code-block-guide>
+  </section>
+
+  <!-- 6. TESTING & QA -->
+  <section class="code-section">
+    <h2>5. Testing Like a Pro</h2>
+    <p class="sub-text">
+      How do you know if your app is truly SSR-safe? Here are 3 practical methods.
+    </p>
+
+    <app-code-block-guide filename="Quality Assurance" [code]="testingCode" language="bash">
+    </app-code-block-guide>
+
+    <div class="feature-list-box">
+      <ul class="feature-list">
+        <li><strong>The Terminal Check:</strong> The most important one. If errors appear here while you're browsing, your code isn't clean.</li>
+        <li><strong>The No-JS Check:</strong> Shows you what the Google bot sees. If the page stays blank, SSR isn't working.</li>
+      </ul>
+    </div>
+  </section>
+
+</div>

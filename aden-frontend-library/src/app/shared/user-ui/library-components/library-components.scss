@@ -1,0 +1,66 @@
+:host {
+  display: contents; /* Wichtig! Damit ignoriert das Grid den <app-library-components> Tag und ordnet direkt das <a> Element an */
+}
+
+.mini-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--code-bg); // Etwas dunkler als Card
+  border: 1px solid var(--border-color);
+  padding: 12px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.2s;
+  opacity: 0;
+  visibility: hidden;
+  // Optional: will-change für Performance bei Animationen
+  will-change: transform, opacity;
+
+  &:hover {
+    border-color: var(--neon-blue);
+    transform: translateY(-2px);
+    background: var(--bg-hover);
+
+    .icon-box {
+      color: var(--primary-white);
+      border-color: var(--text-muted);
+    }
+  }
+
+  .icon-box {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--surface-card);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    overflow: hidden;
+
+    .title {
+      color: var(--primary-white);
+      font-size: 14px;
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .meta {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+  }
+}

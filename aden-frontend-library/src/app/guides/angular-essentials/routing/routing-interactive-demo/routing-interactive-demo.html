@@ -1,0 +1,49 @@
+<section class="demo-section">
+
+  <app-browser-mockup [url]="'localhost:4200/' + currentPath">
+
+    <div class="app-simulation">
+
+      <nav class="sim-nav">
+        <div class="logo">MyApp</div>
+        <div class="links">
+          <a [class.active]="currentPath === 'home'" (click)="navigateTo('home')">Home</a>
+          <a [class.active]="currentPath === 'about'" (click)="navigateTo('about')">About</a>
+          <a [class.active]="currentPath === 'contact'" (click)="navigateTo('contact')">Contact</a>
+        </div>
+      </nav>
+
+      <div class="router-outlet-area">
+        <div class="outlet-label">&lt;router-outlet&gt;</div>
+
+        <div class="outlet-content">
+          @switch (currentPath) {
+          @case ('home') {
+          <div class="page-content home fade-in">
+            <h3>🏠 Home</h3>
+            <p>Welcome to the main page of the application.</p>
+          </div>
+          }
+          @case ('about') {
+          <div class="page-content about fade-in">
+            <h3>👋 About Us</h3>
+            <p>We build great Angular applications.</p>
+          </div>
+          }
+          @case ('contact') {
+          <div class="page-content contact fade-in">
+            <h3>✉️ Contact</h3>
+            <p>Send us an email at example&#64;mail.com.</p>
+          </div>
+          }
+          }
+        </div>
+
+        <div class="outlet-label closing">&lt;/router-outlet&gt;</div>
+      </div>
+
+    </div>
+
+  </app-browser-mockup>
+
+</section>

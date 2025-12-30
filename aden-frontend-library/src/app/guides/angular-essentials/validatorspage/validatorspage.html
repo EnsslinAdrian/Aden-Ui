@@ -1,0 +1,65 @@
+<div class="page-container onest-font">
+
+  <app-headline-guides
+    [badgeText]="'Angular Forms'"
+    [headline]="'Validators'"
+    [subheadline]="'Garbage in, Garbage out. Validators are the gatekeepers of your app. They ensure that only clean, correct data reaches your backend.'">
+  </app-headline-guides>
+
+  <!-- 1. INTRO -->
+  <section class="content-section">
+    <p class="intro-text">
+      There is a golden rule in development: <strong>Never trust user input.</strong>
+      Whether intentional or accidental – incorrect data format can crash your backend or corrupt your database.
+    </p>
+    <p class="intro-text" style="margin-top: 16px;">
+      Angular makes this easy. Instead of writing manual `if (email.includes('@'))` checks, I simply give the framework a list of rules (`Validators`). Angular takes care of the checking, state management, and CSS classes automatically.
+    </p>
+  </section>
+
+  <!-- 2. DEMO -->
+  <section class="demo-section">
+    <h2>1. The Playground</h2>
+    <p class="sub-text">
+      Type into the fields below and observe the <code>errors</code> object on the right. Watch how the status changes from <code>INVALID</code> to <code>VALID</code> only when <strong>all</strong> rules are met.
+    </p>
+
+    <app-live-validator style="width: 100%;"></app-live-validator>
+  </section>
+
+  <!-- 3. IMPLEMENTATION -->
+  <section class="code-section">
+    <h2>2. Implementation</h2>
+    <p class="sub-text">
+      The implementation consists of two steps: Defining the rules in TypeScript (The Brain) and displaying feedback in HTML (The View).
+    </p>
+
+    <h3 style="margin-top: 24px;">Step 1: Define the Rules</h3>
+    <p class="sub-text">
+      I always define validators directly when initializing the <code>FormGroup</code>. Multiple validators are passed as an array.
+      <br>Tip: Use <code>Validators.pattern()</code> for powerful Regex checks (e.g., for passwords).
+    </p>
+    <app-code-block-guide
+      filename="register.component.ts"
+      [code]="logicCode"
+      language="typescript">
+    </app-code-block-guide>
+
+    <h3 style="margin-top: 32px;">Step 2: Provide Feedback</h3>
+    <p class="sub-text">
+      An error that the user can't see doesn't exist for them.
+      I usually check for <code>touched</code> (field was visited) OR <code>dirty</code> (user typed something). This prevents aggressive red warnings from appearing before the user has even started typing.
+    </p>
+    <app-code-block-guide
+      filename="register.component.html"
+      [code]="templateCode"
+      language="html">
+    </app-code-block-guide>
+
+    <app-notice [noticeType]="'tipp'"
+      [noticeText]="'<strong>Async Validators:</strong> Sometimes a synchronous check isn\'t enough (e.g., &quot;Is this username already taken?&quot;). <br>For this, Angular has <strong>Asynchronous Validators</strong>. They return an Observable, query the backend, and are passed as the <strong>third argument</strong> in the configuration.'">
+    </app-notice>
+
+  </section>
+
+</div>

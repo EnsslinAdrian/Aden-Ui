@@ -1,0 +1,53 @@
+<div class="page-container onest-font">
+
+  <app-headline-guides
+    [badgeText]="'UX & Navigation'"
+    [headline]="'Auto Scroll Restoration'"
+    [subheadline]="'Prevent users from landing in the footer. Configure the router so that your SPA feels like a classic website.'">
+  </app-headline-guides>
+
+  <!-- 1. INTRO -->
+  <section class="content-section">
+    <p class="intro-text">
+      This is one of the very first configuration changes I make in every new Angular project.
+      By default, Single Page Applications (SPAs) retain the scroll position when navigating between pages.
+    </p>
+    <p class="intro-text" style="margin-top: 16px;">
+      <strong>The scenario:</strong> A user reads a long article, scrolls all the way down, and clicks "Next Article".
+      <br>
+      <strong>The problem:</strong> Angular swaps the content, but the user suddenly stares at the footer of the new page and has to manually scroll up. <span class="highlight-text">This ruins the user experience.</span>
+    </p>
+  </section>
+
+  <!-- 2. DEMO -->
+  <section class="demo-section">
+    <h2>1. The Simulation</h2>
+    <p class="sub-text">
+      I built this demo to show the difference. Scroll down in the mockup and click the button.
+      Pay attention to where you land on the "Detail Page".
+    </p>
+
+    <app-interactive-demo></app-interactive-demo>
+  </section>
+
+  <!-- 3. IMPLEMENTATION -->
+  <section class="code-section">
+    <h2>2. Implementation</h2>
+    <p class="sub-text">
+      Forget manual hacks like <code>window.scrollTo(0,0)</code>. Angular has this feature built directly into the router.
+      We just need to enable it in <code>app.config.ts</code>.
+    </p>
+
+    <app-code-block-guide
+      filename="app.config.ts"
+      [code]="appConfigCode"
+      language="typescript">
+    </app-code-block-guide>
+
+    <app-notice [noticeType]="'tipp'"
+      [noticeText]="'<strong>Anchor Scrolling:</strong> I almost always enable <code>anchorScrolling: \'enabled\'</code> as well. This makes links with hashes (e.g., <code>/contact#form</code>) finally work as expected in HTML: They smoothly jump to the correct section.'">
+    </app-notice>
+
+  </section>
+
+</div>

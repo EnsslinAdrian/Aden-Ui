@@ -1,0 +1,272 @@
+.overview-container {
+  margin: 0 auto;
+  padding: 80px 40px;
+  max-width: 1400px;
+  min-height: 100vh;
+
+  @media (max-width: 768px) {
+    padding: 40px 20px;
+  }
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 80px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 40px;
+
+  .subtitle {
+    margin-top: 16px;
+    display: block;
+    max-width: 600px;
+    line-height: 1.6;
+  }
+
+  .header-decoration {
+    opacity: 0.5;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+
+    .header-decoration {
+      display: none;
+    }
+  }
+}
+
+.library-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+}
+
+.category-section {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.category-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  .cat-number {
+    font-family: var(--font-mono);
+    color: var(--accent-color);
+    font-size: 14px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 4px 8px;
+    border-radius: 4px;
+  }
+}
+
+/* DAS NEUE GRID */
+.guides-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 24px;
+}
+
+/* DIE GUIDE KARTE */
+.guide-card {
+  display: flex;
+  justify-content: space-between;
+  text-decoration: none;
+  background: var(--bg-secondary, #121214);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 32px;
+  position: relative;
+  transition: all 0.3s ease;
+  overflow: hidden;
+
+  /* Hintergrund-Effekt */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 0%), rgba(255, 255, 255, 0.06), transparent 40%);
+    opacity: 0;
+    transition: opacity 0.5s;
+    pointer-events: none;
+  }
+
+  /* --- PRO BADGE (Oben rechts) --- */
+  .pro-badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: linear-gradient(135deg, #FFD700, #FDB931);
+    color: #000;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 4px 8px;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(255, 215, 0, 0.2);
+    z-index: 5;
+    letter-spacing: 0.5px;
+    pointer-events: none;
+  }
+
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    z-index: 1;
+    width: 100%;
+  }
+
+  .card-top {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    .icon-box {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      color: var(--primary-white);
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+
+      .lock-icon {
+        font-size: 16px;
+        line-height: 1;
+      }
+    }
+  }
+
+  .guide-description {
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    transition: color 0.3s ease;
+  }
+
+  .card-meta {
+    display: flex;
+    gap: 16px;
+    margin-top: auto;
+    padding-top: 16px;
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: #666;
+      font-family: var(--font-mono);
+
+      &:nth-child(2) {
+        color: var(--accent-color);
+        opacity: 0.8;
+      }
+    }
+  }
+
+  /* Der Pfeil (existiert nur wenn unlocked) */
+  .hover-action {
+    position: absolute;
+    top: 32px;
+    right: 32px;
+    color: var(--accent-color);
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+  }
+
+  /* --- STANDARD HOVER (Wenn NICHT locked) --- */
+  &:not(.locked):hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-4px);
+    background: #18181b;
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+
+    &::before {
+      opacity: 1;
+    }
+
+    .icon-box {
+      background: var(--accent-color);
+      color: black;
+      border-color: var(--accent-color);
+    }
+
+    .hover-action {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .guide-description {
+      color: rgba(255, 255, 255, 0.8);
+    }
+  }
+
+  /* --- LOCKED STATE --- */
+  &.locked {
+    opacity: 0.6;
+    border-style: dashed;
+
+    .icon-box {
+      background: rgba(255, 255, 255, 0.02);
+      border-color: rgba(255, 255, 255, 0.05);
+      color: #888;
+    }
+
+    &:hover {
+      transform: translateY(-2px);
+      border-color: #444;
+      background: var(--bg-secondary);
+      opacity: 0.8;
+      cursor: pointer;
+
+      .icon-box {
+        background: rgba(255, 255, 255, 0.05);
+        color: #fff;
+      }
+    }
+  }
+
+  /* --- PREMIUM UNLOCKED STATE (Eingeloggt & Premium) --- */
+  &.premium-content:not(.locked) {
+
+    &:hover {
+      border-color: rgba(255, 215, 0, 0.3); /* Goldener Rand */
+
+      .icon-box {
+        background: #FFD700;
+        color: #000;
+        border-color: #FFD700;
+      }
+
+      .hover-action {
+        color: #FFD700;
+      }
+
+      .card-meta .meta-item:nth-child(2) {
+        color: #FFD700;
+      }
+    }
+  }
+}

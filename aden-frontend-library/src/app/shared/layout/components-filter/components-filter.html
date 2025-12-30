@@ -1,0 +1,14 @@
+<nav class="filter-nav">
+  <div class="nav-content">
+    <!-- Der Titel ist jetzt auch variabel -->
+    @if (title) {
+    <span class="nav-label">{{ title }}:</span>
+    }
+    <!-- Loop durch alle Items -->
+    @for (item of items; track $index) {
+    <button (click)="scrollTo(item.targetId)" [class.active]="activeId === item.targetId">
+      {{ item.label }}
+    </button>
+    }
+  </div>
+</nav>

@@ -1,0 +1,23 @@
+<div class="browser-mockup" [class.shake]="shake">
+
+  <!-- Browser Bar -->
+  <div class="browser-bar">
+    <div class="dots">
+      <span></span><span></span><span></span>
+    </div>
+
+    <div class="url-bar">
+      <!-- Custom URL Slot -->
+      <ng-content select="[browserUrl]"></ng-content>
+
+      <!-- Fallback -->
+      @if (url) {
+        {{ url }}
+      }
+    </div>
+  </div>
+
+  <!-- Viewport / Content -->
+  <ng-content></ng-content>
+
+</div>

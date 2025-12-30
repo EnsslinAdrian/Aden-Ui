@@ -1,0 +1,185 @@
+.page-container {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.library-container {
+  width: 100%;
+  max-width: 800px; /* Breiter für Slider */
+  padding: 40px;
+  background-color: var(--aden-bg);
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+}
+
+:host {
+  --aden-bg: #0f0f0f;
+  --aden-surface: #1a1a1a;
+  --aden-border: #333333;
+  --aden-text: #e5e5e5;
+  --aden-primary: #4ade80;
+}
+
+.carousel-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  height: 350px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  background-color: var(--aden-surface);
+  border: 1px solid var(--aden-border);
+}
+
+/* --- Viewport & Track --- */
+.carousel-viewport {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.carousel-track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); /* Swiper-like ease */
+}
+
+.carousel-slide {
+  min-width: 100%; /* Zeigt immer 1 Slide voll an */
+  height: 100%;
+  box-sizing: border-box;
+  padding: 0;
+  position: relative;
+}
+
+/* --- Slide Content --- */
+.slide-content {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.slide-image {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.5s ease;
+}
+
+/* Overlay Gradient */
+.slide-content::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 50%, transparent 100%);
+}
+
+.slide-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 30px;
+  z-index: 2; /* Über dem Gradient */
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all 0.5s ease 0.2s; /* Delay für schönen Effekt */
+}
+
+/* Active State Animations */
+.carousel-slide.active .slide-image {
+  transform: scale(1.05); /* Zoom effect on active */
+}
+
+.carousel-slide.active .slide-info {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.slide-tag {
+  display: inline-block;
+  background-color: var(--aden-primary);
+  color: #000;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.slide-info h3 {
+  margin: 0 0 8px 0;
+  font-size: 1.8rem;
+  color: #fff;
+  line-height: 1.2;
+}
+
+.slide-info p {
+  margin: 0;
+  color: #ccc;
+  font-size: 0.95rem;
+  max-width: 80%;
+}
+
+/* --- Controls (Arrows) --- */
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background-color: rgba(0,0,0,0.5);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #fff;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.nav-btn:hover {
+  background-color: var(--aden-primary);
+  color: #000;
+  border-color: var(--aden-primary);
+}
+
+.nav-btn.prev { left: 16px; }
+.nav-btn.next { right: 16px; }
+
+/* --- Pagination Dots --- */
+.carousel-dots {
+  position: absolute;
+  bottom: 20px;
+  right: 30px;
+  z-index: 10;
+  display: flex;
+  gap: 8px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgba(255,255,255,0.3);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.dot.active {
+  background-color: var(--aden-primary);
+  transform: scale(1.3);
+  width: 24px; /* Stretch active dot like iOS/Swiper */
+  border-radius: 10px;
+}

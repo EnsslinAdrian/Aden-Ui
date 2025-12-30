@@ -1,0 +1,100 @@
+$gold-gradient: linear-gradient(135deg, #FFD700 0%, #FDB931 100%);
+
+.code-wrapper {
+  position: relative;
+  background: var(--code-bg);
+  min-height: 300px;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+
+  .code-scroller {
+    max-height: 500px;
+    overflow-y: auto;
+  }
+
+  &.locked {
+    user-select: none;
+    overflow: hidden;
+  }
+}
+
+/* --- LOCK OVERLAY --- */
+.lock-overlay {
+  position: absolute;
+  inset: 0;
+  // Blur aus Variablen
+  backdrop-filter: blur(var(--glass-blur));
+  background: rgba(0, 0, 0, 0.5); // Etwas dunkler über Code
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+
+  .lock-content {
+    background: var(--surface-card);
+    border: 1px solid var(--border-color);
+    padding: 30px;
+    border-radius: 16px;
+    text-align: center;
+    max-width: 320px;
+    box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.7);
+
+    .lock-icon-circle {
+      width: 50px;
+      height: 50px;
+      background: var(--bg-hover);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      font-size: 24px;
+      border: 1px solid var(--border-color);
+    }
+
+    h3 {
+      font-family: var(--main-font);
+      color: var(--primary-white);
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+
+    p {
+      font-family: var(--main-font);
+      color: var(--text-muted);
+      font-size: 13px;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    .unlock-btn {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 13px;
+      font-family: var(--main-font);
+      cursor: pointer;
+      border: none;
+      transition: transform 0.1s, border-color 0.2s;
+
+      &:hover { transform: scale(1.02); }
+
+      &.gradient {
+        background: $gold-gradient;
+        color: var(--primary-black);
+      }
+
+      &.outline {
+        background: transparent;
+        border: 1px solid var(--border-color);
+        color: var(--primary-white);
+
+        &:hover {
+            border-color: var(--primary-white);
+            background: var(--bg-hover);
+        }
+      }
+    }
+  }
+}

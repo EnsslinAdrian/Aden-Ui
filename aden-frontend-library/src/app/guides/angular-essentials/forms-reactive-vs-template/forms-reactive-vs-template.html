@@ -1,0 +1,116 @@
+<div class="page-container onest-font">
+
+  <app-headline-guides
+    [badgeText]="'Angular Fundamentals'"
+    [headline]="'Reactive vs. Template-Driven'"
+    [subheadline]="'The eternal battle: Simplicity vs. Control. Why I almost always choose Reactive Forms for scalable apps, but Template-Driven has its place.'">
+  </app-headline-guides>
+
+  <!-- INTRO -->
+  <section class="content-section">
+    <p class="intro-text">
+      Angular offers us two ways to build forms.
+      <strong>Template-Driven</strong> is often the first encounter: It feels simple, almost magical. Minimal code, quick results.
+    </p>
+    <p class="intro-text" style="margin-top: 16px;">
+      But as requirements grow (complex validation, dynamic fields, unit tests), I often hit a wall with it.
+      That’s why I rely on <span class="highlight-text">Reactive Forms</span> in professional projects. Here’s why.
+    </p>
+  </section>
+
+  <!-- 1. TEMPLATE DRIVEN -->
+  <section class="code-section">
+    <h2>1. Template-Driven Forms (The "Easy" Way)</h2>
+    <p class="sub-text">
+      Almost everything happens in the HTML here. We use <code>[(ngModel)]</code> for two-way binding.
+      This is great for a quick login form or prototypes, but the "single source of truth" lies in the template, not in the code. This makes testing difficult.
+    </p>
+
+    <app-code-block-guide
+      filename="login-template.component.html"
+      [code]="templateDrivenHtmlCode"
+      language="html">
+    </app-code-block-guide>
+
+    <app-notice [noticeType]="'tipp'"
+      [noticeText]="'<strong>Pros & Cons:</strong> Extremely little boilerplate code in TypeScript. But: Unit tests are cumbersome since you need to render the template to test the logic.'">
+    </app-notice>
+  </section>
+
+
+  <!-- 2. REACTIVE FORMS -->
+  <section class="code-section">
+    <h2>2. Reactive Forms (The "Pro" Way)</h2>
+    <p class="sub-text">
+      With Reactive Forms, we explicitly define the structure in TypeScript. The HTML becomes just the "dumb" display.
+      The model in the code is the truth. The data flow is synchronous and predictable.
+    </p>
+
+    <app-code-block-guide
+      filename="login-reactive.component.ts"
+      [code]="reactiveComponentTsCode"
+      language="typescript">
+    </app-code-block-guide>
+
+    <app-code-block-guide
+      filename="login-reactive.component.html"
+      [code]="reactiveTemplateHtmlCode"
+      language="html">
+    </app-code-block-guide>
+  </section>
+
+  <!-- 3. VERDICT -->
+  <section class="content-section">
+    <h2>3. When to Use What?</h2>
+    <p class="sub-text">
+      Technically, both approaches have their merits. Here’s my decision-making guide:
+    </p>
+
+    <div class="comparison-grid">
+
+      <!-- Template Box -->
+      <div class="compare-box template">
+        <h4>Template-Driven</h4>
+        <ul>
+          <li>✅ Simple forms (Login, Newsletter)</li>
+          <li>✅ Prototyping / MVP</li>
+          <li>❌ Complex Validation dependencies</li>
+          <li>❌ Unit Testing logic is hard</li>
+        </ul>
+      </div>
+
+      <!-- Reactive Box -->
+      <div class="compare-box reactive">
+        <h4>Reactive Forms</h4>
+        <ul>
+          <li>✅ Scalable Enterprise Apps</li>
+          <li>✅ Dynamic Fields (FormArray)</li>
+          <li>✅ Complex Validation Rules</li>
+          <li>✅ Easy to Unit Test (No HTML needed)</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- THE GOLDEN RULE -->
+    <div class="golden-rule">
+      <h3>The Golden Rule: Consistency</h3>
+      <p>
+        Regardless of pros and cons, I have one iron rule:
+        <strong>I never mix both concepts in a single project.</strong>
+      </p>
+      <p style="margin-top:10px;">
+        I decide on one approach at the start (usually Reactive) and stick to it – even for the smallest checkbox.
+        Nothing confuses a team more than seeing <code>[(ngModel)]</code> in file A and <code>formControlName</code> in file B.
+      </p>
+    </div>
+
+    <div style="margin-top: 32px;">
+      <app-notice [noticeType]="'tipp'"
+        [noticeText]="'<strong>RxJS Power:</strong> A huge advantage of Reactive Forms is <code>.valueChanges</code>. You can observe changes as a stream (e.g., <code>debounceTime(300)</code> for a search), which is hard to achieve with Template-Driven.'">
+      </app-notice>
+    </div>
+
+  </section>
+
+</div>

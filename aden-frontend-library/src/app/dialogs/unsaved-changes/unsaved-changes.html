@@ -1,0 +1,30 @@
+<div class="dialog-overlay fade-in" (click)="onStay()">
+  <div class="dialog-card scale-in" (click)="$event.stopPropagation()">
+
+    <div class="dialog-header">
+      <h3>Unsaved Changes</h3>
+      <app-close-btn (click)="onStay()"></app-close-btn>
+    </div>
+
+    <div class="dialog-body">
+      <app-typografie
+        text="You have unsaved changes. Are you sure you want to leave? Your changes will be lost."
+        size="small"
+        [weight]="400"
+        color="grey"
+        align="left">
+      </app-typografie>
+    </div>
+
+    <div class="dialog-footer">
+      <!-- Stay: User bleibt auf der Seite -->
+      <app-cancel-btn text="Stay" (click)="onStay()"></app-cancel-btn>
+
+      <!-- Leave: User verwirft Daten und geht -->
+      <button class="btn-destructive" (click)="onLeave()">
+        Discard & Leave
+      </button>
+    </div>
+
+  </div>
+</div>

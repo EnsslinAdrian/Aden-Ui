@@ -1,0 +1,114 @@
+.page-container {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.library-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 500px;
+  padding: 40px;
+  background-color: var(--aden-bg);
+  border-radius: 12px;
+}
+
+:host {
+  --aden-bg: #0f0f0f;
+  --aden-surface: #1a1a1a;
+  --aden-border: #333333;
+  --aden-text: #e5e5e5;
+  --aden-muted: #888;
+  --aden-primary: #4ade80;
+}
+
+/* Card Styling (Context) */
+.aden-card {
+  width: 100%;
+  background-color: var(--aden-surface);
+  border: 1px solid var(--aden-border);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 300px; /* Fixed height to force scroll */
+}
+
+.card-header {
+  padding: 16px;
+  border-bottom: 1px solid var(--aden-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(255,255,255,0.02);
+}
+
+.card-header h3 { margin: 0; font-size: 1rem; color: #fff; }
+.badge { font-size: 0.75rem; color: var(--aden-primary); background: rgba(74, 222, 128, 0.1); padding: 2px 8px; border-radius: 4px; }
+
+.scroll-content {
+  padding: 16px;
+  overflow-y: auto; /* WICHTIG: Scroll erlauben */
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 100%;
+}
+
+.log-item {
+  display: flex;
+  gap: 12px;
+  font-family: monospace;
+  font-size: 0.85rem;
+  color: var(--aden-muted);
+  border-bottom: 1px dashed #333;
+  padding-bottom: 8px;
+}
+.time { color: #666; min-width: 60px; }
+.prefix { color: var(--aden-primary); }
+
+
+/* --- SCROLLBAR STYLING --- */
+
+.aden-scrollbar {
+  /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: var(--aden-border) transparent;
+}
+
+/* Webkit (Chrome, Edge, Safari) */
+.aden-scrollbar::-webkit-scrollbar {
+  width: 10px; /* Width of the entire scrollbar area */
+}
+
+.aden-scrollbar::-webkit-scrollbar-track {
+  background: transparent; /* Background of the track */
+}
+
+.aden-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #333; /* Color of the handle */
+  border-radius: 20px;    /* Roundness */
+
+  /* Creates padding around scroll thumb (floating effect) */
+  border: 3px solid transparent;
+  background-clip: content-box;
+
+  transition: background-color 0.3s;
+}
+
+.aden-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Lighter on hover */
+}
+
+.aden-scrollbar::-webkit-scrollbar-thumb:active {
+  background-color: var(--aden-primary); /* Neon Green on drag */
+  border-width: 2px; /* Make it slightly fatter on click */
+}
+
+/* Corner (if both scrollbars are present) */
+.aden-scrollbar::-webkit-scrollbar-corner {
+  background: transparent;
+}

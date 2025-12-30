@@ -1,0 +1,54 @@
+<header class="profile-header">
+  <div class="header-bg"></div>
+
+  <div class="profile-info">
+
+    <!-- Avatar -->
+    <div class="avatar-group">
+      <div class="avatar-wrapper">
+        <!-- Zugriff auf Signal: user() -->
+        <img [src]="user().photo || 'assets/images/default-user.png'" alt="{{ user().first_name }}">
+      </div>
+
+      @if(user().is_premium) {
+
+        <app-pro-badge class="pro-badge-floating"></app-pro-badge>
+      }
+    </div>
+
+    <div class="text-content">
+      <h1>{{ user().first_name }} {{ user().last_name }}</h1>
+      <p class="username">@{{ user().username }}</p>
+
+      <div class="meta-badges">
+        <!-- Status Badges -->
+        @if(user().is_premium) {
+          <app-pro-meta></app-pro-meta>
+        } @else {
+          <app-free-meta></app-free-meta>
+        }
+        <app-joined [joinedDate]="user().date_joined"></app-joined>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats Row -->
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-icon">⚡</div>
+      <div class="stat-data">
+        <!-- Zugriff auf Input Signal: createdCount() -->
+        <span class="value">{{ createdCount() }}</span>
+        <span class="label">Created</span>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon">❤️</div>
+      <div class="stat-data">
+        <span class="value">{{ user().total_likes }}</span>
+        <span class="label">Total Likes</span>
+      </div>
+    </div>
+  </div>
+</header>

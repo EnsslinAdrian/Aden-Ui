@@ -1,0 +1,83 @@
+.page-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  box-sizing: border-box;
+  color: var(--primary-white);
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+/* Intro Text */
+.intro-text {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+
+  code {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    color: var(--neon-green);
+  }
+
+  strong {
+    color: var(--primary-white);
+  }
+}
+
+/* Feature List Box (für Erklärungen) */
+.feature-list-box {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--neon-blue); // Kleiner Akzent
+  border-radius: 8px;
+  padding: 24px;
+  margin-top: 24px;
+  margin-bottom: 24px;
+
+  ul.feature-list {
+    margin: 0;
+    padding-left: 20px;
+    list-style-type: disc; // Punkte anzeigen
+
+    li {
+      margin-bottom: 12px;
+      color: var(--text-muted);
+      line-height: 1.6;
+
+      strong {
+        color: var(--primary-white);
+        font-weight: 600;
+      }
+
+      code {
+        color: var(--neon-green);
+        background: rgba(0,0,0,0.3);
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-family: var(--font-mono);
+        font-size: 0.9em;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+h2 {
+    margin-bottom: 16px;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.sub-text {
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 24px;
+}

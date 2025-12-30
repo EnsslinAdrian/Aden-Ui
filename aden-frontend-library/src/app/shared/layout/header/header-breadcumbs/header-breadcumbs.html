@@ -1,0 +1,18 @@
+<nav class="breadcrumbs">
+
+  <a routerLink="/" class="home-link" [class.active]="breadcrumbs.length === 0">
+    <img src="img/icons/home.svg" alt="Home">
+  </a>
+
+  @for(b of breadcrumbs; let i = $index; track b) {
+
+  <span class="separator onest-font">/</span>
+
+  @if(i === breadcrumbs.length - 1) {
+  <span class="crumb active onest-font">{{ b }}</span>
+  } @else {
+  <a routerLink="/{{b.toLowerCase()}}" class="crumb inactive onest-font">{{ b }}</a>
+  }
+
+  }
+</nav>

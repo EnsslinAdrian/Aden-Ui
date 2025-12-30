@@ -1,0 +1,30 @@
+:host {
+    --aden-primary: #4ade80;
+}
+
+.cyber-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: var(--aden-primary) #111;
+    overflow-y: auto;
+}
+
+.cyber-scrollbar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.cyber-scrollbar::-webkit-scrollbar-track {
+    background: #111;
+    border-left: 1px solid #222;
+}
+
+.cyber-scrollbar::-webkit-scrollbar-thumb {
+    background-color: var(--aden-primary);
+    border-radius: 0;
+    border: none;
+    box-shadow: 0 0 10px var(--aden-primary);
+}
+
+.cyber-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: #22c55e;
+    box-shadow: 0 0 15px #22c55e;
+}

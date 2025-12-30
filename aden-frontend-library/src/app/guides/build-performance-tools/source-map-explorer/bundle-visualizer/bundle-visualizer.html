@@ -1,0 +1,51 @@
+  <section class="demo-section">
+
+
+    <div class="visualizer-wrapper">
+
+      <!-- Controls -->
+      <div class="controls-bar">
+        <div class="stat-group">
+          <span class="label">Total Bundle Size:</span>
+          <span class="value" [class.good]="isOptimized()" [class.bad]="!isOptimized()">
+            {{ totalSize() }} KB
+          </span>
+        </div>
+
+        <button class="aden-btn" (click)="toggleOptimization()">
+          {{ isOptimized() ? 'Revert Changes' : 'Optimize Bundle' }}
+        </button>
+      </div>
+
+      <!-- The Treemap Simulation -->
+      <div class="treemap-container">
+        @for (part of currentBundle(); track part.name) {
+        <div class="treemap-block" [style.width.%]="getPercentage(part.size)" [style.background-color]="part.color">
+
+          <div class="block-content">
+            <span class="block-name">{{ part.name }}</span>
+            <span class="block-size">{{ part.size }} KB</span>
+          </div>
+
+          <!-- Tooltip -->
+          <div class="tooltip">
+            <strong>{{ part.name }}</strong>
+            <p>{{ part.desc }}</p>
+          </div>
+
+        </div>
+        }
+      </div>
+
+      <div class="legend">
+        @if (!isOptimized()) {
+        <app-notice [noticeType]="'warning'"
+          [noticeText]="'<strong>Analysis:</strong> <code>moment.js</code> takes up almost 35% of your bundle! Consider switching to <code>date-fns</code>.'"></app-notice>
+        } @else {
+        <app-notice [noticeType]="'success'"
+          [noticeText]="'<strong>Analysis:</strong> Great job! Replacing moment.js saved ~250KB.'"></app-notice>
+        }
+      </div>
+
+    </div>
+  </section>

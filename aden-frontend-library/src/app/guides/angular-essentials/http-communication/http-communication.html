@@ -1,0 +1,63 @@
+<div class="page-container onest-font">
+
+  <app-headline-guides
+    [badgeText]="'HTTP & Data'"
+    [headline]="'HTTP Communication'"
+    [subheadline]="'The frontend is an isolated island. The HttpClient is the bridge to the mainland (backend). Based on RxJS and more powerful than the standard Fetch.'">
+  </app-headline-guides>
+
+  <!-- 1. INTRO -->
+  <section class="content-section">
+    <p class="intro-text">
+      When I switched from React to Angular, I thought: "Why not just use <code>fetch()</code>?"
+      <br>
+      The answer is control. The Angular <code>HttpClient</code> does not return simple promises but <strong>observables</strong>. That may sound complicated, but it means: I can cancel ongoing requests, measure progress, and handle errors centrally.
+    </p>
+  </section>
+
+  <!-- 2. DEMO -->
+  <section class="demo-section">
+    <h2>1. Request Simulator</h2>
+    <p class="sub-text">
+      Observe the dialogue between the app and the server. On the left, you see what the user sees (UI). On the right, you see the raw JSON data that is actually transmitted.
+    </p>
+
+    <app-http-communication-interactive-demo></app-http-communication-interactive-demo>
+  </section>
+
+  <!-- 3. IMPLEMENTATION -->
+  <section class="code-section">
+    <h2>2. Implementation</h2>
+    <p class="sub-text">
+      Since Angular 15+ (Standalone), the setup is extremely streamlined. We no longer need to import modules but simply provide a provider.
+    </p>
+
+    <h3 style="margin-top: 24px;">Step 1: Global Setup</h3>
+    <p class="sub-text">
+      In <code>app.config.ts</code>, we enable the client.
+      My tip: Be sure to use <code>withFetch()</code>. This ensures that Angular uses the modern Fetch API under the hood, which is essential for <strong>SSR (Server Side Rendering)</strong>.
+    </p>
+    <app-code-block-guide
+      filename="app.config.ts"
+      [code]="httpSetupCode"
+      language="typescript">
+    </app-code-block-guide>
+
+    <h3 style="margin-top: 32px;">Step 2: The Service</h3>
+    <p class="sub-text">
+      I never write HTTP calls directly in the component. The logic belongs in a service.
+      My most important tip: <strong>Use generics!</strong> Write <code>get&lt;User[]&gt;(...)</code> instead of just <code>get(...)</code>. This way, you immediately get autocomplete for the data.
+    </p>
+    <app-code-block-guide
+      filename="user.service.ts"
+      [code]="userServiceCode"
+      language="typescript">
+    </app-code-block-guide>
+
+    <app-notice [noticeType]="'tipp'"
+      [noticeText]="'<strong>Cold Observables:</strong> An HTTP request in Angular is like ordering a pizza. Just because you wrote the order (called the function), no pizza is delivered yet. <br>The request is only sent when you <strong>subscribe</strong> (<code>.subscribe()</code> or <code>AsyncPipe</code>). Without a subscription, nothing happens.'">
+    </app-notice>
+
+  </section>
+
+</div>

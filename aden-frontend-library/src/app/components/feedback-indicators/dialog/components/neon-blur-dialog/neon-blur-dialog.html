@@ -1,0 +1,43 @@
+<div class="page-container onest-font">
+  <app-ui-playground [htmlCode]="codeHtml" [scssCode]="codeScss" [tsCode]="codeTs" [meta]="meta">
+
+    <div class="library-container">
+
+      <!-- Trigger Button -->
+      <button class="aden-btn primary" (click)="openDialog()">
+        Open Modal
+      </button>
+
+      <!-- Dialog Overlay (Backdrop) -->
+      @if (isOpen) {
+      <div class="dialog-overlay fade-in" (click)="closeDialog()">
+
+        <!-- Dialog Panel -->
+        <!-- stopPropagation verhindert, dass Klicks in der Box das Overlay schließen -->
+        <div class="dialog-panel scale-in" (click)="$event.stopPropagation()">
+
+          <div class="dialog-header">
+            <h3 class="dialog-title">Delete Account</h3>
+            <button class="close-icon-btn" (click)="closeDialog()">✕</button>
+          </div>
+
+          <div class="dialog-body">
+            <p>Are you sure you want to delete your account? This action cannot be undone and all data will be lost
+              permanently.</p>
+          </div>
+
+          <div class="dialog-footer">
+            <button class="aden-btn ghost" (click)="closeDialog()">Cancel</button>
+            <button class="aden-btn danger" (click)="closeDialog()">Delete</button>
+          </div>
+
+        </div>
+
+      </div>
+      }
+
+    </div>
+
+  </app-ui-playground>
+
+</div>

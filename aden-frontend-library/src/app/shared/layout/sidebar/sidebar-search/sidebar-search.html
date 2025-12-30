@@ -1,0 +1,9 @@
+<div class="search-container">
+  <div class="input-wrapper">
+
+    <img src="img/icons/search.svg" alt="Search Icon" class="search-icon">
+
+    <input type="text" placeholder="Search components..." [(ngModel)]="search"
+      (ngModelChange)="searchChange.emit($event)" (keydown)="keydownEvent.emit($event)">
+  </div>
+</div>

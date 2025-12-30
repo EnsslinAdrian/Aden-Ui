@@ -1,0 +1,90 @@
+.page-container {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.library-container {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  background-color: var(--aden-bg);
+  border-radius: 12px;
+}
+
+:host {
+  --aden-bg: #0f0f0f;
+  --aden-surface: #1a1a1a;
+  --aden-border: #333333;
+  --aden-text: #e5e5e5;
+  --aden-placeholder: #666;
+  --aden-primary: #4ade80;
+}
+
+.input-group {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-label {
+  font-size: 0.85rem;
+  color: #888;
+  font-weight: 500;
+  margin-left: 2px;
+}
+
+.aden-input {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 1rem;
+  color: var(--aden-text);
+  background-color: var(--aden-surface);
+  border: 1px solid var(--aden-border);
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.aden-input::placeholder {
+  color: var(--aden-placeholder);
+}
+
+.floating-group {
+  position: relative;
+  gap: 0;
+}
+
+.floating-input {
+  padding-top: 24px;
+  padding-bottom: 8px;
+  height: 56px;
+}
+
+.floating-label {
+  position: absolute;
+  top: 18px;
+  left: 16px;
+  font-size: 1rem;
+  color: var(--aden-placeholder);
+  pointer-events: none;
+  transition: all 0.2s ease-out;
+}
+
+.floating-input:focus + .floating-label,
+.floating-input:not(:placeholder-shown) + .floating-label {
+  top: 8px;
+  font-size: 0.75rem;
+  color: var(--aden-primary);
+}
+
+.floating-input:focus {
+  border-color: var(--aden-primary);
+}

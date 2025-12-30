@@ -1,0 +1,174 @@
+.page-container {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.library-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 800px;
+  padding: 40px;
+  background-color: var(--aden-bg);
+  border-radius: 12px;
+}
+
+:host {
+  --aden-bg: #0f0f0f;
+  --aden-surface: #1a1a1a;
+  --aden-border: #333333;
+  --aden-text: #e5e5e5;
+  --aden-muted: #888;
+  --aden-primary: #4ade80;
+  --aden-secondary: #60a5fa;
+}
+
+.kanban-board {
+  display: flex;
+  gap: 24px;
+  width: 100%;
+
+  /* Make responsive for mobile */
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
+}
+
+.kanban-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0; /* Flexbox trick for overflow */
+}
+
+/* Header Styling */
+.column-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 4px;
+}
+
+.column-header h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.count {
+  background: var(--aden-surface);
+  border: 1px solid var(--aden-border);
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 12px;
+  color: var(--aden-muted);
+}
+
+.status-dot { width: 8px; height: 8px; border-radius: 50%; }
+.status-dot.todo { background-color: var(--aden-secondary); }
+.status-dot.done { background-color: var(--aden-primary); }
+
+
+/* Container Styling */
+.drop-container {
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--aden-border);
+  border-radius: 12px;
+  padding: 16px;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: all 0.2s ease;
+}
+
+/* Highlight when dragging over */
+.drop-container.drag-over {
+  border-color: var(--aden-primary);
+  background-color: rgba(74, 222, 128, 0.05);
+  box-shadow: inset 0 0 20px rgba(74, 222, 128, 0.05);
+}
+
+.empty-placeholder {
+  color: #444;
+  text-align: center;
+  margin-top: 40px;
+  border: 2px dashed #333;
+  padding: 20px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+
+/* Card Styling */
+.kanban-card {
+  background-color: var(--aden-surface);
+  border: 1px solid var(--aden-border);
+  border-radius: 8px;
+  padding: 16px;
+  cursor: grab;
+  transition: transform 0.2s, box-shadow 0.2s;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.kanban-card:hover {
+  border-color: #555;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.kanban-card:active {
+  cursor: grabbing;
+}
+
+/* Style for element while being dragged (standard HTML5 behavior styling) */
+.kanban-card.dragging {
+  opacity: 0.5;
+  border: 1px dashed #666;
+}
+
+.card-tag {
+  align-self: flex-start;
+  font-size: 0.7rem;
+  padding: 2px 8px;
+  background: rgba(96, 165, 250, 0.1);
+  color: var(--aden-secondary);
+  border-radius: 4px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.kanban-card p {
+  margin: 0;
+  color: var(--aden-text);
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+/* Done State */
+.kanban-card.done {
+  border-left: 3px solid var(--aden-primary);
+  flex-direction: row;
+  align-items: center;
+  opacity: 0.8;
+}
+
+.kanban-card.done p {
+  text-decoration: line-through;
+  color: var(--aden-muted);
+}
+
+.check-icon {
+  color: var(--aden-primary);
+  font-weight: bold;
+}

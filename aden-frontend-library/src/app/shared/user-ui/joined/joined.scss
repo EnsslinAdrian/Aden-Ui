@@ -1,0 +1,42 @@
+.badge.date {
+  /* Layout */
+  display: inline-flex;
+  align-items: center;
+  gap: 8px; /* Etwas mehr Abstand für das Icon */
+
+  /* Text */
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap; /* Verhindert Umbruch */
+
+  /* Padding & Shape */
+  padding: 5px 12px;
+  border-radius: 8px;
+
+  /* --- FROSTY GLASS LOOK (Deine Basis) --- */
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.6); /* Text etwas dezenter als "Community" */
+
+  transition: all 0.3s ease;
+  cursor: default; /* Zeigt, dass es nur Info ist */
+}
+
+/* Icon Styling */
+.badge.date .icon {
+  opacity: 0.7; /* Icon etwas zurückhaltender */
+  color: inherit;
+}
+
+/* Hover Effekt */
+.badge.date:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.9); /* Heller beim Hover */
+}
+
+.badge.date:hover .icon {
+  opacity: 1;
+}

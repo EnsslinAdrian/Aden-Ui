@@ -1,0 +1,12 @@
+<div class="input-group">
+    <label class="input-label">Circuit Loader</label>
+
+    <div class="gsap-wrapper">
+        <svg class="circuit-svg">
+            <rect class="circuit-rect" x="1" y="1" width="calc(100% - 2px)" height="calc(100% - 2px)" rx="8"></rect>
+        </svg>
+
+        <input type="text" class="aden-input gsap-input" placeholder="Click to activate..."
+            (focus)="animateCircuit(true)" (blur)="animateCircuit(false)">
+    </div>
+</div>

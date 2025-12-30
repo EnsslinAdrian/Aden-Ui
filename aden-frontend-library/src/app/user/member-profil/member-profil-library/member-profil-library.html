@@ -1,0 +1,61 @@
+<main class="library-main-content">
+  <!-- Library Header -->
+  <div class="library-header">
+    <div class="tabs">
+      <button class="tab-btn active">
+        Creations
+        <span class="count">{{ components().length }}</span>
+      </button>
+    </div>
+
+    <div class="page-indicator">
+      Page {{ currentPage() + 1 }}
+    </div>
+  </div>
+
+@if (components().length > 0) {
+  <div class="components-grid">
+    @for (comp of visibleComponents(); track comp.id) {
+      <app-library-components
+        class=".mini-card"
+        [comp]="comp"
+        tab="created">
+      </app-library-components>
+    }
+  </div>
+
+  <!-- PAGINATION FOOTER -->
+  @if (totalPages() > 1) {
+    <div class="pagination-footer">
+
+      <button class="nav-btn" [disabled]="!hasPrev()" (click)="prevPage()">
+        ← Prev
+      </button>
+
+      <div class="dots">
+        <!-- Loop über die Punkte -->
+        @for (pageIndex of pageDots(); track pageIndex) {
+          <span
+            class="dot"
+            [class.active]="currentPage() === pageIndex"
+            (click)="goToPage(pageIndex)"
+            title="Go to page {{ pageIndex + 1 }}">
+            <!-- LEER LASSEN für Kreise! -->
+          </span>
+        }
+      </div>
+
+      <button class="nav-btn" [disabled]="!hasMore()" (click)="nextPage()">
+        Next →
+      </button>
+    </div>
+  }
+
+} @else {
+  <!-- Empty State -->
+  <div class="empty-state">
+    <div class="icon">📦</div>
+    <p>{{ userFirstName() }} has not published any components yet.</p>
+  </div>
+}
+</main>

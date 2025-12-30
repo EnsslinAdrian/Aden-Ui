@@ -1,0 +1,94 @@
+<div class="page-container onest-font">
+
+  <app-headline-guides
+    [badgeText]="'Template Syntax'"
+    [headline]="'Pipes'"
+    [subheadline]="'Data is often raw and unpolished. Pipes are the make-up of your app. They format data for display without altering the actual logic.'">
+  </app-headline-guides>
+
+  <!-- 1. INTRO -->
+  <section class="content-section">
+    <p class="intro-text">
+      In the database, I store dates as ISO strings (<code>2023-12-24T18:00:00Z</code>) or prices as plain numbers (<code>49.5</code>).
+      However, I never want to show them to the user like this. They expect "Dec 24" and "$49.50".
+    </p>
+    <p class="intro-text" style="margin-top: 16px;">
+      In the past, I often performed this transformation in TypeScript. This is "dirty".
+      <strong>Pipes</strong> solve this directly in the HTML. They transform the value only for the view, while the data remains clean and untouched in the background.
+    </p>
+  </section>
+
+  <!-- 2. DEMO -->
+  <section class="demo-section">
+    <h2>1. The Simulation</h2>
+    <p class="sub-text">
+      See the difference between "Raw Data" (left) and "Piped Data" (right). Angular provides powerful built-ins like <code>DatePipe</code>, <code>CurrencyPipe</code>, and <code>JsonPipe</code> out of the box.
+    </p>
+    <app-pipes-interactive-demo></app-pipes-interactive-demo>
+  </section>
+
+  <!-- 3. IMPLEMENTATION -->
+  <section class="code-section">
+    <h2>2. Custom Pipes</h2>
+    <p class="sub-text">
+      The built-ins cover 90% of cases, but sometimes I need custom logic. A classic example is a <strong>Truncate Pipe</strong>. If a blog title is too long for the card, it should gracefully end with "...".
+    </p>
+
+    <h3 style="margin-top: 24px;">Step 1: The Logic (Pipe)</h3>
+    <p class="sub-text">
+      A pipe is just a class with the <code>@Pipe</code> decorator. The heart of it is the <code>transform</code> method.
+    </p>
+    <app-code-block-guide
+      filename="truncate.pipe.ts"
+      [code]="truncatePipeCode"
+      language="typescript">
+    </app-code-block-guide>
+
+    <h3 style="margin-top: 32px;">Step 2: The Usage</h3>
+    <p class="sub-text">
+      Now we can use the pipe anywhere in our templates. We can even pass arguments using the colon <code>:</code> syntax.
+    </p>
+    <app-code-block-guide
+      filename="template.html"
+      [code]="truncatePipeUsageCode"
+      language="html">
+    </app-code-block-guide>
+
+    <!-- MINI DEMO FOR CUSTOM PIPE -->
+    <div class="custom-pipe-demo">
+      <div class="demo-header">
+        <span class="icon">🧪</span> Live Playground: Truncate Pipe
+      </div>
+
+      <div class="demo-body">
+        <div class="controls">
+          <label>Character Limit: <span class="badge">{{ truncateLimit }}</span></label>
+          <input type="range" min="10" max="100" [(ngModel)]="truncateLimit" class="range-slider">
+        </div>
+
+        <div class="result-box">
+          <div class="column">
+            <span class="label">Original Data:</span>
+            <div class="val raw">{{ customPipeText }}</div>
+          </div>
+
+          <div class="separator"></div>
+
+          <div class="column">
+            <span class="label">View Result:</span>
+            <!-- Simulating the pipe logic in template for demo purposes -->
+            <div class="val result">
+              {{ customPipeText | slice:0:truncateLimit }}{{ customPipeText.length > truncateLimit ? '...' : '' }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <app-notice [noticeType]="'tipp'"
+      [noticeText]="'<strong>Performance Win:</strong> Pipes are &quot;pure&quot; by default. This means Angular executes them ONLY when the input value changes. <br>If you use a method in HTML (e.g. <code>{{ formatData(val) }}</code>), it runs on EVERY change detection cycle (potentially 100x per second). Always use pipes for formatting!'">
+    </app-notice>
+
+  </section>
+
+</div>

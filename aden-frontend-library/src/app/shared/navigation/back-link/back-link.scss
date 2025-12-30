@@ -1,0 +1,27 @@
+.card-footer {
+  margin-top: 20px;
+
+  .back-link {
+    color: #71717a;
+    text-decoration: none;
+    font-family: var(--main-font);
+    font-size: 14px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s;
+
+    &:hover {
+      color: white;
+    }
+
+    .arrow {
+      transition: transform 0.2s;
+    }
+
+    &:hover .arrow {
+      transform: translateX(-3px);
+    }
+  }
+}

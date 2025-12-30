@@ -1,0 +1,19 @@
+.drop-container {
+    min-height: 200px;
+    border: 1px solid #333;
+    transition: all 0.2s;
+}
+
+.drop-container.drag-over {
+    border-color: #4ade80;
+    background-color: rgba(74, 222, 128, 0.05);
+}
+
+.kanban-card {
+    cursor: grab;
+    user-select: none;
+}
+
+.kanban-card:active {
+    cursor: grabbing;
+}

@@ -1,0 +1,64 @@
+<div class="page-container onest-font">
+
+  <app-headline-guides
+    [badgeText]="'SEO Helper'"
+    [headline]="'Sitemap.xml'"
+    [subheadline]="'Google is sometimes blind. A sitemap is the map for crawlers. It lists all your pages so that even deeply nested content can be found.'">
+  </app-headline-guides>
+
+  <!-- 1. INTRO -->
+  <section class="content-section">
+    <p class="intro-text">
+      In a traditional website, the crawler simply follows the links. In an Angular app (SPA), links often only appear through user interaction.
+      Crawlers have become smarter and execute JavaScript, but I prefer not to rely on luck.
+    </p>
+    <p class="intro-text" style="margin-top: 16px;">
+      With a <code>sitemap.xml</code>, I serve Google all my URLs on a silver platter. This is especially important for pages that are not directly linked through the menu (e.g., old blog posts).
+    </p>
+  </section>
+
+  <!-- 2. DEMO -->
+  <section class="demo-section">
+    <h2>1. Sitemap Simulator</h2>
+    <p class="sub-text">
+      Define your routes on the left. On the right, you can see the XML format that search engines expect.
+    </p>
+
+    <app-sitemap-simulater style="width: 100%;"></app-sitemap-simulater>
+  </section>
+
+  <!-- 3. IMPLEMENTATION -->
+  <section class="code-section">
+    <h2>2. Automation (Post-Build)</h2>
+    <p class="sub-text">
+      Nobody writes XML by hand. And since Angular doesn't have static HTML files, we need to <strong>generate</strong> the sitemap.
+      I use a simple Node.js script that runs after the build.
+    </p>
+
+    <h3 style="margin-top: 24px;">Step 1: Create the Script</h3>
+    <p class="sub-text">
+      Create a folder <code>scripts</code> in the root and add the file there. The script writes the XML file directly into the <code>dist</code> folder of your app.
+    </p>
+    <app-code-block-guide
+      filename="scripts/generate-sitemap.js"
+      [code]="scriptCode"
+      language="javascript">
+    </app-code-block-guide>
+
+    <h3 style="margin-top: 32px;">Step 2: Integrate into the Build</h3>
+    <p class="sub-text">
+      Now we need to ensure that the script always runs when we deploy. We extend the <code>build</code> command in the <code>package.json</code>.
+    </p>
+    <app-code-block-guide
+      filename="package.json"
+      [code]="packageJsonCode"
+      language="json">
+    </app-code-block-guide>
+
+    <app-notice [noticeType]="'tipp'"
+      [noticeText]="'<strong>Dynamic Data:</strong> In large apps, I don\'t hardcode the routes. I extend the script to fetch my API (e.g., retrieve all blog IDs) using <code>axios</code> or <code>fetch</code> and generate the URLs from that.'">
+    </app-notice>
+
+  </section>
+
+</div>

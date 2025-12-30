@@ -1,0 +1,20 @@
+<div class="global-spotlight" [style.background]="spotlightStyle()"></div>
+
+<app-header></app-header>
+<div class="layout">
+  <div class="content-wrapper">
+    <app-sidebar></app-sidebar>
+    <app-toasts-container></app-toasts-container>
+
+    <main class="content" #contentContainer>
+      <router-outlet></router-outlet>
+
+      <app-footer></app-footer>
+    </main>
+  </div>
+</div>
+
+@if (showReAuth()) {
+<app-re-authenticate (authenticated)="onAuthenticated()" (logout)="onLogout()">
+</app-re-authenticate>
+}

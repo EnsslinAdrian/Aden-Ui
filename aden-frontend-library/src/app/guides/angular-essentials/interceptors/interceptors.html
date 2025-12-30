@@ -1,0 +1,63 @@
+<div class="page-container onest-font">
+
+  <app-headline-guides
+    [badgeText]="'HTTP & Data'"
+    [headline]="'Interceptors'"
+    [subheadline]="'The invisible middleman. Manipulate every HTTP request centrally in one place without having to touch 50 different files.'">
+  </app-headline-guides>
+
+  <!-- 1. INTRO: THE STORY -->
+  <section class="content-section">
+    <p class="intro-text">
+      Imagine you have built 50 services in your app. Suddenly, the backend team says: "Hey, from now on, we need an <code>Authorization</code> header on <em>every single</em> request."
+    </p>
+    <p class="intro-text" style="margin-top: 16px;">
+      Without interceptors, you would have to open 50 files and manually copy-paste the header logic. Nightmare.
+      <br>
+      With an <strong>Interceptor</strong>, you write this code exactly <strong>once</strong>. It hooks into the HTTP pipeline like a filter. Every request leaving your app must pass through this checkpoint – automatically.
+    </p>
+  </section>
+
+  <!-- 2. DEMO -->
+  <section class="demo-section">
+    <h2>1. The Pipeline Simulation</h2>
+    <p class="sub-text">
+      Send a request below. Observe how the interceptor catches the request "on the fly," injects the token, and only then forwards it to the server.
+    </p>
+    <app-interceptor-interactive-demo></app-interceptor-interactive-demo>
+  </section>
+
+  <!-- 3. IMPLEMENTATION -->
+  <section class="code-section">
+    <h2>2. Implementation</h2>
+    <p class="sub-text">
+      Since Angular 15+, we use <strong>Functional Interceptors</strong>. Forget the old Class-based boilerplate. An interceptor is now just a simple arrow function.
+    </p>
+
+    <h3 style="margin-top: 24px;">Step 1: Write the Function</h3>
+    <p class="sub-text">
+      The most important concept here is <strong>Immutability</strong>. A common mistake is trying to modify <code>req</code> directly. Angular forbids this to prevent side effects. You must use <code>req.clone()</code> to create a modified copy.
+    </p>
+    <app-code-block-guide
+      filename="auth.interceptor.ts"
+      [code]="authInterceptorCode"
+      language="typescript">
+    </app-code-block-guide>
+
+    <h3 style="margin-top: 32px;">Step 2: Register Globally</h3>
+    <p class="sub-text">
+      To make Angular use the interceptor, we need to register it in our <code>app.config.ts</code> provider.
+    </p>
+    <app-code-block-guide
+      filename="app.config.ts"
+      [code]="interceptorRegistrationCode"
+      language="typescript">
+    </app-code-block-guide>
+
+    <app-notice [noticeType]="'tipp'"
+      [noticeText]="'<strong>Response Handling:</strong> Interceptors also work in the other direction (incoming responses). I use this for <strong>Global Error Handling</strong>: If the backend returns a 401 (Unauthorized), I catch it here and redirect to the login page centrally.'">
+    </app-notice>
+
+  </section>
+
+</div>

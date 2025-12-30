@@ -1,0 +1,91 @@
+<section class="demo-section">
+
+
+  <div class="controls-bar">
+    <div class="toggle-wrapper" (click)="toggleFeature()">
+      <div class="toggle-switch" [class.active]="isAutoScrollEnabled">
+        <div class="toggle-knob"></div>
+      </div>
+      <span class="label">
+        Scroll Restoration: <strong>{{ isAutoScrollEnabled ? 'ENABLED' : 'DISABLED' }}</strong>
+      </span>
+    </div>
+
+    @if (!isAutoScrollEnabled) {
+    <span class="warning-tag">⚠️ Default SPA Behavior</span>
+    } @else {
+    <span class="success-tag">✅ Good UX</span>
+    }
+  </div>
+
+  <app-browser-mockup [url]="'localhost:4200/' + (currentPage === 'page1' ? 'home' : 'details')">
+
+    <div class="viewport" #scrollContainer>
+
+      @if (currentPage === 'page1') {
+      <div class="page-content fade-in">
+        <div class="hero">
+          <h3>Home Page</h3>
+          <p>Welcome. Scroll down to see more.</p>
+        </div>
+
+        <!-- Filler Content for Scroll Height -->
+        <div class="skeleton-content">
+          <div class="skeleton-line" style="width: 80%"></div>
+          <div class="skeleton-line" style="width: 90%"></div>
+          <div class="skeleton-line" style="width: 60%"></div>
+          <div class="skeleton-block"></div>
+          <div class="skeleton-line" style="width: 85%"></div>
+          <div class="skeleton-line" style="width: 75%"></div>
+          <div class="skeleton-block"></div>
+          <div class="skeleton-line" style="width: 50%"></div>
+        </div>
+
+        <div class="footer-action">
+          <p>You've reached the end!</p>
+          <button class="aden-btn" (click)="navigateTo('page2')">
+            Go to Details (Page 2)
+          </button>
+        </div>
+      </div>
+      }
+
+      @if (currentPage === 'page2') {
+      <div class="page-content fade-in">
+        <div class="hero">
+          <h3>Detail Page</h3>
+          <p>Here are the details.</p>
+        </div>
+
+        <div class="info-box">
+          @if (!isAutoScrollEnabled) {
+          <h4>Oops, where am I?</h4>
+          <p>Without Auto Scroll, you're still at the bottom of the page. You need to manually scroll up to see the
+            title.</p>
+          } @else {
+          <h4>Perfect!</h4>
+          <p>The page automatically started at the top.</p>
+          }
+        </div>
+
+        <!-- Filler -->
+        <div class="skeleton-content">
+          <div class="skeleton-line" style="width: 70%"></div>
+          <div class="skeleton-block alt"></div>
+          <div class="skeleton-line" style="width: 40%"></div>
+        </div>
+
+        <div class="footer-action">
+          <button class="aden-btn ghost" (click)="navigateTo('page1')">
+            Back to Home
+          </button>
+        </div>
+      </div>
+      }
+
+
+    </div>
+
+  </app-browser-mockup>
+
+</section>

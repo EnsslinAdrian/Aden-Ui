@@ -1,0 +1,100 @@
+  <section class="demo-section">
+
+
+    <!-- Controls -->
+    <div class="controls-bar">
+      <div class="view-toggles">
+        <button class="toggle-btn" [class.active]="activeView === 'visual'" (click)="toggleView('visual')">
+          👁️ Visual Preview
+        </button>
+        <button class="toggle-btn" [class.active]="activeView === 'source'" (click)="toggleView('source')">
+          📄 Source Code (SEO)
+        </button>
+      </div>
+
+      <button class="aden-btn" (click)="startSimulation()">
+        🔄 Reload Page
+      </button>
+    </div>
+
+    <!-- Comparison Grid -->
+    <div class="comparison-grid">
+
+      <!-- LEFT: CSR -->
+      <div class="device-mockup csr">
+        <div class="device-header">
+          <span class="dot red"></span>
+          <span class="title">Standard Angular (CSR)</span>
+        </div>
+
+        <div class="device-viewport">
+          @if (activeView === 'visual') {
+            <!-- Visual Mode -->
+            @if (csrLoading) {
+              <div class="loading-state">
+                <div class="spinner"></div>
+                <span class="loading-text">Loading JavaScript Bundle... (2.5MB)</span>
+              </div>
+            } @else {
+              <div class="content fade-in">
+                <div class="hero-img"></div>
+                <h3>Welcome!</h3>
+                <p>The browser has executed the JavaScript and created the DOM.</p>
+              </div>
+            }
+          } @else {
+            <!-- Source Mode -->
+            <div class="code-view">
+              <span class="tag">&lt;body&gt;</span><br>
+              &nbsp;&nbsp;<span class="tag">&lt;app-root&gt;&lt;/app-root&gt;</span><br>
+              &nbsp;&nbsp;<span class="comment">&lt;!-- Empty! Content loaded via JS --&gt;</span><br>
+              &nbsp;&nbsp;<span class="tag">&lt;script src="..."&gt;&lt;/script&gt;</span><br>
+              <span class="tag">&lt;/body&gt;</span>
+            </div>
+            <div class="bot-status bad">
+              🤖 Bot: "I don't see any content here."
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- RIGHT: SSR -->
+      <div class="device-mockup ssr">
+        <div class="device-header">
+          <span class="dot green"></span>
+          <span class="title">Angular SSR + Hydration</span>
+        </div>
+
+        <div class="device-viewport">
+          @if (activeView === 'visual') {
+            <!-- Visual Mode -->
+            <div class="content">
+              <div class="hero-img"></div>
+              <h3>Welcome!</h3>
+              <p>This HTML came ready from the server.</p>
+
+              @if (ssrHydrating) {
+                <div class="hydration-badge pulse">
+                  💧 Hydrating... (JS attaching)
+                </div>
+              }
+            </div>
+          } @else {
+            <!-- Source Mode -->
+            <div class="code-view">
+              <span class="tag">&lt;body&gt;</span><br>
+              &nbsp;&nbsp;<span class="tag">&lt;app-root&gt;</span><br>
+              &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;h3&gt;</span>Welcome!<span class="tag">&lt;/h3&gt;</span><br>
+              &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;p&gt;</span>This HTML came...<span class="tag">&lt;/p&gt;</span><br>
+              &nbsp;&nbsp;<span class="tag">&lt;/app-root&gt;</span><br>
+              <span class="tag">&lt;/body&gt;</span>
+            </div>
+            <div class="bot-status good">
+              🤖 Bot: "Perfect! I can read everything."
+            </div>
+          }
+        </div>
+      </div>
+
+    </div>
+  </section>

@@ -1,0 +1,78 @@
+:host {
+    --aden-bg: #0f0f0f;
+    --aden-surface: #1a1a1a;
+    --aden-border: #333333;
+    --aden-text: #e5e5e5;
+    --aden-placeholder: #666;
+    --aden-primary: #4ade80;
+}
+
+.input-group {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.aden-input {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 1rem;
+    color: var(--aden-text);
+    background-color: var(--aden-surface);
+    border: 1px solid var(--aden-border);
+    border-radius: 8px;
+    outline: none;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    font-family: inherit;
+    color-scheme: dark;
+    /* Ensures native picker is dark */
+}
+
+/* Customizing the calendar icon */
+.aden-input::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    opacity: 0.6;
+    transition: 0.2s ease;
+    filter: invert(1);
+    /* Invert color for dark background */
+}
+
+.aden-input:focus::-webkit-calendar-picker-indicator,
+.aden-input:hover::-webkit-calendar-picker-indicator {
+    opacity: 1;
+}
+
+.floating-group {
+    position: relative;
+    gap: 0;
+}
+
+.floating-input {
+    padding-top: 24px;
+    padding-bottom: 8px;
+    height: 56px;
+}
+
+.floating-label {
+    position: absolute;
+    top: 18px;
+    left: 16px;
+    font-size: 1rem;
+    color: var(--aden-placeholder);
+    pointer-events: none;
+    transition: all 0.2s ease-out;
+}
+
+.floating-input:focus+.floating-label,
+.floating-input:not(:placeholder-shown)+.floating-label,
+.floating-input:valid+.floating-label {
+    top: 8px;
+    font-size: 0.75rem;
+    color: var(--aden-primary);
+}
+
+.floating-input:focus {
+    border-color: var(--aden-primary);
+}

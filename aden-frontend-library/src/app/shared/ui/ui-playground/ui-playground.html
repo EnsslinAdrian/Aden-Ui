@@ -1,0 +1,76 @@
+<div class="playground-container">
+
+  <!-- META SECTION (Header) -->
+  <app-ui-playground-header [meta]="meta" [author]="displayAuthor()" [isPremium]="isComponentPremium()"
+    [isLiked]="isLiked()" [likeCount]="likeCount()" [isSaved]="isSaved()" (likeClicked)="toggleLike()"
+    (saveClicked)="toggleSave()">
+
+  </app-ui-playground-header>
+
+  <!-- TABS & PLAYGROUND -->
+  <div class="playground-body">
+
+    <!-- ZEILE 1: HAUPT TABS -->
+    <div class="tabs-nav">
+      <div class="tab-group">
+        <button class="tab-btn" [class.active]="activeTab() === 'preview'" (click)="setTab('preview')">
+          Preview
+        </button>
+        <button class="tab-btn" [class.active]="activeTab() === 'code'" (click)="setTab('code')">
+          Code
+          @if(!canViewCode()) { <span class="lock-indicator">🔒</span> }
+        </button>
+        @if (installCode()) {
+        <button class="tab-btn" [class.active]="activeTab() === 'install'" (click)="setTab('install')">
+          Install
+        </button>
+        }
+      </div>
+      <!-- HIER WAR DER BLOCK FRÜHER -> WEG DAMIT -->
+    </div>
+
+    <!-- ZEILE 2: SPRACH AUSWAHL (Jetzt darunter!) -->
+    @if (activeTab() === 'code' && canViewCode()) {
+    <div class="sub-nav-bar">
+
+      <div class="lang-group">
+        @if (htmlCode()) {
+        <button [class.active]="activeCodeLang() === 'html'" (click)="setCodeLang('html')">HTML</button>
+        }
+        @if (scssCode()) {
+        <button [class.active]="activeCodeLang() === 'scss'" (click)="setCodeLang('scss')">SCSS</button>
+        }
+        @if (tsCode()) {
+        <button [class.active]="activeCodeLang() === 'ts'" (click)="setCodeLang('ts')">TS</button>
+        }
+      </div>
+
+      <button class="copy-small" (click)="copyCode()">
+        {{ copied() ? '✓ Copied' : 'Copy Code' }}
+      </button>
+    </div>
+    }
+
+    <!-- CONTENT AREA -->
+    <div class="content-viewport">
+
+      <!-- A) PREVIEW -->
+      @if (activeTab() === 'preview') {
+      <div class="preview-canvas">
+        <ng-content></ng-content>
+      </div>
+      }
+
+      <!-- B) CODE & INSTALL (Jetzt ausgelagert!) -->
+      @if (activeTab() === 'code' || activeTab() === 'install') {
+
+      <app-ui-playground-code [mode]="activeTab() === 'install' ? 'install' : 'code'" [lang]="activeCodeLang()"
+        [codeHtml]="htmlCode()" [codeScss]="scssCode()" [codeTs]="tsCode()" [codeInstall]="installCode()"
+        [canView]="canViewCode()" [isPremium]="isComponentPremium()">
+      </app-ui-playground-code>
+
+      }
+
+    </div>
+  </div>
+</div>

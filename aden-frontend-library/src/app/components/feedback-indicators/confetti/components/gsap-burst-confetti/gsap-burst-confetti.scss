@@ -1,0 +1,102 @@
+.page-container {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.library-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  height: 400px;
+  background-color: var(--aden-bg);
+  border-radius: 12px;
+  overflow: hidden; /* Wichtig: Clip particles outside */
+  position: relative;
+}
+
+:host {
+  --aden-bg: #0f0f0f;
+  --aden-surface: #1a1a1a;
+  --aden-primary: #4ade80;
+  --aden-purple: #c084fc;
+  --aden-blue: #60a5fa;
+}
+
+.particle-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.center-content {
+  z-index: 10;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+h3 {
+  color: #fff;
+  margin: 0;
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+}
+
+/* Button Styling */
+.aden-btn {
+  position: relative;
+  background: transparent;
+  border: none;
+  padding: 14px 28px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #000;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 99px;
+  transition: transform 0.1s;
+}
+
+.aden-btn:active {
+  transform: scale(0.95);
+}
+
+.btn-bg {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: var(--aden-primary);
+  z-index: 1;
+  transition: all 0.3s;
+}
+
+.aden-btn:hover .btn-bg {
+  background: #22c55e;
+  box-shadow: 0 0 20px rgba(74, 222, 128, 0.6);
+}
+
+.btn-text {
+  position: relative;
+  z-index: 2;
+}
+
+/* Die Partikel selbst (werden dynamisch erzeugt) */
+::ng-deep .gsap-particle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 5;
+}

@@ -1,0 +1,39 @@
+.page-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  box-sizing: border-box;
+  color: var(--primary-white);
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+h2 {
+    margin-bottom: 16px;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+h4 {
+    color: var(--neon-blue);
+    margin-bottom: 12px;
+}
+
+.intro-text, .sub-text {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+/* Grid für nebeneinander stehende Code-Blöcke */
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+    }
+}

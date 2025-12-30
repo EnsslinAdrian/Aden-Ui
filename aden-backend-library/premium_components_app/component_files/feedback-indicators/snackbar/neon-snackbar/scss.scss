@@ -1,0 +1,62 @@
+
+:host {
+  --aden-surface: #1a1a1a;
+  --aden-border: #333333;
+  --aden-primary: #4ade80;
+}
+
+.aden-snackbar {
+  position: absolute; /* or fixed */
+  bottom: 24px;
+  left: 50%;
+  /* Hidden state */
+  transform: translateX(-50%) translateY(100px);
+  opacity: 0;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 320px;
+  padding: 12px 16px;
+
+  background-color: var(--aden-surface);
+  border: 1px solid var(--aden-border);
+  border-left: 4px solid var(--aden-primary);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 100;
+}
+
+.aden-snackbar.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+.snackbar-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background-color: rgba(74, 222, 128, 0.1);
+  border-radius: 50%;
+  color: var(--aden-primary);
+}
+
+.snackbar-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.snackbar-title { font-weight: 600; color: #fff; font-size: 0.85rem; }
+.snackbar-message { font-size: 0.8rem; color: #888; }
+
+.snackbar-action {
+  background: none; border: none;
+  color: var(--aden-primary);
+  font-weight: 600; cursor: pointer;
+}
+  

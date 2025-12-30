@@ -1,0 +1,36 @@
+<div class="login-container onest-font">
+  <app-ambient-glow></app-ambient-glow>
+  <div class="login-card fade-in">
+
+    <div class="card-header">
+      <app-logo-initial></app-logo-initial>
+      <h2>Welcome back</h2>
+      <app-typografie text="Enter your credentials to access your workspace." size="small" [weight]="400" color="grey" align="center"></app-typografie>
+    </div>
+
+    @if (errorMessage()) {
+    <app-error-banner [errorMsg]="errorMessage()"></app-error-banner>
+    }
+
+    <form [formGroup]="loginForm" (ngSubmit)="submitLogin()">
+      <app-auth-inputs type="email" name="email" label="Email" placeholder="name@example.com" autocomplete="email"></app-auth-inputs>
+      <app-auth-inputs type="password" name="password" label="Password" placeholder="••••••••" autocomplete="current-password"></app-auth-inputs>
+
+
+      <div class="form-actions">
+        <label class="checkbox-label">
+          <input type="checkbox" formControlName="stayLoggedIn" name="stayLoggedIn">
+          <span>Remember me</span>
+        </label>
+        <a routerLink="/forgot-password" class="forgot-link">Forgot password?</a>
+      </div>
+
+      <app-auth-btn [isLoading]="isLoading()" [formInvalid]="loginForm.invalid"></app-auth-btn>
+    </form>
+
+    <app-divider></app-divider>
+
+    <p class="footer-text"> Don't have an account? <a style="cursor: pointer;" routerLink="/register">Sign up</a></p>
+
+  </div>
+</div>

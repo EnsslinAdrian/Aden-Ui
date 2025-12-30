@@ -1,0 +1,52 @@
+<div class="page-container">
+  <app-components-filter [items]="myFilters" title="Input Types"></app-components-filter>
+
+  <div class="main-content">
+
+    <section id="text" class="chapter-section">
+      <app-components-headline [number]="'01'" [title]="'Text & Standard Inputs'"
+        [description]="'Vielseitige Textfelder für Formulare und Suchfunktionen.'">
+      </app-components-headline>
+
+      <div class="showcase-grid">
+        <app-neon-focus-input></app-neon-focus-input>
+        <app-text-input-neon-style></app-text-input-neon-style>
+        <app-floating-label-input></app-floating-label-input>
+        <app-rounded-icon-search></app-rounded-icon-search>
+      </div>
+    </section>
+
+    <section id="password" class="chapter-section">
+      <app-components-headline [number]="'02'" [title]="'Security Controls'"
+        [description]="'Passwort-Felder mit Sichtbarkeits-Logik und Validierung.'">
+      </app-components-headline>
+
+      <div class="showcase-grid">
+        <app-password-input-with-toggle></app-password-input-with-toggle>
+      </div>
+    </section>
+
+    <section id="date" class="chapter-section">
+      <app-components-headline [number]="'03'" [title]="'Date & Time'"
+        [description]="'Custom Date-Picker Integrationen für Dark-Mode.'">
+      </app-components-headline>
+
+      <div class="showcase-grid">
+        <app-floating-label-date-input></app-floating-label-date-input>
+      </div>
+    </section>
+
+    <section id="animation" class="chapter-section">
+      <app-components-headline [number]="'04'" [title]="'Visual Effects'"
+        [description]="'GSAP und CSS-Only Animationen für High-End UIs.'">
+      </app-components-headline>
+
+
+      <div class="showcase-grid">
+        <app-liquid-border-input></app-liquid-border-input>
+        <app-circuit-loader-input></app-circuit-loader-input>
+      </div>
+    </section>
+
+  </div>
+</div>

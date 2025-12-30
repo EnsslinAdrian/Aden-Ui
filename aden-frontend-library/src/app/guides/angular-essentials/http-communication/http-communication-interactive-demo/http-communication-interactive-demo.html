@@ -1,0 +1,67 @@
+  <section class="demo-section">
+
+
+    <!-- Controls -->
+    <div class="controls-bar">
+      <div class="actions">
+        <button class="aden-btn" (click)="fetchUsers()" [disabled]="isLoading">
+          <span class="method get">GET</span> Users
+        </button>
+        <button class="aden-btn" (click)="addUser()" [disabled]="isLoading">
+          <span class="method post">POST</span> Add User
+        </button>
+      </div>
+
+      <button class="reset-link" (click)="reset()">Reset Demo</button>
+    </div>
+
+    <!-- Dual View: App vs Network -->
+    <div class="split-view">
+
+      <!-- Left: APP VIEW -->
+      <div class="panel app-view">
+        <div class="panel-header">App UI (Component)</div>
+        <div class="panel-content">
+
+          @if (isLoading) {
+            <div class="spinner-container">
+              <div class="spinner"></div>
+              <span>Loading data...</span>
+            </div>
+          } @else if (users.length > 0) {
+            <ul class="user-list">
+              @for (user of users; track user.id) {
+                <li class="user-card fade-in">
+                  <div class="avatar">{{ user.name.charAt(0) }}</div>
+                  <div class="info">
+                    <div class="name">{{ user.name }}</div>
+                    <div class="role">{{ user.role }}</div>
+                  </div>
+                </li>
+              }
+            </ul>
+          } @else {
+            <div class="empty-state">No data loaded.</div>
+          }
+        </div>
+      </div>
+
+      <!-- Right: NETWORK VIEW -->
+      <div class="panel network-view">
+        <div class="panel-header">
+          <span>Server Response (JSON)</span>
+          <span class="status-badge" [class.success]="!isLoading && lastRequestType">
+            {{ isLoading ? 'PENDING...' : statusMessage }}
+          </span>
+        </div>
+        <div class="panel-content code-look">
+          @if (jsonResponse) {
+            <pre class="json-code fade-in">{{ jsonResponse | json }}</pre>
+          } @else {
+            <div class="placeholder-text">// Waiting for request...</div>
+          }
+        </div>
+      </div>
+
+    </div>
+  </section>

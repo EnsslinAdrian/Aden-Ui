@@ -1,0 +1,20 @@
+<div class="info-box" [class.tipp]="noticeType === 'tipp'" [class.warning]="noticeType === 'warning'"
+  [class.error]="noticeType === 'error'" [class.setting]="noticeType === 'setting' "[class.success]="noticeType === 'success'">
+
+@if (noticeType == 'tipp') {
+  <div class="icon">💡</div>
+} @else if (noticeType == 'warning') {
+  <div class="icon">⚠️</div>
+} @else if (noticeType == 'error') {
+  <div class="icon">❌</div>
+} @else if (noticeType == 'setting') {
+  <div class="icon">⚙️</div>
+} @else if (noticeType == 'success') {
+  <div class="icon">✅</div>
+}
+
+  <div>
+    <app-typografie [text]="noticeText" size="small" color="white"></app-typografie>
+  </div>
+
+</div>

@@ -1,0 +1,65 @@
+<section class="demo-section">
+
+  <!-- User Control Panel -->
+  <div class="user-controls">
+    <div class="status-indicator" [class.active]="isLoggedIn">
+      <div class="led"></div>
+      <span>Status: <strong>{{ isLoggedIn ? 'Logged In' : 'Guest (Not Authenticated)' }}</strong></span>
+    </div>
+
+    <button class="toggle-btn" (click)="toggleLogin()">
+      {{ isLoggedIn ? 'Log Out' : 'Simulate Login' }}
+    </button>
+  </div>
+
+  <app-browser-mockup [shake]="accessDeniedAnimation">
+
+    <span browserUrl>
+      🔒 localhost:4200/admin
+    </span>
+
+    <div class="app-content">
+
+      <nav class="sim-nav">
+        <a [class.active]="currentPath === 'home'" (click)="tryNavigate('home')">Home</a>
+        <a [class.active]="currentPath === 'dashboard'" (click)="tryNavigate('dashboard')">Public Dashboard</a>
+        <a [class.active]="currentPath === 'admin'" (click)="tryNavigate('admin')" class="protected-link">
+          <span class="shield-icon">🛡️</span> Admin
+        </a>
+      </nav>
+
+      <div class="viewport">
+        @if (accessDeniedAnimation) {
+        <div class="access-denied-overlay">
+          <span class="icon">🚫</span>
+          <span>Access Denied by AuthGuard</span>
+        </div>
+        }
+
+        @switch (currentPath) {
+        @case ('home') {
+        <div class="view home fade-in">
+          <h3>Home Page</h3>
+          <p>Everyone can see this page.</p>
+        </div>
+        }
+        @case ('dashboard') {
+        <div class="view dashboard fade-in">
+          <h3>Public Dashboard</h3>
+          <p>Statistics visible to all visitors.</p>
+        </div>
+        }
+        @case ('admin') {
+        <div class="view admin fade-in">
+          <h3>Secret Admin Area</h3>
+          <p>You see this only because the <code>AuthGuard</code> returned true.</p>
+          <div class="secret-data">TOP SECRET DATA</div>
+        </div>
+        }
+        }
+      </div>
+    </div>
+
+  </app-browser-mockup>
+
+</section>

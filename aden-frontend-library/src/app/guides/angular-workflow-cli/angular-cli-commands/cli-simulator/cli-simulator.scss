@@ -1,0 +1,115 @@
+.simulator-container {
+  background: var(--surface-card);
+  border: 1px solid var(--ui-border);
+  border-radius: 12px;
+  padding: 24px;
+  margin-top: 24px;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+
+  .label {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-right: 8px;
+  }
+}
+
+.aden-btn {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--primary-white);
+  border: 1px solid var(--border-color);
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  transition: all 0.2s;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--text-muted);
+  }
+
+  &.success {
+    border-color: var(--neon-green);
+    color: var(--neon-green);
+    background: rgba(74, 222, 128, 0.05);
+    &:hover { background: rgba(74, 222, 128, 0.15); }
+  }
+
+  &.ghost {
+    border-color: transparent;
+    color: var(--text-muted);
+    background: transparent;
+    &:hover { color: var(--danger-color); }
+  }
+}
+
+/* Terminal Look */
+.terminal-window {
+  background: var(--terminal-bg);
+  border: 1px solid var(--ui-border);
+  border-radius: 8px;
+  overflow: hidden;
+  font-family: 'Fira Code', monospace;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.terminal-header {
+  background: var(--terminal-header);
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--ui-border);
+  position: relative;
+
+  .circles {
+    display: flex;
+    gap: 6px;
+    span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .red { background: #ff5f56; }
+    .yellow { background: #ffbd2e; }
+    .green { background: #27c93f; }
+  }
+
+  .title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--text-muted);
+    font-size: 0.8rem;
+  }
+}
+
+.terminal-body {
+  padding: 16px;
+  height: 250px;
+  overflow-y: auto;
+  color: #d4d4d4;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.log-line {
+  word-break: break-all;
+  margin-bottom: 4px;
+}
+
+.blink {
+  animation: blink 1s step-end infinite;
+  color: var(--text-muted);
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}

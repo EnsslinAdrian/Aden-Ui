@@ -1,0 +1,300 @@
+.showcase-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 80px 40px;
+  min-height: 100vh;
+
+  @media (max-width: 768px) {
+    padding: 40px 20px;
+  }
+}
+
+.page-header {
+  margin-bottom: 80px;
+
+  .header-content {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 16px;
+  }
+
+  .badge-wrapper {
+    // Kleiner "Online" Badge neben dem Titel
+    .live-badge {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--success-color);
+      background: rgba(34, 197, 94, 0.1);
+      padding: 6px 12px;
+      border-radius: 99px;
+      border: 1px solid rgba(34, 197, 94, 0.2);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      .dot {
+        width: 6px;
+        height: 6px;
+        background: var(--success-color);
+        border-radius: 50%;
+        box-shadow: 0 0 8px var(--success-color);
+      }
+    }
+  }
+
+  @media (max-width: 600px) {
+    .header-content {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+  }
+}
+
+.projects-grid {
+  display: grid;
+  // Automatische Anpassung, aber Karten werden nicht zu klein (min 400px)
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 32px;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.project-card {
+  background: var(--dark-grey);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  height: 100%; // Damit alle Karten in einer Zeile gleich hoch sind
+
+  &:hover {
+    border-color: #3f3f46;
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -10px rgba(0,0,0,0.5);
+
+    .project-img {
+      transform: scale(1.05);
+    }
+  }
+}
+
+.image-viewport {
+  width: 100%;
+  aspect-ratio: 16 / 9; // Cinematic Format
+  overflow: hidden;
+  position: relative;
+  border-bottom: 1px solid var(--border-color);
+  background: #000; // Fallback
+
+  .project-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    opacity: 0.9;
+  }
+
+  .overlay-gradient {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    background: linear-gradient(to top, rgba(9,9,11, 0.8), transparent);
+    opacity: 0.6;
+  }
+}
+
+.card-content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; // Füllt den Rest der Höhe
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.content-top {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  .title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .desc {
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; // Max 3 Zeilen Text, dann "..."
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+
+  .icon-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+    transition: all 0.2s;
+
+    &:hover {
+      background: var(--bg-hover);
+      color: var(--primary-white);
+      border-color: var(--primary-white);
+    }
+
+    &.primary {
+      background: var(--primary-white);
+      color: var(--primary-black);
+      border-color: var(--primary-white);
+
+      &:hover {
+        background: #e4e4e7;
+      }
+    }
+  }
+}
+
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  .skill-tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent-color);
+    background: rgba(59, 130, 246, 0.1); // Accent color transparent
+    padding: 4px 10px;
+    border-radius: 6px;
+    border: 1px solid rgba(59, 130, 246, 0.15);
+  }
+}
+
+
+.submission-banner {
+  margin-top: 80px; // Abstand zum Grid
+  padding: 40px;
+  background: rgba(24, 24, 27, 0.4); // Dark Grey transparent
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+
+  // Optional: Leichter Glow Effekt wie bei den Cards
+  transition: border-color 0.2s;
+  &:hover {
+    border-color: #3f3f46;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    text-align: center;
+    padding: 32px 24px;
+    gap: 24px;
+  }
+}
+
+.banner-content {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+.icon-circle {
+  width: 56px;
+  height: 56px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-white);
+  flex-shrink: 0;
+  border: 1px solid var(--border-color);
+}
+
+.text-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 500px;
+}
+
+.banner-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  .action-btn {
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: var(--main-font);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+
+    // Primary Style (Email)
+    background: var(--primary-white);
+    color: var(--primary-black);
+    border: 1px solid var(--primary-white);
+
+    &:hover {
+      background: #e4e4e7; // Leichtes Grau
+    }
+
+    // Outline Style (LinkedIn)
+    &.outline {
+      background: transparent;
+      color: var(--primary-white);
+      border: 1px solid var(--border-color);
+
+      &:hover {
+        border-color: var(--primary-white);
+        background: rgba(255,255,255,0.05);
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    width: 100%;
+    flex-direction: column;
+
+    .action-btn {
+      width: 100%;
+      text-align: center;
+    }
+  }
+}

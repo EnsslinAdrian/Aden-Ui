@@ -1,0 +1,25 @@
+<!-- Der Container für die Partikel ist gleichzeitig der Layout Wrapper -->
+<div #particleContainer class="success-layout fade-in">
+  <app-ambient-glow></app-ambient-glow>
+
+  <!-- Die Success Card -->
+  <div class="success-card">
+
+    <div class="icon-wrapper">
+      <div class="check-icon">✓</div>
+      <div class="icon-glow"></div>
+    </div>
+
+    <h2 style="margin-bottom: 20px;">Welcome to Aden Ui!</h2>
+    <div class="message-content">
+      <app-typografie text="Your account has been successfully created." size="medium" [weight]="500" color="white-80" align="center"></app-typografie>
+      <app-typografie text="If your email address is not already registered, <br> you will receive a verification link shortly.<br> Please confirm it to unlock full access." size="small" [weight]="400" color="grey" align="center"></app-typografie>
+    </div>
+
+    <div class="actions">
+      <app-confetti-btn (click)="fireBurst()"></app-confetti-btn>
+      <app-back-link route="/login" text="Go to Login"></app-back-link>
+    </div>
+
+  </div>
+</div>

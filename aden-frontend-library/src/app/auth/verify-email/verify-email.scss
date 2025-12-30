@@ -1,0 +1,165 @@
+:host {
+  display: block;
+}
+
+.verify-layout {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--dark-grey, #09090b);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-family: var(--main-font);
+}
+
+.center-glow {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  /* Default Loading: Blueish */
+  background: radial-gradient(circle, rgba(96, 165, 250, 0.15) 0%, transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: background 0.5s ease;
+  z-index: 0;
+
+  &.glow-success {
+    background: radial-gradient(circle, rgba(74, 222, 128, 0.15) 0%, transparent 70%);
+  }
+
+  &.glow-error {
+    background: radial-gradient(circle, rgba(239, 68, 68, 0.15) 0%, transparent 70%);
+  }
+}
+
+/* --- CARD --- */
+.verify-card {
+  position: relative;
+  z-index: 10;
+  background: rgba(24, 24, 27, 0.6);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 48px;
+  border-radius: 24px;
+  text-align: center;
+  max-width: 420px;
+  width: 90%;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+
+
+}
+
+.message-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* --- ICONS (Success / Error) --- */
+.icon-wrapper {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 24px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+
+  .icon {
+    font-size: 32px;
+    font-weight: bold;
+    position: relative;
+    z-index: 2;
+  }
+
+  .icon-glow {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    filter: blur(10px);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2px solid currentColor;
+    opacity: 0.3;
+  }
+
+  /* Success Colors */
+  &.success {
+    color: var(--neon-green, #4ade80);
+
+    .icon-glow {
+      background: rgba(74, 222, 128, 0.2);
+    }
+  }
+
+  /* Error Colors */
+  &.error {
+    color: var(--danger-color, #ef4444);
+
+    .icon-glow {
+      background: rgba(239, 68, 68, 0.2);
+    }
+  }
+}
+
+/* --- SPINNER --- */
+.spinner-wrapper {
+  margin-bottom: 24px;
+}
+
+.spinner-large {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-left-color: var(--primary-white);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* --- BUTTONS --- */
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  margin-top: 20px;
+}
+
+/* --- PARTICLES --- */
+::ng-deep .gsap-particle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

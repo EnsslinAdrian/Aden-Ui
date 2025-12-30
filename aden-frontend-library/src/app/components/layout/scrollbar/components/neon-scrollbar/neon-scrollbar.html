@@ -1,0 +1,33 @@
+    <div class="page-container onest-font">
+        <app-ui-playground [htmlCode]="codeHtml" [scssCode]="codeScss" [meta]="meta">
+
+            <div class="library-container">
+
+                <!-- The Scrollable Container -->
+                <div class="aden-card">
+                    <div class="card-header">
+                        <h3>System Logs</h3>
+                        <span class="badge">Live</span>
+                    </div>
+
+                    <!-- Hier wird die Scrollbar-Klasse angewendet -->
+                    <div class="scroll-content aden-scrollbar">
+
+                        <!-- Dummy Content to force scroll -->
+                        @for (i of items; track i) {
+                            <div class="log-item">
+                                <span class="time">10:{{ 30 + i }} AM</span>
+                                <div class="message">
+                                    <span class="prefix">[INFO]</span>
+                                    <span>Process started successfully for module id #{{ 8490 + i }}</span>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+
+            </div>
+
+        </app-ui-playground>
+    </div>

@@ -1,0 +1,55 @@
+<div class="git-wrapper">
+
+  <!-- Controls -->
+  <div class="controls">
+    <div class="status-bar">
+      <span class="label">Current Branch:</span>
+      <span class="branch-badge" [class.feat]="currentBranch() === 'feature'">
+        <span class="icon"></span> {{ currentBranch() }}
+      </span>
+    </div>
+
+    <div class="btn-group">
+      <button class="aden-btn" (click)="addCommit()">+ Commit</button>
+
+      @if (!featureActive()) {
+        <button class="aden-btn outline" (click)="createBranch()">git checkout -b feature</button>
+      } @else {
+        @if (currentBranch() === 'main') {
+           <button class="aden-btn success" (click)="merge()">git merge feature</button>
+           <button class="aden-btn outline" (click)="checkoutFeature()">checkout feature</button>
+        } @else {
+           <button class="aden-btn outline" (click)="checkoutMain()">checkout main</button>
+        }
+      }
+
+      <button class="aden-btn ghost" (click)="reset()">Reset</button>
+    </div>
+  </div>
+
+  <!-- Visualization (Timeline) -->
+  <div class="graph-container">
+    <!-- Lines Background (Simuliert) -->
+    <div class="rail main-rail"></div>
+    <div class="rail feature-rail" [class.active]="featureActive()"></div>
+
+    <!-- Commits -->
+    <div class="commits-list">
+      @for (commit of commits(); track commit.id) {
+        <div class="commit-row fade-in" [class.is-feature]="commit.branch === 'feature'">
+
+          <div class="node-wrapper">
+            <div class="node"></div>
+          </div>
+
+          <div class="commit-info">
+            <span class="hash">{{ commit.id }}</span>
+            <span class="msg">{{ commit.msg }}</span>
+          </div>
+
+        </div>
+      }
+    </div>
+  </div>
+
+</div>

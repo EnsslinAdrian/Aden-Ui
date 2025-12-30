@@ -1,0 +1,65 @@
+<div class="page-container onest-font">
+
+  <app-headline-guides
+    [badgeText]="'Angular Core'"
+    [headline]="'Directives'"
+    [subheadline]="'Think of directives as superpowers for your HTML elements. They change the appearance or behavior of any tag without you having to build a completely new component.'">
+  </app-headline-guides>
+
+  <!-- 1. INTRO -->
+  <section class="content-section">
+    <p class="intro-text">
+      Components are great, but sometimes they are overkill.
+      If I just want an image to have a "lazy load" effect, or an input field to automatically focus when the page loads, I don't want to wrap them in a <br><code>&lt;my-wrapper&gt;</code> component.
+    </p>
+    <p class="intro-text" style="margin-top: 16px;">
+      <strong>That's why I love Directives.</strong> They act like "plugins" or "mixins" for your HTML. I write the logic once (e.g., "Make background colorful on hover") and can then attach this capability to <strong>any element</strong> in my app—whether it's a <code>&lt;div&gt;</code>, a <code>&lt;button&gt;</code>, or another component.
+    </p>
+  </section>
+
+  <!-- 2. DEMO -->
+  <section class="demo-section">
+    <h2>1. The Simulation</h2>
+    <p class="sub-text">
+      I built a simple <code>[appHighlight]</code> directive here. Select a color and hover over the box.
+      Notice that the HTML element itself is dumb; the color logic comes entirely from the directive attached to it.
+    </p>
+
+    <app-custom-attribute-directive></app-custom-attribute-directive>
+  </section>
+
+  <!-- 3. IMPLEMENTATION -->
+  <section class="code-section">
+    <h2>2. Implementation</h2>
+    <p class="sub-text">
+      Building a directive is simpler than a component because it has no template. It only has logic.
+      The core concepts you need to know are <code>ElementRef</code> (to touch the DOM) and <code>@HostListener</code> (to react to the user).
+    </p>
+
+    <h3 style="margin-top: 24px;">Step 1: The Logic (Directive)</h3>
+    <p class="sub-text">
+      This is the blueprint. By using <code>selector: '[appHighlight]'</code>, Angular knows to activate this class whenever it sees that attribute in your HTML.
+    </p>
+    <app-code-block-guide
+      filename="highlight.directive.ts"
+      [code]="highlightDirectiveCode"
+      language="typescript">
+    </app-code-block-guide>
+
+    <h3 style="margin-top: 32px;">Step 2: usage (HTML)</h3>
+    <p class="sub-text">
+      Now we can attach the behavior. A neat trick is using the <strong>Input Alias</strong>: By naming the <code>@Input()</code> variable the same as the selector, we can pass the color directly in the attribute.
+    </p>
+    <app-code-block-guide
+      filename="usage.html"
+      [code]="highlightUsageCode"
+      language="html">
+    </app-code-block-guide>
+
+    <app-notice [noticeType]="'tipp'"
+      [noticeText]="'<strong>Attribute vs. Structural:</strong> What we built here is an <strong>Attribute Directive</strong> (changes look/behavior). <br>There are also <strong>Structural Directives</strong> (recognizable by the asterisk <code>*</code> like <code>*ngIf</code> or <code>*ngFor</code>). These are more powerful as they can physically add or remove elements from the DOM.'">
+    </app-notice>
+
+  </section>
+
+</div>

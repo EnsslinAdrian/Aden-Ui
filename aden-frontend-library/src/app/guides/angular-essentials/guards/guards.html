@@ -1,0 +1,72 @@
+<div class="page-container onest-font">
+
+  <app-headline-guides
+    [badgeText]="'Security & Navigation'"
+    [headline]="'Guards'"
+    [subheadline]="'Guards are the gatekeepers of your app. They decide based on logic (login status, roles) whether a user can access a route or is redirected.'">
+  </app-headline-guides>
+
+  <!-- 1. INTRO -->
+  <section class="content-section">
+    <p class="intro-text">
+      In the past, I often made the mistake: "If the user is not an admin, I'll just hide the button in the menu."
+      <br>
+      The problem? A clever user simply types <code>/admin</code> in the address bar – and gets in.
+    </p>
+    <p class="intro-text" style="margin-top: 16px;">
+      This is a security vulnerability. A <strong>Guard</strong> solves this. It intercepts <em>before</em> navigation. Before Angular even loads the component code (Lazy Loading), the guard checks the credentials. If they don't match: <strong>Access denied.</strong>
+    </p>
+  </section>
+
+  <!-- 2. DEMO -->
+  <section class="demo-section">
+    <h2>1. The Simulation</h2>
+    <p class="sub-text">
+      Try to access the <strong>Admin Dashboard</strong>. Without login, the guard will immediately bounce you back to the login page. Only when the switch is active will the gatekeeper let you pass.
+    </p>
+
+    <app-guards-interactive-demo></app-guards-interactive-demo>
+  </section>
+
+  <!-- 3. IMPLEMENTATION -->
+  <section class="code-section">
+    <h2>2. Implementation</h2>
+    <p class="sub-text">
+      Since Angular 15+, we use <strong>Functional Guards</strong>. Forget the old Classes with boilerplate. A guard is now just a simple arrow function.
+    </p>
+
+    <div class="grid-2">
+      <div>
+        <app-code-block-guide
+          filename="auth.guard.ts"
+          [code]="authGuardCode"
+          language="typescript">
+        </app-code-block-guide>
+      </div>
+
+      <div class="info-box">
+        <h4>💡 Why Functional?</h4>
+        <ul>
+          <li><strong>Less Code:</strong> No Classes, no Decorators.</li>
+          <li><strong>Inject():</strong> You can use <code>inject()</code> directly inside the function.</li>
+          <li><strong>Flexible:</strong> Easier to pass parameters to guards.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="margin-top: 32px;">Step 2: Protect the Route</h3>
+    <p class="sub-text">
+      In the routing configuration, we simply attach the function. Angular handles the rest.
+    </p>
+    <app-code-block-guide
+      filename="app.routes.ts"
+      [code]="protectedRouteCode"
+      language="typescript">
+    </app-code-block-guide>
+
+    <app-notice [noticeType]="'tipp'"
+      [noticeText]="'<strong>Data Protection (CanDeactivate):</strong> There is also the opposite guard. <code>canDeactivate</code> checks if a user is allowed to LEAVE. I use this for forms: If the user tries to close the tab with unsaved data, the guard blocks the exit and asks for confirmation.'">
+    </app-notice>
+
+  </section>
+</div>

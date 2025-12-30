@@ -1,0 +1,23 @@
+<div class="board">
+
+    <!-- Container 1 -->
+    <div class="column" (dragover)="onDragOver($event, 'todo')" (drop)="onDrop($event, 'todo')">
+
+        @for (item of todoList; track item.id) {
+        <div draggable="true" (dragstart)="onStart($event, item, 'todo')">
+            {{ item.title }}
+        </div>
+        }
+    </div>
+
+    <!-- Container 2 -->
+    <div class="column" (dragover)="onDragOver($event, 'done')" (drop)="onDrop($event, 'done')">
+
+        @for (item of doneList; track item.id) {
+        <div draggable="true" (dragstart)="onStart($event, item, 'done')">
+            {{ item.title }}
+        </div>
+        }
+    </div>
+
+</div>

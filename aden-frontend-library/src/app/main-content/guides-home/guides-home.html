@@ -1,0 +1,92 @@
+<div class="overview-container">
+
+  <header class="page-header">
+    <div class="header-content">
+      <app-typografie text="Documentation" size="xlarge" [weight]="700" color="white"></app-typografie>
+      <app-typografie text="Best Practices, Tutorials und Design-Prinzipien." size="medium" color="grey"
+        class="subtitle"></app-typografie>
+    </div>
+    <div class="header-decoration">
+      <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="var(--accent-color)" stroke-width="1.5">
+        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+      </svg>
+    </div>
+  </header>
+
+  <div class="library-stack">
+    @for (category of categories; track category.title; let i = $index) {
+    <div class="category-section">
+
+      <div class="category-header">
+        <span class="cat-number">0{{ i + 1 }}</span>
+        <app-typografie [text]="category.title" size="large" [weight]="600" color="white"></app-typografie>
+      </div>
+
+      <!-- Grid Container -->
+      <div class="guides-grid">
+        @for (guide of category.components; track guide.name) {
+        <a [routerLink]="guide.route" class="guide-card" [class.locked]="guide.premium && !auth.isLoggedIn()"
+          [class.premium-content]="guide.premium">
+
+          <!-- PRO Badge (Oben rechts) -->
+          @if (guide.premium) {
+          <div class="pro-badge">PRO</div>
+          }
+
+          <div class="card-content">
+            <div class="card-top">
+              <div class="icon-box">
+                <!-- Schloss Icon links, wenn gesperrt -->
+                @if (guide.premium && !auth.isLoggedIn()) {
+                <span class="lock-icon">🔒</span>
+                } @else {
+                <span>{{ guide.name.slice(0,2) }}</span>
+                }
+              </div>
+              <app-typografie [text]="guide.name" size="xmedium" [weight]="600" color="white"></app-typografie>
+            </div>
+
+            <p class="guide-description">
+              {{ guide.description || 'Lerne alles Wichtige über ' + guide.name + '...' }}
+            </p>
+
+            <div class="card-meta">
+              <div class="meta-item" [style.display]="guide.readingTime ? 'flex' : 'none'">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M12 6v6l4 2" />
+                </svg>
+                <span>{{ guide.readingTime || '5 min' }} read</span>
+              </div>
+
+              @if (guide.level) {
+              <div class="meta-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <polyline points="22 4 12 14.01 9 11.01" />
+                </svg>
+                <span>{{ guide.level }}</span>
+              </div>
+              }
+            </div>
+          </div>
+
+          <!-- HOVER ACTION (Pfeil): Nur anzeigen, wenn NICHT gesperrt -->
+          @if (!guide.premium || auth.isLoggedIn()) {
+          <div class="hover-action">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </div>
+          }
+
+        </a>
+        }
+      </div>
+
+    </div>
+    }
+  </div>
+
+</div>

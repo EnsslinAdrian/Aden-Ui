@@ -1,0 +1,185 @@
+.page-container {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.library-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 350px;
+  width: 100%;
+  max-width: 500px;
+  background-color: var(--aden-bg);
+  border-radius: 12px;
+  gap: 20px;
+}
+
+:host {
+  --aden-bg: #0f0f0f;
+  --aden-surface: #1a1a1a;
+  --aden-border: #333333;
+  --aden-text: #e5e5e5;
+  --aden-muted: #888;
+  --aden-primary: #4ade80;
+  --aden-danger: #ef4444;
+}
+
+/* --- Trigger Button --- */
+.menu-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.icon-btn {
+  background: var(--aden-surface);
+  border: 1px solid var(--aden-border);
+  color: var(--aden-text);
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.icon-btn:hover,
+.icon-btn.active {
+  background-color: #252525;
+  border-color: #555;
+  color: #fff;
+}
+
+.icon-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* --- Invisible Backdrop --- */
+/* Dies ist wichtig: Ein unsichtbarer Layer, der alles abdeckt.
+   Wenn man darauf klickt, schließt sich das Menü. */
+.menu-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 50;
+  background: transparent;
+  cursor: default;
+}
+
+/* --- Menu Dropdown --- */
+.aden-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  /* Align right side of menu with button */
+  margin-top: 8px;
+  width: 220px;
+  background-color: var(--aden-surface);
+  border: 1px solid var(--aden-border);
+  border-radius: 8px;
+  padding: 6px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  z-index: 100;
+  /* Higher than backdrop */
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.menu-header {
+  padding: 8px 12px;
+  font-size: 0.75rem;
+  color: var(--aden-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  pointer-events: none;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 12px;
+  border: none;
+  background: none;
+  color: var(--aden-text);
+  font-size: 0.9rem;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background-color 0.15s;
+  text-align: left;
+}
+
+.menu-item svg {
+  width: 16px;
+  height: 16px;
+  opacity: 0.7;
+}
+
+.menu-item:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #fff;
+}
+
+.menu-item:hover svg {
+  opacity: 1;
+}
+
+.menu-divider {
+  height: 1px;
+  background-color: var(--aden-border);
+  margin: 4px 0;
+}
+
+.menu-item.danger {
+  color: var(--aden-danger);
+}
+
+.menu-item.danger:hover {
+  background-color: rgba(239, 68, 68, 0.1);
+}
+
+/* --- Animation --- */
+.enter-animation {
+  animation: slideDown 0.2s cubic-bezier(0.2, 0, 0, 1);
+  transform-origin: top right;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Helper text for demo */
+.feedback-text {
+  font-size: 0.9rem;
+  color: var(--aden-muted);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.feedback-text.visible {
+  opacity: 1;
+}
+
+.feedback-text span {
+  color: var(--aden-primary);
+}

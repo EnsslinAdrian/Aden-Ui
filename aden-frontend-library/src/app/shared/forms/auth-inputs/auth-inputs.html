@@ -1,0 +1,37 @@
+<div class="form-group">
+  <label [for]="name">{{ label }}</label>
+
+  <div class="input-wrapper">
+    <input [type]="currentType" [id]="name" [formControlName]="name" [placeholder]="placeholder"
+      [autocomplete]="autocomplete" [class.error-border]="control?.invalid && control?.touched">
+
+    @if(type === 'password') {
+    <button type="button" class="eye-btn" (click)="togglePassword()">
+      @if(showPassword()) { 🐵 } @else { 🙈 }
+    </button>
+    }
+  </div>
+
+  @if (control?.touched && control?.invalid) {
+
+  @if (control?.hasError('required')) {
+  <app-typografie [text]="'Please enter a ' + label.toLowerCase() + '.'" color="red" size="xsmall"></app-typografie>
+  }
+
+  @if (control?.hasError('email')) {
+  <app-typografie text="Please enter a valid email address." color="red" size="xsmall"></app-typografie>
+  }
+
+  @if (control?.hasError('minlength')) {
+  <app-typografie [text]="'At least ' + control?.errors?.['minlength']?.requiredLength + ' characters required.'"
+    color="red" size="xsmall">
+  </app-typografie>
+  }
+  }
+
+  @if (control?.hasError('pattern')) {
+  <app-typografie [text]="patternError" color="red" size="xsmall">
+  </app-typografie>
+  }
+
+</div>

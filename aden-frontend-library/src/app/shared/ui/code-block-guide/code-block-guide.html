@@ -1,0 +1,14 @@
+<div class="container">
+  @if (headline) {
+  <app-typografie [text]="headline" color="white" size="medium"></app-typografie>
+  }
+
+  <div class="code-container">
+    @if (filename) {
+    <div class="filename-header">{{ filename }}</div>
+    }
+
+    <app-code-highlight [code]="code" [language]="language">
+    </app-code-highlight>
+  </div>
+</div>

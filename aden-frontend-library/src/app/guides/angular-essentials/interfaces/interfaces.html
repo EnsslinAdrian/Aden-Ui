@@ -1,0 +1,64 @@
+<div class="page-container onest-font">
+
+  <app-headline-guides
+    [badgeText]="'TypeScript'"
+    [headline]="'Interfaces'"
+    [subheadline]="'JavaScript is the Wild West: Everything is allowed. Interfaces are the sheriff. They enforce structure on your data and prevent chaos.'">
+  </app-headline-guides>
+
+  <!-- 1. INTRO -->
+  <section class="content-section">
+    <p class="intro-text">
+      Coming from JavaScript, API integrations used to be a minefield. Was the field called <code>userName</code>, <code>username</code>, or <code>user_name</code>? One typo, and the app crashes in production.
+    </p>
+    <p class="intro-text" style="margin-top: 16px;">
+      Interfaces solve exactly that. They are a <strong>contract</strong>. If I define: "A user <em>must</em> have an email," the compiler will scream at me if I try to create a user without one.
+      <br>
+      The best part isn't just safety—it's <strong>IntelliSense</strong>. I press <code>.</code> and my IDE tells me exactly what data is available. No more guessing.
+    </p>
+  </section>
+
+  <!-- 2. DEMO -->
+  <section class="demo-section">
+    <h2>1. The Simulation</h2>
+    <p class="sub-text">
+      Try to create a valid <code>User</code> object below. The "compiler" on the right monitors live whether your data matches the interface contract.
+    </p>
+
+    <app-interfaces-interactive-demo></app-interfaces-interactive-demo>
+  </section>
+
+  <!-- 3. IMPLEMENTATION -->
+  <section class="code-section">
+    <h2>2. Implementation</h2>
+    <p class="sub-text">
+      Important concept: An interface exists <strong>only during development</strong>. It helps us while coding. In the final JavaScript bundle, it disappears completely (Zero Runtime Overhead).
+    </p>
+
+    <h3 style="margin-top: 24px;">Step 1: Set up the contract</h3>
+    <p class="sub-text">
+      I use interfaces not only for data types but also to enforce specific values (Union Types). This prevents me from accidentally writing "Admin" (uppercase) instead of "admin" (lowercase).
+    </p>
+    <app-code-block-guide
+      filename="user.interface.ts"
+      [code]="interfaceDefinitionCode"
+      language="typescript">
+    </app-code-block-guide>
+
+    <h3 style="margin-top: 32px;">Step 2: Adhere to the contract</h3>
+    <p class="sub-text">
+      Once I assign the type <code>User</code> to a variable, I am safe. The build will fail if data is missing or incorrect.
+    </p>
+    <app-code-block-guide
+      filename="app.component.ts"
+      [code]="interfaceUsageCode"
+      language="typescript">
+    </app-code-block-guide>
+
+    <app-notice [noticeType]="'tipp'"
+      [noticeText]="'<strong>Interface vs. Class:</strong> A classic interview question. <br>Use <strong>Interfaces</strong> for pure data definitions (APIs, Props) as they generate no code.<br>Use <strong>Classes</strong> only when you need runtime logic (methods, <code>new User()</code>, <code>instanceof</code> checks).'">
+    </app-notice>
+
+  </section>
+
+</div>

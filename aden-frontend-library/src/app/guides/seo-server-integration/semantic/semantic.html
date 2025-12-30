@@ -1,0 +1,82 @@
+<div class="page-container onest-font">
+
+  <app-headline-guides
+    [badgeText]="'Accessibility & SEO'"
+    [headline]="'Semantic HTML'"
+    [subheadline]="'Speak the language of search engines. Semantics give your content meaning and structure – far beyond design.'">
+  </app-headline-guides>
+
+  <!-- 1. INTRO -->
+  <section class="content-section">
+    <p class="intro-text">
+      Imagine reading a newspaper, but all the headlines, texts, and images have the same font size and weight.
+      You wouldn't know where an article starts and where an ad ends.
+    </p>
+    <p class="intro-text" style="margin-top: 16px;">
+      This is exactly what happens when you only use <code>&lt;div&gt;</code> ("div soup").
+      Semantic HTML (<code>&lt;header&gt;</code>, <code>&lt;article&gt;</code>) gives the code structure. Google loves it. Screen readers need it.
+    </p>
+  </section>
+
+  <!-- 2. VISUAL MAP -->
+  <section class="demo-section">
+    <h2>1. The Anatomy of a Website</h2>
+    <p class="sub-text">
+      Hover over the areas to understand how a modern page should be structured.
+    </p>
+    <app-semantic-interactive-demo></app-semantic-interactive-demo>
+  </section>
+
+  <!-- 3. CHEATSHEET -->
+  <section class="code-section">
+    <h2>2. The Semantics Cheatsheet</h2>
+    <p class="sub-text">
+      Keep this list open while building your components. It is the guide for choosing the right tags.
+    </p>
+
+    <div class="cheatsheet-grid">
+      @for (item of tags; track item.tag) {
+        <div class="tag-card">
+          <div class="card-header">
+            <code class="tag-name">{{ item.tag }}</code>
+            <span class="tag-cat">{{ item.category }}</span>
+          </div>
+          <p class="tag-desc">{{ item.desc }}</p>
+
+          <div class="usage-box">
+            <div class="use-case good">
+              <span class="icon">✅</span> {{ item.do }}
+            </div>
+            <div class="use-case bad">
+              <span class="icon">❌</span> {{ item.dont }}
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </section>
+
+  <!-- 4. CODE COMPARISON -->
+  <section class="code-section">
+    <h2>3. Div Soup vs. Semantics</h2>
+    <p class="sub-text">
+      The code on the left works visually but is unreadable for machines. The right side is the clean solution.
+    </p>
+
+    <div class="comparison-grid">
+      <div>
+        <h4 style="color: #f87171; margin-bottom:10px;">Bad (Div Soup)</h4>
+        <app-code-block-guide [code]="badCode" language="html"></app-code-block-guide>
+      </div>
+      <div>
+        <h4 style="color: #4ade80; margin-bottom:10px;">Good (Semantic)</h4>
+        <app-code-block-guide [code]="goodCode" language="html"></app-code-block-guide>
+      </div>
+    </div>
+
+    <app-notice [noticeType]="'tipp'"
+      [noticeText]="'<strong>Semantics is also SEO:</strong> Google weighs text in a <code>&lt;h1&gt;</code> tag much higher than text in a bold <code>&lt;div&gt;</code>. Your rankings will thank you.'">
+    </app-notice>
+  </section>
+
+</div>

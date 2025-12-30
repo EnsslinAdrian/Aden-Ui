@@ -1,0 +1,21 @@
+<div class="subscription-card" [class.is-pro]="user.is_premium">
+  <div class="card-header">
+    <h3>Subscription</h3>
+  </div>
+  <div class="sub-content">
+    @if(user.is_premium) {
+    <div class="plan-status">
+      <span class="active-dot"></span>
+      Active · {{ user.plan }} Plan
+    </div>
+    <p class="sub-desc">You have access to all Advanced Guides and Components.</p>
+    <button (click)="manageSubscription()" class="btn-manage">Manage Subscription</button>
+    } @else {
+    <div class="plan-status free">
+      Free Tier
+    </div>
+    <p class="sub-desc">Upgrade to unlock Advanced Architecture Guides & SEO Tools.</p>
+    <button (click)="openUpgrade.emit()" class="btn-upgrade">Upgrade to PRO 🚀</button>
+    }
+  </div>
+</div>

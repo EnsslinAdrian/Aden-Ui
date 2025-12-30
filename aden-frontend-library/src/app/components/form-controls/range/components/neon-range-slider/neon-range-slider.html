@@ -1,0 +1,27 @@
+<div class="page-container onest-font">
+  <app-ui-playground [htmlCode]="codeHtml" [scssCode]="codeScss" [tsCode]="codeTs" [meta]="meta">
+
+    <div class="library-container">
+
+      <div class="slider-group" [style.--progress]="volume + '%'">
+        <div class="slider-header">
+          <label for="volume">Volume</label>
+          <span class="value-display">{{ volume }}%</span>
+        </div>
+        <input type="range" id="volume" min="0" max="100" [(ngModel)]="volume" class="aden-slider">
+      </div>
+
+      <div class="slider-group" [style.--progress]="brightness + '%'">
+        <div class="slider-header">
+          <label for="brightness">
+            <span class="icon">☀</span> Brightness
+          </label>
+          <span class="value-display">{{ brightness }}%</span>
+        </div>
+        <input type="range" id="brightness" min="0" max="100" [(ngModel)]="brightness" class="aden-slider">
+      </div>
+
+    </div>
+
+  </app-ui-playground>
+</div>

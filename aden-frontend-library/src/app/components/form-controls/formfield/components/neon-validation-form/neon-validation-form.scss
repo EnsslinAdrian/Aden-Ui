@@ -1,0 +1,163 @@
+.page-container {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.library-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 450px;
+  padding: 40px;
+  background-color: var(--aden-bg);
+  border-radius: 12px;
+}
+
+:host {
+  --aden-bg: #0f0f0f;
+  --aden-surface: #1a1a1a;
+  --aden-border: #333333;
+  --aden-text: #e5e5e5;
+  --aden-muted: #888;
+  --aden-primary: #4ade80; /* Neon Green */
+  --aden-error: #ef4444;   /* Red */
+  --aden-focus-glow: rgba(74, 222, 128, 0.2);
+}
+
+.aden-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.form-header h3 {
+  margin: 0 0 8px 0;
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.form-header p {
+  margin: 0;
+  color: var(--aden-muted);
+  font-size: 0.9rem;
+}
+
+/* --- Input Group & Layout --- */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field-wrapper {
+  position: relative;
+}
+
+/* --- Input Styles (Shared) --- */
+.aden-input {
+  width: 100%;
+  background-color: var(--aden-surface);
+  border: 1px solid var(--aden-border);
+  border-radius: 8px;
+  color: var(--aden-text);
+  font-size: 1rem;
+  padding: 12px 16px;
+  outline: none;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.aden-input:focus {
+  border-color: var(--aden-primary);
+  box-shadow: 0 0 0 3px var(--aden-focus-glow);
+}
+
+/* Error State Input */
+.aden-input.invalid {
+  border-color: var(--aden-error);
+}
+.aden-input.invalid:focus {
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+}
+
+/* --- Floating Label Logic --- */
+.floating-input {
+  padding-top: 24px;
+  padding-bottom: 8px;
+  height: 56px;
+}
+
+.floating-label {
+  position: absolute;
+  top: 18px;
+  left: 16px;
+  font-size: 1rem;
+  color: var(--aden-muted);
+  pointer-events: none;
+  transition: all 0.2s ease-out;
+}
+
+.floating-input:focus + .floating-label,
+.floating-input:not(:placeholder-shown) + .floating-label {
+  top: 8px;
+  font-size: 0.75rem;
+  color: var(--aden-primary);
+}
+
+/* Label color when error */
+.floating-input.invalid:focus + .floating-label,
+.floating-input.invalid:not(:placeholder-shown) + .floating-label {
+  color: var(--aden-error);
+}
+
+/* --- Error Feedback Text --- */
+.error-feedback {
+  font-size: 0.8rem;
+  color: var(--aden-error);
+  padding-left: 2px;
+  display: flex;
+  flex-direction: column;
+  animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Submit Button --- */
+.form-actions {
+  margin-top: 8px;
+}
+
+.aden-btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+
+.aden-btn.primary {
+  background-color: var(--aden-primary);
+  color: #000; /* Contrast text on neon green */
+}
+
+.aden-btn.primary:hover:not(:disabled) {
+  background-color: #22c55e;
+  box-shadow: 0 0 15px rgba(74, 222, 128, 0.4);
+}
+
+.aden-btn:disabled {
+  background-color: #2a2a2a;
+  color: #555;
+  cursor: not-allowed;
+  border: 1px solid var(--aden-border);
+}

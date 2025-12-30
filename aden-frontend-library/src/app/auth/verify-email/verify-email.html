@@ -1,0 +1,67 @@
+<div #particleContainer class="verify-layout fade-in">
+
+  <div class="glow center-glow" [class.glow-success]="status() === 'success'" [class.glow-error]="status() === 'error'"></div>
+
+  <div class="verify-card">
+
+    @if (status() === 'loading') {
+    <div class="state-content fade-in">
+      <div class="spinner-wrapper">
+        <div class="spinner-large"></div>
+      </div>
+      <h2>Verifying...</h2>
+      <p class="sub-text">Checking your verification token.</p>
+    </div>
+    }
+
+    <!-- 2. SUCCESS STATE -->
+    @if (status() === 'success') {
+    <div class="state-content fade-in">
+
+      <div class="icon-wrapper success">
+        <div class="icon">✓</div>
+        <div class="icon-glow"></div>
+      </div>
+
+      <h2 style="margin-bottom: 20px;">Email Verified!</h2>
+
+
+    <div class="message-content">
+      <app-typografie text="You are now officially part of ADEN UI." size="medium" [weight]="500" color="white-80" align="center"></app-typografie>
+      <app-typografie text="Your account is fully active. You can now log in and access all developer resources." size="small" [weight]="400" color="grey" align="center"></app-typografie>
+    </div>
+
+
+      <div class="actions">
+        <app-confetti-btn (click)="fireBurst()"></app-confetti-btn>
+        <app-back-link route="/login" text="Go to Login"></app-back-link>
+      </div>
+
+    </div>
+    }
+
+    <!-- 3. ERROR STATE -->
+    @if (status() === 'error') {
+    <div class="state-content fade-in">
+
+      <div class="icon-wrapper error">
+        <div class="icon">✕</div>
+        <div class="icon-glow"></div>
+      </div>
+
+      <h2 style="margin-bottom: 20px;">Link Expired</h2>
+
+      <div class="message-content">
+      <app-typografie text="Something went wrong." size="medium" [weight]="500" color="white-80" align="center"></app-typografie>
+      <app-typografie text="{{ message() }} <br> Please request a new verification link." size="small" [weight]="400" color="grey" align="center"></app-typografie>
+    </div>
+
+      <div class="actions">
+          <app-back-link route="/login" text="Back to Login"></app-back-link>
+      </div>
+
+    </div>
+    }
+
+  </div>
+</div>

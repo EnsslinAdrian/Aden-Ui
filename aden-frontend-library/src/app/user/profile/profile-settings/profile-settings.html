@@ -1,0 +1,48 @@
+<div class="card settings-card">
+  <div class="card-header">
+    <h3>Account Details</h3>
+    <app-typografie text="Manage your personal information." size="small" color="grey"></app-typografie>
+  </div>
+
+  <form [formGroup]="profileForm" (ngSubmit)="saveProfile()">
+
+    <div class="form-grid">
+      <app-auth-inputs name="first_name" label="First Name" placeholder="Firstname.."></app-auth-inputs>
+      <app-auth-inputs name="last_name" label="Last Name" placeholder="Lastname.."></app-auth-inputs>
+
+      <div class="form-group full-width">
+        <div class="label-row">
+          <app-typografie text="Email Address" size="small" color="grey"></app-typografie>
+          <button type="button" class="link-btn" (click)="showEmailDialog.set(true)">Change Email</button>
+        </div>
+
+        <div class="static-box">
+          <span class="value">{{ userService.profile()?.email }}</span>
+          <span class="lock-icon" title="Email is locked">🔒</span>
+        </div>
+      </div>
+
+      <div class="form-group full-width">
+        <app-textarea class="full-width" name="bio" label="Bio / Title" placeholder="Tell us a bit about yourself..." [maxLength]="200" [rows]="4"></app-textarea>
+      </div>
+
+      <div class="form-group">
+        <app-auth-inputs name="github_url" label="GitHub URL" placeholder="https://github.com/..."
+          patternError="Must start with http:// or https://"></app-auth-inputs>
+      </div>
+
+      <div class="form-group">
+        <app-auth-inputs name="linkedin_url" label="LinkedIn URL" placeholder="https://linkedin.com/in/..." type="url"
+          patternError="Must start with http:// or https://"></app-auth-inputs>
+      </div>
+
+    </div>
+
+    <div class="card-actions">
+      <app-cancel-btn (click)="cancelEdit()"></app-cancel-btn>
+      <button type="submit" class="btn-save" [disabled]="userService.loading() || profileForm.invalid || profileForm.pristine"> {{ userService.loading() ? 'Saving...' : 'Save Changes' }}</button>
+    </div>
+  </form>
+</div>
+
+@if (showEmailDialog()) { <app-change-email (close)="showEmailDialog.set(false)"></app-change-email> }

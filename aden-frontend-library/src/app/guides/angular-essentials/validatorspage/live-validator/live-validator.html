@@ -1,0 +1,99 @@
+  <section class="demo-section">
+
+
+    <div class="playground-grid">
+
+      <!-- LEFT: The Form -->
+      <div class="form-container">
+        <form [formGroup]="demoForm" autocomplete="off">
+
+          <!-- Username (MinLength + Pattern) -->
+          <div class="input-group">
+            <label>Username <span class="req">*</span></label>
+            <input type="text" formControlName="username" class="aden-input" placeholder="Min. 4 chars, no spaces">
+
+            @if (f['username'].touched && f['username'].errors) {
+            <div class="error-msg fade-in">
+              @if (f['username'].errors['required']) { <span>Username is required</span> }
+              @if (f['username'].errors['minlength']) { <span>Must be at least 4 chars</span> }
+              @if (f['username'].errors['pattern']) { <span>Only letters and numbers allowed</span> }
+            </div>
+            }
+          </div>
+
+          <!-- Email -->
+          <div class="input-group">
+            <label>Email <span class="req">*</span></label>
+            <input type="email" formControlName="email" class="aden-input" placeholder="john@doe.com">
+
+            @if (f['email'].touched && f['email'].errors) {
+            <div class="error-msg fade-in">
+              @if (f['email'].errors['required']) { <span>Email is required</span> }
+              @if (f['email'].errors['email']) { <span>Invalid email format</span> }
+            </div>
+            }
+          </div>
+
+          <!-- Password Chain -->
+          <div class="input-group">
+            <label>Password <span class="req">*</span></label>
+            <input type="password" formControlName="password" class="aden-input">
+          </div>
+
+          <div class="input-group">
+            <label>Confirm Password <span class="req">*</span></label>
+            <input type="password" formControlName="confirmPassword" class="aden-input"
+              [class.invalid]="demoForm.hasError('passwordMismatch') && f['confirmPassword'].touched">
+
+            @if (f['confirmPassword'].touched && f['confirmPassword'].hasError('mismatch')) {
+            <div class="error-msg fade-in">Passwords do not match</div>
+            }
+          </div>
+
+          <div class="actions">
+            <button type="button" class="aden-btn ghost" (click)="resetDemo()">Reset</button>
+            <button type="button" class="aden-btn primary" [disabled]="demoForm.invalid">
+              Submit
+              @if (demoForm.valid) { <span class="check">✓</span> }
+            </button>
+          </div>
+
+        </form>
+      </div>
+
+      <!-- RIGHT: The Debug View -->
+      <div class="debug-container">
+        <div class="debug-header">Form State "X-Ray View"</div>
+        <div class="debug-content">
+
+          <div class="debug-item">
+            <span class="label">Form Status:</span>
+            <span class="value badge" [class.valid]="demoForm.valid" [class.invalid]="demoForm.invalid">
+              {{ demoForm.status }}
+            </span>
+          </div>
+
+          <div class="debug-divider"></div>
+
+          <div class="debug-item">
+            <span class="label">Username Errors:</span>
+            <pre class="json-box">{{ f['username'].errors | json }}</pre>
+          </div>
+
+          <div class="debug-item">
+            <span class="label">Email Errors:</span>
+            <pre class="json-box">{{ f['email'].errors | json }}</pre>
+          </div>
+
+          <div class="debug-item">
+            <span class="label">Password Mismatch:</span>
+            <!-- Here we use @if instead of complex interpolation to avoid errors -->
+            <pre
+              class="json-box">@if(demoForm.hasError('passwordMismatch')){ &#123; "mismatch": true &#125; } @else { null }</pre>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>

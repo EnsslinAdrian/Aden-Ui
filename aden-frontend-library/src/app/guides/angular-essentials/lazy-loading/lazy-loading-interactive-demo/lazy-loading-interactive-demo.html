@@ -1,0 +1,51 @@
+<section class="demo-section">
+  <app-browser-mockup [url]="'localhost:4200/' + (currentState === 'home' ? '' : 'admin')">
+
+    <div class="browser-content">
+
+      @if (currentState === 'home') {
+      <div class="view home-view fade-in">
+        <div class="hero">
+          <h3>Home Page</h3>
+          <p>This component is included in the <code>main.js</code> bundle and immediately available.</p>
+          <button class="aden-btn" (click)="navigateToAdmin()">
+            Navigate to Admin Dashboard
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      }
+
+      @if (currentState === 'loading') {
+      <div class="view loading-view">
+        <div class="loader-spinner"></div>
+        <div class="network-status">
+          <span>Downloading chunk: </span>
+          <span class="filename">admin.routes.chunk.js</span>
+          <div class="progress-bar">
+            <div class="fill" [style.width.%]="loadedSize"></div>
+          </div>
+        </div>
+      </div>
+      }
+
+      @if (currentState === 'admin') {
+      <div class="view admin-view scale-in">
+        <div class="success-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+        <h3>Admin Module Loaded!</h3>
+        <p>This code was only fetched from the server now.</p>
+        <button class="aden-btn ghost" (click)="backToHome()">Back</button>
+      </div>
+      }
+
+    </div>
+
+  </app-browser-mockup>
+
+</section>

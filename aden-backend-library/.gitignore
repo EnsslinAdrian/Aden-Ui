@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+.env
+.env.local
+.env.development
+.env.production
+
+# Django
+media/
+static/
+staticfiles/
+local_settings.py
+
+# Logs
+*.log
+
+# Virtualenv
+.venv/
+venv/
+env/
+ENV/
+
+# IDEs
+.vscode/
+.idea/
+
+# Docker
+*.pid
+*.seed
+.dockerignore
+
+# Coverage / Tests
+.coverage
+.tox/
+pytest_cache/
+htmlcov/
+
+# Node (falls Frontend im selben Repo)
+node_modules/

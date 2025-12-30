@@ -1,0 +1,45 @@
+<div class="dialog-overlay fade-in" (click)="onClose()">
+
+  <div class="premium-card scale-in" (click)="$event.stopPropagation()">
+
+    <!-- Dekorativer Header -->
+    <div class="premium-header">
+      <div class="glow-orb"></div>
+      <div class="badge">LIFETIME ACCESS</div>
+      <h2>Unlock Full Potential</h2>
+      <p>Become a Pro member and build enterprise apps faster.</p>
+    </div>
+
+    <!-- Pricing Section -->
+    <div class="price-section">
+      <span class="currency">€</span>
+      <span class="amount">49</span>
+      <span class="period">/ one-time</span>
+    </div>
+
+    <!-- Feature List -->
+    <ul class="feature-list">
+      @for (feat of features; track feat) {
+      <li>
+        <span class="check-icon">✓</span>
+        {{ feat }}
+      </li>
+      }
+    </ul>
+
+    <!-- Footer Actions -->
+    <div class="dialog-footer">
+      <p class="guarantee">
+        Secure payment via LemonSqueezy. <br>
+        Digital goods are non-refundable.
+      </p>
+
+      <button class="btn-checkout" (click)="buyLifetime()">
+        Get Instant Access 🚀
+      </button>
+
+      <button class="btn-cancel" (click)="onClose()">Maybe later</button>
+    </div>
+
+  </div>
+</div>

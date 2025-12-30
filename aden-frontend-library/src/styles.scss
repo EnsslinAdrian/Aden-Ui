@@ -1,0 +1,190 @@
+@use './fonts.scss' as *;
+
+:root {
+  // Farben
+  --dark-grey: #09090b;
+  --border-color: #27272a;
+  --text-muted: #a1a1aa;
+  --primary-white: #ffffff;
+  --primary-white-70: rgba(255, 255, 255, 0.7);
+  --primary-white-90: rgba(255, 255, 255, 0.9);
+  --primary-black: #000000;
+  --success-color: #22c55e;
+  --danger-color: #ef4444;
+
+  // Hover Farben
+  --bg-hover: #18181b;
+  --accent-color: #3b82f6;
+
+  // Code & Cards
+  --surface-card: #18181b;
+  --code-bg: #111111;
+
+  // NEU: Syntax Highlighting (für alle Guides einheitlich)
+  --syntax-keyword: #c084fc;
+  --syntax-string: #a5f3fc;
+  --syntax-type: #fcd34d;
+  --syntax-tag: #f472b6;
+  --syntax-attr: #60a5fa;
+  --syntax-comment: #52525b;
+
+  // NEU: Simulation & Terminal Colors (für den "Punch")
+  --neon-green: #4ade80;
+  --neon-blue: #60a5fa;
+  --terminal-bg: #050505;
+  --terminal-header: #111111;
+  --ui-border: #333333;
+
+  // Effekte
+  --glass-blur: 12px;
+
+  // Größen
+  --header-height: 65px;
+  --sidebar-width: 250px;
+  --sidebar-responsive-width: 900px;
+  --max-width: 1920px;
+
+  // Schriftarten
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --main-font: 'Onest';
+}
+
+body {
+  margin: 0;
+  height: 100%;
+}
+
+.onest-font {
+  font-family: 'Onest';
+}
+
+h2 {
+  font-family: var(--main-font);
+  color: var(--primary-white);
+  font-size: 28px;
+  margin: 0;
+}
+
+h3 {
+  margin: 0;
+  font-family: var(--main-font);
+  color: var(--primary-white);
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 40px;
+  min-height: calc(100dvh - var(--header-height));
+
+  @media (max-width: 768px) {
+    padding: 20px;
+  }
+}
+
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #27272a;
+  border-radius: 99px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #52525b;
+  border: 2px solid transparent;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #27272a transparent;
+}
+
+.grecaptcha-badge {
+  visibility: hidden !important;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0px 1000px #111111 inset !important;
+  background-color: #111111 !important;
+  -webkit-text-fill-color: #ffffff !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeInUp 0.3s ease-out;
+}
+
+.typo-code {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2px 6px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  color: var(--neon-green);
+}
+
+.highlight-text {
+  color: var(--neon-blue);
+  font-weight: 500;
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    color: var(--neon-blue);
+    opacity: 0.5;
+    box-shadow: 0 0 8px var(--neon-green);
+  }
+}
+
+/* Intro Text */
+.intro-text {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--primary-white-70);
+
+  code {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    color: var(--neon-green);
+  }
+
+  strong {
+    color: var(--primary-white);
+  }
+}

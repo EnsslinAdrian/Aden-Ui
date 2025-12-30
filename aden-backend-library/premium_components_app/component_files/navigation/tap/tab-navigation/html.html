@@ -1,0 +1,24 @@
+<div class="tap-main-container">
+    <div class="tap-nav-container">
+        @for (label of labels; track $index; let i = $index) {
+        <div class="labels-title" [class.active]="activeLabel === i" tabindex="0" (click)="selectLabel(i)">
+            <a>{{ label }}</a>
+        </div>
+        }
+    </div>
+
+    <div class="tap-content-container" #contentContainer>
+        <div class="content" [class.active]="activeLabel === 0">
+            <!-- Content for Tab 1 -->
+            <h3>Content 1</h3>
+        </div>
+        <div class="content" [class.active]="activeLabel === 1">
+            <!-- Content for Tab 2 -->
+            <h3>Content 2</h3>
+        </div>
+        <div class="content" [class.active]="activeLabel === 2">
+            <!-- Content for Tab 3 -->
+            <h3>Content 3</h3>
+        </div>
+    </div>
+</div>

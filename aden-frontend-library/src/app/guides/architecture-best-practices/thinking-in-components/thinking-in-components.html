@@ -1,0 +1,67 @@
+<div class="page-container onest-font">
+
+  <app-headline-guides [badgeText]="'Architecture & Best Practices'" [headline]="'Thinking in Components'"
+    [subheadline]="'From Spaghetti Code to Scalable Architecture: How I refactor monolithic forms into reusable, smart components using ControlContainer.'">
+  </app-headline-guides>
+
+  <!-- INTRO SECTION -->
+  <section class="content-section">
+    <p class="intro-text">
+      When I develop a new feature, I often start "quick and dirty". I write everything in one file to
+      see if the logic works. But as soon as the basic structure is in place, I pause.
+      I look at my code and search for <strong>patterns</strong>. When I copy the same HTML block multiple times
+      or my file becomes barely readable due to nested divs and inline logic, that's a sign:
+      <span class="highlight-text">It's time for a Component.</span>
+    </p>
+  </section>
+
+  <!-- 1. THE PROBLEM (BEFORE) -->
+  <section class="code-section">
+    <h2>1. The "Monolith" (Before)</h2>
+    <p class="sub-text">
+      Here's a typical registration form. Look at how much code is needed just to display four fields.
+      We constantly repeat labels, input wrappers, error messages, and logic. This makes the file huge and hard to
+      maintain.
+    </p>
+
+    <app-code-block-guide filename="register.component.html" [code]="monolithRegisterHtmlCode" language="html">
+    </app-code-block-guide>
+
+    <app-notice [noticeType]="'warning'"
+      [noticeText]="'If you want to change the design, you have to do it 4 times here. The file is bursting at the seams, even though it only queries simple data.'"></app-notice>
+  </section>
+
+
+  <section class="code-section">
+    <h2>2. The Abstraction</h2>
+    <p class="sub-text">
+      I isolate the logic and HTML into an <code class="typo-code">app-auth-inputs</code> component.
+      The trick is <code class="typo-code">ControlContainer</code>: This allows the child component to access the parent's FormGroup.
+      The logic for the password toggle also moves in here.
+    </p>
+
+    <app-code-block-guide filename="auth-inputs.component.ts" [code]="authInputsComponentTsCode" language="typescript"></app-code-block-guide>
+
+
+    <app-code-block-guide filename="auth-inputs.component.html" [code]="authInputsComponentHtmlCode" language="html"></app-code-block-guide>
+
+  </section>
+
+  <section class="code-section">
+    <h2>3. The Result (Clean Code)</h2>
+    <p class="sub-text">
+      This is what my code looks like after refactoring. The input fields are abstracted, which massively cleans up the
+      HTML.
+      The logic is where it belongs.
+    </p>
+
+    <app-code-block-guide filename="register.component.html" [code]="cleanRegisterHtmlCode" language="html"></app-code-block-guide>
+
+
+    <div style="margin-top: 24px;">
+      <app-notice [noticeType]="'tipp'" [noticeText]="'Reusability is not the only reason for components. I often extract code simply to keep the HTML structure clean and encapsulate styling (SCSS). Even if I only need the button here: If it has 50 lines of styles, a separate component is often worthwhile.'"></app-notice>
+    </div>
+
+  </section>
+
+</div>

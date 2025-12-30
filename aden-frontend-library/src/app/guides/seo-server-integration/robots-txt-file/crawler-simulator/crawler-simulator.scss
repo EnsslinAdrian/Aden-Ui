@@ -1,0 +1,195 @@
+/* :host Block entfernt -> läuft über Root */
+
+.playground-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 24px;
+  height: 400px;
+
+  @media (max-width: 800px) {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+}
+
+.editor-pane,
+.test-pane {
+  background-color: var(--surface-card); /* War --aden-surface */
+  border: 1px solid var(--ui-border);    /* War --aden-border */
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.pane-header {
+  background: var(--terminal-header); /* War #111 */
+  padding: 10px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted); /* War #888 */
+  border-bottom: 1px solid var(--ui-border); /* War --aden-border */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Left: Editor */
+.filename {
+  font-family: var(--font-mono);
+  color: var(--primary-white); /* War #fff */
+}
+
+.edited-badge {
+  font-size: 0.7rem;
+  background: var(--ui-border); /* War #333 -> ui-border passt hier gut als Hintergrund */
+  color: var(--text-muted);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+textarea {
+  flex: 1;
+  background: var(--terminal-bg); /* War #0a0a0a */
+  border: none;
+  resize: none;
+  padding: 16px;
+  color: var(--primary-white); /* War #ccc */
+  font-family: var(--font-mono); /* War 'Fira Code' */
+  font-size: 0.9rem;
+  line-height: 1.6;
+  outline: none;
+  min-height: 200px;
+
+  &:focus {
+    background: var(--code-bg); /* War #080808 - leichtes Aufhellen bei Fokus */
+  }
+}
+
+/* Right: Test Controls */
+.test-pane {
+  background: var(--surface-card); /* War #151515 */
+}
+
+.test-controls {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+label {
+  font-size: 0.8rem;
+  color: var(--text-muted); /* War #666 */
+  text-transform: uppercase;
+}
+
+.aden-input,
+.aden-select {
+  background: var(--terminal-bg); /* War #000 */
+  border: 1px solid var(--ui-border); /* War --aden-border */
+  color: var(--primary-white); /* War #fff */
+  padding: 10px;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+
+  &:focus {
+    border-color: var(--neon-green); /* War --aden-primary */
+  }
+}
+
+.aden-btn {
+  background: var(--neon-green); /* War --aden-primary */
+  color: #000;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: transform 0.1s;
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+/* Result Box */
+.result-box {
+  margin: 0 24px 24px 24px;
+  padding: 16px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--terminal-bg); /* War #000 */
+  border: 1px solid transparent; /* Platzhalter für Layout */
+}
+
+.status-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  flex-shrink: 0; /* Verhindert das Schrumpfen */
+}
+
+.result-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.status-title {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.status-desc {
+  font-size: 0.8rem;
+  opacity: 0.8;
+  color: var(--text-muted);
+}
+
+/* Result States */
+.result-box.allowed {
+  border: 1px solid var(--neon-green); /* War --aden-primary */
+  background: rgba(74, 222, 128, 0.05); /* Sehr transparentes Neon-Grün */
+
+  .status-icon {
+    background: var(--neon-green);
+    color: #000;
+  }
+
+  .status-title {
+    color: var(--neon-green);
+  }
+}
+
+.result-box.blocked {
+  border: 1px solid var(--danger-color); /* War --aden-error */
+  background: rgba(239, 68, 68, 0.05);
+
+  .status-icon {
+    background: var(--danger-color);
+    color: var(--primary-white);
+  }
+
+  .status-title {
+    color: var(--danger-color);
+  }
+}

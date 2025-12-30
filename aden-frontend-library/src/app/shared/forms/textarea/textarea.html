@@ -1,0 +1,29 @@
+<div class="form-group">
+
+  <div class="label-row">
+    <label [for]="name">{{ label }}</label>
+
+    <!-- Der dynamische Zähler -->
+    <span class="char-counter">
+      {{ currentLength }} / {{ maxLength }}
+    </span>
+  </div>
+
+  <textarea [id]="name" [formControlName]="name" [placeholder]="placeholder" [maxlength]="maxLength" [rows]="rows"
+    [class.error-border]="control?.invalid && control?.touched">
+  </textarea>
+
+  <!-- Fehlerbehandlung -->
+  @if (control?.touched && control?.invalid) {
+
+  @if (control?.hasError('maxlength')) {
+  <app-typografie [text]="label + ' cannot exceed ' + maxLength + ' characters.'" color="red" size="xsmall">
+  </app-typografie>
+  }
+
+  @if (control?.hasError('required')) {
+  <app-typografie [text]="label + ' is required.'" color="red" size="xsmall">
+  </app-typografie>
+  }
+  }
+</div>

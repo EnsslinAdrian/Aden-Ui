@@ -1,0 +1,70 @@
+:host {
+    --aden-bg: #0f0f0f;
+    --aden-surface: #1a1a1a;
+    --aden-border: #333333;
+    --aden-text: #e5e5e5;
+    --aden-primary: #4ade80;
+}
+
+.checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+}
+
+.aden-checkbox {
+    position: absolute;
+    opacity: 0;
+    height: 0;
+    width: 0;
+}
+
+.checkmark-box {
+    height: 22px;
+    width: 22px;
+    background-color: var(--aden-surface);
+    border: 2px solid var(--aden-border);
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.checkmark-box svg {
+    width: 14px;
+    height: 14px;
+    color: #000;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.checkbox-wrapper:hover .checkmark-box {
+    border-color: #555;
+    background-color: #252525;
+}
+
+.aden-checkbox:checked+.checkmark-box {
+    background-color: var(--aden-primary);
+    border-color: var(--aden-primary);
+    box-shadow: 0 0 10px rgba(74, 222, 128, 0.3);
+}
+
+.aden-checkbox:checked+.checkmark-box svg {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.label-text {
+    font-size: 0.95rem;
+    color: var(--aden-text);
+    font-weight: 500;
+}
+
+.aden-checkbox:checked~.label-text {
+    color: #fff;
+}

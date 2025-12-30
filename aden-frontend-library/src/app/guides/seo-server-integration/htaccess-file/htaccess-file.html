@@ -1,0 +1,71 @@
+<div class="page-container onest-font">
+
+  <app-headline-guides
+    [badgeText]="'Deployment'"
+    [headline]="'.htaccess Configuration'"
+    [subheadline]="'Everything works locally. But after deployment, reloading &quot;/login&quot; results in a 404 error. Why? Because the server looks for a file named &quot;login&quot;, which doesn\'t exist.'">
+  </app-headline-guides>
+
+  <!-- 1. INTRO -->
+  <section class="content-section">
+    <p class="intro-text">
+      This is a classic issue that happened to me during my first deployment. I clicked through the app: everything worked. I pressed F5 (refresh): <strong>404 Not Found.</strong>
+    </p>
+    <p class="intro-text" style="margin-top: 16px;">
+      The problem: Angular is a <strong>Single Page Application (SPA)</strong>. Physically, there is only <strong>one</strong> file: the <code>index.html</code>.
+      When you navigate to <code>/dashboard</code>, Angular knows what to do. But an Apache server is "dumb." It looks at the hard drive, searches for <code>dashboard.html</code>, finds nothing, and throws an error.
+    </p>
+  </section>
+
+  <!-- 2. DEMO -->
+  <section class="demo-section">
+    <h2>1. Server Simulator</h2>
+    <p class="sub-text">
+      I built this simulation to visualize the problem. Try accessing <code>/login</code>. Without the rewrite rule, the server fails. With the rule active, it gracefully forwards the request to Angular.
+    </p>
+    <app-interactive-server style="width: 100%;"></app-interactive-server>
+  </section>
+
+  <!-- 3. IMPLEMENTATION -->
+  <section class="code-section">
+    <h2>2. Implementation</h2>
+    <p class="sub-text">
+      We need to teach the server one simple rule: "If you can't find the file physically, just give me the <code>index.html</code>."
+      For Apache servers, we use a configuration file called <code>.htaccess</code> (no file extension!).
+    </p>
+
+    <h3 style="margin-top: 24px;">Step 1: Create the File</h3>
+    <p class="sub-text">
+      I always place this file in the <code>public/</code> folder. This ensures it gets copied to the output directory (`dist/`) automatically during `ng build`.
+    </p>
+
+    <!-- Custom Folder Visualization -->
+    <div class="folder-structure-viz">
+      <div class="root">my-angular-project/</div>
+      <div class="tree">
+        <div>├── src/</div>
+        <div>├── angular.json</div>
+        <div class="folder highlight">├── public/</div>
+        <div class="file highlight">│   ├── .htaccess <span class="badge">New</span></div>
+        <div class="file">│   └── favicon.ico</div>
+      </div>
+    </div>
+
+    <h3 style="margin-top: 32px;">Step 2: The Rewrite Code</h3>
+    <p class="sub-text">
+      Copy this standard snippet into the file. It tells Apache: "Serve real files (images, JS) directly. Forward everything else to index.html."
+    </p>
+
+    <app-code-block-guide
+      filename="public/.htaccess"
+      [code]="htaccessCode"
+      language="apache">
+    </app-code-block-guide>
+
+    <app-notice [noticeType]="'tipp'"
+      [noticeText]="'<strong>Subfolders:</strong> If your app isn\'t running on the root domain (<code>domain.com</code>) but in a subfolder (<code>domain.com/myapp/</code>), you might need to add <code>RewriteBase /myapp/</code> right after turning the engine on.'">
+    </app-notice>
+
+  </section>
+
+</div>

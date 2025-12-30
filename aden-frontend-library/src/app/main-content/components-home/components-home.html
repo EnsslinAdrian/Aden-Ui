@@ -1,0 +1,43 @@
+<div class="overview-container">
+
+  <header class="page-header">
+    <app-typografie text="Library" size="xlarge" [weight]="700" color="white"></app-typografie>
+    <app-typografie text="Alle Komponenten im Überblick." size="medium" color="grey" class="subtitle"></app-typografie>
+  </header>
+
+  <div class="library-stack">
+    @for (category of categories; track category.title; let i = $index) {
+    <div class="category-row">
+
+      <div class="category-info">
+        <span class="cat-number">0{{ i + 1 }}</span>
+        <app-typografie [text]="category.title" size="xmedium" [weight]="600" color="white"></app-typografie>
+        <div class="decoration-line"></div>
+      </div>
+
+      <div class="components-grid">
+        @for (component of category.components; track component.name) {
+        <a [routerLink]="component.route" class="tech-card">
+
+          <div class="card-header">
+            <app-typografie [text]="component.name" size="small" [weight]="600" color="white"></app-typografie>
+            <svg class="arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="3">
+              <path d="M7 17L17 7M17 7H7M17 7V17" />
+            </svg>
+          </div>
+
+          <div class="card-footer">
+            <span class="tag">Component</span>
+          </div>
+
+          <div class="bg-decoration"></div>
+        </a>
+        }
+      </div>
+
+    </div>
+    }
+  </div>
+
+</div>

@@ -1,0 +1,49 @@
+<div class="profile-header">
+  <div class="header-bg"></div>
+
+  <div class="profile-info">
+
+    <div class="avatar-group">
+      <div class="avatar-wrapper" (click)="fileInput.click()" title="Change Profile Picture">
+        <img [src]="avatarUrl()" alt="Avatar">
+        <div class="upload-overlay">
+          <span class="icon">📷</span>
+        </div>
+        <input #fileInput type="file" (change)="onFileSelected($event)" accept="image/*" hidden>
+      </div>
+
+      @if(isPremium()) {
+        <app-pro-badge class="pro-badge-floating"></app-pro-badge>
+      }
+
+    </div>
+
+    <div class="text-content">
+      <h1>{{ fullName() }}</h1>
+      <p class="username">{{ username() }}</p>
+
+      <div class="meta-badges">
+
+        @if(isPremium()) {
+          <app-pro-meta></app-pro-meta>
+        } @else {
+          <app-free-meta></app-free-meta>
+        }
+        <app-joined [joinedDate]="joinedDate()"></app-joined>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS ROW -->
+  <div class="stats-row">
+    @for (stat of userStats(); track stat.label) {
+      <div class="stat-card">
+        <div class="stat-icon">{{ stat.icon }}</div>
+        <div class="stat-data">
+          <span class="value">{{ stat.value }}</span>
+          <span class="label">{{ stat.label }}</span>
+        </div>
+      </div>
+    }
+  </div>
+</div>

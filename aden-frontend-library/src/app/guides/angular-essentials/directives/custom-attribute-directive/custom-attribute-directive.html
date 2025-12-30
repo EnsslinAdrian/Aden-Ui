@@ -1,0 +1,51 @@
+  <section class="demo-section">
+
+    <div class="playground-container">
+
+      <!-- Controls -->
+      <div class="controls-panel">
+        <span class="label">Directive Configuration:</span>
+        <div class="color-options">
+          @for (color of colors; track color.name) {
+            <button
+              class="color-btn"
+              [style.background-color]="color.value"
+              [class.selected]="selectedColor === color.value"
+              (click)="selectedColor = color.value"
+              [title]="color.name">
+            </button>
+          }
+        </div>
+        <div class="code-preview-mini">
+          <code>&lt;div <span class="highlight-attr">[appHighlight]</span>="{{ selectedColor }}"&gt;</code>
+        </div>
+      </div>
+
+      <!-- The Element -->
+      <div class="element-stage">
+
+        <!-- The simulated element -->
+        <div class="demo-box"
+             [style.background-color]="isHovered ? selectedColor : 'transparent'"
+             [style.border-color]="isHovered ? getCurrentBorder() : 'var(--border-color)'"
+             [class.active-click]="isActive"
+             (mouseenter)="onMouseEnter()"
+             (mouseleave)="onMouseLeave()"
+             (click)="onClick()">
+
+          <div class="content">
+            <span class="icon">{{ isHovered ? '✨' : '👆' }}</span>
+            <span class="text">
+              {{ isHovered ? 'Hover Detected!' : 'Hover me!' }}
+            </span>
+            <span class="sub-info" [style.opacity]="isHovered ? 1 : 0">
+              Background Color applied via Renderer2
+            </span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>

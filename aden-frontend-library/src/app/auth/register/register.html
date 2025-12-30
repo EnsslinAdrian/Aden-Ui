@@ -1,0 +1,54 @@
+<div class="register-layout">
+  <app-ambient-glow></app-ambient-glow>
+  <div class="split-container fade-in">
+
+
+    <button type="button" class="mobile-toggle" (click)="toggleMobileView()">
+      @if (!showMobileBenefits()) {
+        <span>Advantages</span> <span class="arrow">→</span>
+      } @else {
+        <span class="arrow">←</span> <span>Sign Up</span>
+      }
+    </button>
+
+    <div class="form-side" [class.mobile-hidden]="showMobileBenefits()">
+      <div class="register-header">
+
+        <app-logo-initial initial="AE"></app-logo-initial>
+        <h2>Create Account</h2>
+        <app-typografie style="margin-bottom: 30px;" text="Join the library. Free for basic usage." size="small" [weight]="400" color="grey" align="center"></app-typografie>
+      </div>
+
+      <form [formGroup]="registerForm" (ngSubmit)="submitRegister()">
+          <div class="form-row">
+            <app-auth-inputs name="first_name" label="First Name" placeholder="John"></app-auth-inputs>
+            <app-auth-inputs name="last_name" label="Last Name" placeholder="Doe"></app-auth-inputs>
+          </div>
+
+          <app-auth-inputs type="email" name="email" label="Work Email" placeholder="name@company.com"></app-auth-inputs>
+          <app-auth-inputs type="password" name="password" label="Password" placeholder="Min. 8 characters"></app-auth-inputs>
+
+          <div class="terms-check">
+            <label>
+              <input type="checkbox" formControlName="acceptedTerms">
+              <span>I agree to the <a routerLink="/terms">Terms</a>.</span>
+            </label>
+          </div>
+
+          <app-auth-btn [isLoading]="isLoading()" [formInvalid]="registerForm.invalid" [buttonText]="'Sign Up'" [loadingText]="'Signing Up...'"></app-auth-btn>
+      </form>
+
+      <app-divider></app-divider>
+
+      <div class="footer">
+        Already have an account? <a routerLink="/login">Log in</a>
+      </div>
+    </div>
+
+
+    <div class="benefit-side" [class.mobile-visible]="showMobileBenefits()">
+      <app-register-advantages></app-register-advantages>
+    </div>
+
+  </div>
+</div>

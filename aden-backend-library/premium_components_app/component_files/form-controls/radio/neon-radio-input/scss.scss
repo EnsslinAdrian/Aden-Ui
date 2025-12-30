@@ -1,0 +1,68 @@
+:host {
+    --aden-bg: #0f0f0f;
+    --aden-surface: #1a1a1a;
+    --aden-border: #333333;
+    --aden-text: #e5e5e5;
+    --aden-primary: #4ade80;
+}
+
+.radio-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+}
+
+.aden-radio {
+    position: absolute;
+    opacity: 0;
+    height: 0;
+    width: 0;
+}
+
+.radio-circle {
+    height: 20px;
+    width: 20px;
+    background-color: var(--aden-surface);
+    border: 2px solid var(--aden-border);
+    border-radius: 50%;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.radio-circle::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--aden-primary);
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.radio-wrapper:hover .radio-circle {
+    border-color: #666;
+}
+
+.aden-radio:checked+.radio-circle {
+    border-color: var(--aden-primary);
+    box-shadow: 0 0 12px rgba(74, 222, 128, 0.2);
+}
+
+.aden-radio:checked+.radio-circle::after {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.label-text {
+    font-size: 1rem;
+    color: var(--aden-text);
+}
+
+.aden-radio:checked~.label-text {
+    color: #fff;
+}

@@ -1,0 +1,60 @@
+<div class="page-container onest-font">
+
+  <app-ui-playground [htmlCode]="codeHtml" [scssCode]="codeScss" [tsCode]="codeTs" [meta]="meta">
+
+    <div class="bg-container">
+      <div class="preview-box">
+        <p class="text-style" [ngClass]="[previewSize, previewColor]" [style.fontWeight]="previewWeight"
+          [style.text-align]="previewAlign">
+          {{ previewText }}
+        </p>
+      </div>
+
+      <hr style="opacity: 0.2; margin: 20px 0;">
+
+      <!-- 2. Die CONTROLS zum "Rumdrücken" -->
+      <div class="controls-grid">
+
+        <!-- Text Input -->
+        <div class="control-group">
+          <label>Content</label>
+          <input type="text" [(ngModel)]="previewText" placeholder="Tipp was ein...">
+        </div>
+
+        <!-- Size Select -->
+        <div class="control-group">
+          <label>Size</label>
+          <select [(ngModel)]="previewSize">
+            <option *ngFor="let s of sizes" [value]="s">{{ s }}</option>
+          </select>
+        </div>
+
+        <!-- Color Select -->
+        <div class="control-group">
+          <label>Color</label>
+          <select [(ngModel)]="previewColor">
+            <option *ngFor="let c of colors" [value]="c">{{ c }}</option>
+          </select>
+        </div>
+
+        <!-- Weight Select -->
+        <div class="control-group">
+          <label>Weight</label>
+          <select [(ngModel)]="previewWeight">
+            <option *ngFor="let w of weights" [value]="w">{{ w }}</option>
+          </select>
+        </div>
+
+        <!-- Align Select -->
+        <div class="control-group">
+          <label>Align</label>
+          <select [(ngModel)]="previewAlign">
+            <option *ngFor="let a of alignments" [value]="a">{{ a }}</option>
+          </select>
+        </div>
+
+      </div>
+    </div>
+  </app-ui-playground>
+
+</div>
