@@ -34,8 +34,8 @@ jobs:
           file: ./aden-frontend-library/Dockerfile
           push: true
           tags: | 
-            ghcr.io/${{ github.repository_owner }}/aden-frontend-library:latest
-            ghcr.io/${{ github.repository_owner }}/aden-frontend-library:${{ github.sha }}
+            ghcr.io/ensslinadrian/aden-frontend-library:latest
+            ghcr.io/ensslinadrian/aden-frontend-library:${{ github.sha }}
 
 
       - name: Build Backend Image
@@ -45,8 +45,8 @@ jobs:
           file: ./aden-backend-library/Dockerfile
           push: true
           tags: | 
-            ghcr.io/${{ github.repository_owner }}/aden-backend-library:latest
-            ghcr.io/${{ github.repository_owner }}/aden-backend-library:${{ github.sha }}
+            ghcr.io/ensslinadrian/aden-backend-library:latest
+            ghcr.io/ensslinadrian/aden-backend-library:${{ github.sha }}
 
 
       - name: Create and Copy .env to VM
