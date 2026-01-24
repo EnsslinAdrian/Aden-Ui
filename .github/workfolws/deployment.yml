@@ -3,7 +3,7 @@ run-name: "Deployment - ${{ github.ref_name }}"
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main" ] 
   workflow_dispatch:
 
 jobs:
