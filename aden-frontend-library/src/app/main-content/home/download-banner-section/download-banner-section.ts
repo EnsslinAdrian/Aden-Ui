@@ -12,7 +12,7 @@ import { ProBadge } from "../../../shared/user-ui/pro-badge/pro-badge";
   styleUrl: './download-banner-section.scss',
 })
 export class DownloadBannerSection {
-private router = inject(Router);
+  private router = inject(Router);
   public auth = inject(Auth);
   public profile = inject(UserProfileService);
 
