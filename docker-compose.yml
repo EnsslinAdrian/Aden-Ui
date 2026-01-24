@@ -1,5 +1,6 @@
 services:
   frontend:
+    image: ghcr.io/ensslinadrian/aden-frontend-library:latest
     build:
       context: ./aden-frontend-library
       args:
@@ -13,10 +14,10 @@ services:
       - backend-network
 
   backend:
+    image: ghcr.io/ensslinadrian/aden-backend-library:latest
     build:
       context: ./aden-backend-library
       dockerfile: backend.Dockerfile
-    image: ${PROJECT_NAME}_backend
     restart: unless-stopped
     env_file: .env
     ports:
@@ -66,7 +67,7 @@ services:
       retries: 5
 
   celery:
-      image: ${PROJECT_NAME}_backend
+      image: ghcr.io/ensslinadrian/aden-backend-library:latest
       restart: unless-stopped
       entrypoint: ./celery.entrypoint.sh
       env_file: .env
@@ -79,7 +80,7 @@ services:
         - backend-network
 
   celery_beat:
-    image: ${PROJECT_NAME}_backend
+    image: ghcr.io/ensslinadrian/aden-backend-library:latest
     restart: unless-stopped
     entrypoint: ./celery_beat.entrypoint.sh
     env_file: .env
