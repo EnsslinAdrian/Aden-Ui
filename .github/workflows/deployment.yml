@@ -36,7 +36,8 @@ jobs:
           tags: | 
             ghcr.io/ensslinadrian/aden-frontend-library:latest
             ghcr.io/ensslinadrian/aden-frontend-library:${{ github.sha }}
-
+          build-args: |
+            API_URL=${{ secrets.FRONTEND_API_URL }}
 
       - name: Build Backend Image
         uses: docker/build-push-action@v6
