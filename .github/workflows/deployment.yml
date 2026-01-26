@@ -1,5 +1,5 @@
 name: Deploment Workflow
-run-name: "Deployment - ${{ github.ref_name }}"
+run-name: '[${{ github.ref_name }}] ${{ github.event.head_commit.message }}'
 
 on:
   push:
