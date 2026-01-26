@@ -2,8 +2,9 @@
 FROM node:22-alpine AS buildcontainer
 WORKDIR /usr/src/app
 
-# WICHTIG 1: Wir begrenzen die Anzahl der parallelen Worker auf 1.
-# Das verhindert, dass die 2 CPU-Kerne auf GitHub Actions ersticken.
+# WICHTIG: Wir zwingen Angular dazu, nur EINEN Worker-Thread zu benutzen.
+# Das verhindert, dass die 2 CPU-Kerne von GitHub Actions überlastet werden
+# und der interne Timeout zuschlägt.
 ENV NG_BUILD_MAX_PARALLEL_WORKERS=1
 ENV NODE_OPTIONS="--max-old-space-size=4096"
 
@@ -13,16 +14,17 @@ ENV API_URL=${API_URL}
 COPY . .
 RUN npm install
 
-# 1. API URL ersetzen (wie gehabt)
+# 1. API URL ersetzen
 RUN sed -i "s|__API_URL__|${API_URL}|g" src/environments/environment*.ts
 
-# WICHTIG 2: Wir erhöhen den internen Prerender-Timeout in der angular.json.
-# Standardmäßig bricht Angular nach 30-60s ab. Wir geben ihm 5 Minuten (300.000ms),
-# damit er auch auf den langsamen GitHub-Servern alle 53 Routen fertig rendern kann.
-RUN sed -i 's/"outputMode": "server"/"outputMode": "server", "prerender": { "timeout": 300000 }/g' angular.json
+# 2. angular.json reparieren
+# Wir setzen prerender auf true (als Boolean, wie vom Schema gefordert).
+# Da "outputMode": "server" bereits drin ist, reicht das aus.
+RUN sed -i 's/"outputMode": "server"/"outputMode": "server", "prerender": true/g' angular.json
 
 # 3. Build ausführen
-# Prerendering bleibt AN, SSR bleibt AN.
+# Wir lassen Prerendering aktiv. Durch NG_BUILD_MAX_PARALLEL_WORKERS=1
+# wird es jetzt stabil (wenn auch etwas langsamer) durchlaufen.
 RUN npx ng build --configuration production
 
 # 2. Runtime-Stage
