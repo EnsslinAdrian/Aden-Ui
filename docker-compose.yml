@@ -27,8 +27,8 @@ services:
     networks:
       - backend-network
     volumes:
-      - ./aden-backend-library/media:/app/media
-      - ./aden-backend-library/static:/app/static
+      - /var/www/adenui/media:/app/media
+      - /var/www/adenui/static:/app/static
 
   db:
     image: postgres:16
