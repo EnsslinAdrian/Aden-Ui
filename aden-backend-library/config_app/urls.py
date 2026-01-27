@@ -19,8 +19,11 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.views.generic import TemplateView
+
 
 urlpatterns = [
+    path("", TemplateView.as_view(template_name="landing.html"), name="home"),
     path('admin/', admin.site.urls),
     path("api/auth/", include("auth_app.api.urls")),
     path("api/component-code/", include("premium_components_app.api.urls")),

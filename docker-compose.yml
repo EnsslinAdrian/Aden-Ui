@@ -17,7 +17,6 @@ services:
     image: ghcr.io/ensslinadrian/aden-backend-library:latest
     build:
       context: ./aden-backend-library
-      dockerfile: backend.Dockerfile
     restart: unless-stopped
     env_file: .env
     ports:
