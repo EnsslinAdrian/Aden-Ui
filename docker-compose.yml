@@ -6,12 +6,16 @@ services:
       args:
         API_URL: ${FRONTEND_API_URL}
     restart: unless-stopped
-    ports:
-      - "8001:4000"
+    expose:
+      - 4000
+    environment:
+      - VIRTUAL_HOST=${FRONTEND_VIRTUAL_HOST}
+      - VIRTUAL_PORT=${FRONTEND_VIRTUAL_PORT}
     depends_on:
       - backend
     networks:
       - backend-network
+      - proxy
 
   backend:
     image: ghcr.io/ensslinadrian/aden-backend-library:latest
@@ -19,16 +23,20 @@ services:
       context: ./aden-backend-library
     restart: unless-stopped
     env_file: .env
-    ports:
-      - "8002:8000"
+    expose:
+      - 8000
+    environment:
+      - VIRTUAL_HOST=${BACKEND_VIRTUAL_HOST}
+      - VIRTUAL_PORT=${BACKEND_VIRTUAL_PORT}
     depends_on:
       db:
         condition: service_healthy
     networks:
       - backend-network
+      - proxy
     volumes:
-      - /var/www/adenui/media:/app/media
-      - /var/www/adenui/static:/app/static
+      - backend_media:/app/media
+      - backend_static:/app/static
 
   db:
     image: postgres:16
@@ -92,6 +100,10 @@ services:
 volumes:
   postgres_data:
   redis_data:
+  backend_media:
+  backend_static:
 
 networks:
   backend-network:
+  proxy:
+    external: true
