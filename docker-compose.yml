@@ -11,6 +11,8 @@ services:
     environment:
       - VIRTUAL_HOST=${FRONTEND_VIRTUAL_HOST}
       - VIRTUAL_PORT=${FRONTEND_VIRTUAL_PORT}
+      - LETSENCRYPT_HOST=${FRONTEND_VIRTUAL_HOST}
+      - LETSENCRYPT_EMAIL=${DEFAULT_FROM_EMAIL}
     depends_on:
       - backend
     networks:
@@ -28,6 +30,8 @@ services:
     environment:
       - VIRTUAL_HOST=${BACKEND_VIRTUAL_HOST}
       - VIRTUAL_PORT=${BACKEND_VIRTUAL_PORT}
+      - LETSENCRYPT_HOST=${BACKEND_VIRTUAL_HOST}
+      - LETSENCRYPT_EMAIL=${DEFAULT_FROM_EMAIL}
     depends_on:
       db:
         condition: service_healthy
