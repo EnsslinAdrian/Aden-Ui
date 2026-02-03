@@ -39,7 +39,7 @@ services:
       - backend-network
       - proxy
     volumes:
-      - backend_media:/app/media
+      - /srv/aden/media:/app/media
       - backend_static:/app/static
 
   db:
@@ -104,7 +104,6 @@ services:
 volumes:
   postgres_data:
   redis_data:
-  backend_media:
   backend_static:
 
 networks:
