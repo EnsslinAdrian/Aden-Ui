@@ -1,1 +1,1 @@
-docker compose -f docker-compose.local.yml exec web python manage.py dumpdata meta_components_app.Component --indent 2 > seed_components.json
+docker compose -f docker-compose.yml exec web python manage.py dumpdata meta_components_app.Component --indent 2 > seed_components.json
