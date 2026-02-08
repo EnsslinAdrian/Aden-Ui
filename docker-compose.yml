@@ -35,8 +35,8 @@ services:
       - backend-network
       - proxy
     volumes:
-      - backend_media:/app/media
-      - backend_static:/app/static
+      - media:/app/media
+      - static:/app/static
 
   db:
     image: postgres:16
@@ -100,9 +100,9 @@ services:
 volumes:
   postgres_data:
   redis_data:
-  backend_static:
-  backend_media:
-  
+  static:
+  media:
+
 networks:
   backend-network:
   proxy:
