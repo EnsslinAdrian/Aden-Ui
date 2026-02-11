@@ -1,7 +1,12 @@
 :host {
   display: block;
+  width: 250px; // Standard Desktop Breite
+  flex-shrink: 0;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
-  @media (max-width: var(--sidebar-responsive-width)) {
+  // AB 900px: Sidebar wird zum Overlay (verbraucht keinen Platz mehr im Layout)
+  @media (max-width: 900px) {
+    width: 0 !important; // Das verhindert das Quetschen des Contents!
     position: absolute;
     z-index: 1000;
   }
@@ -15,19 +20,32 @@ aside {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease;
+  transition: transform 0.3s ease, width 0.3s ease, opacity 0.2s ease;
   overflow: hidden;
-  opacity: 1;
 
-  @media (max-width: var(--sidebar-responsive-width)) {
+  // Verhalten im Overlay-Modus (unter 900px)
+  @media (max-width: 900px) {
     position: fixed;
     top: var(--header-height, 64px);
     left: 0;
-    height: calc(100dvh - var(--header-height, 64px));
+    box-shadow: 20px 0 50px rgba(0, 0, 0, 0.5);
+    transform: translateX(0); // Standardmäßig offen (wenn nicht .closed)
+  }
+
+  // DEINE ANFORDERUNG: Ab 620px volle Breite einnehmen
+  @media (max-width: 620px) {
     width: 100vw;
-    max-width: 100%;
-    background-color: var(--dark-grey);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    border-right: none;
+  }
+}
+
+:host(.closed) {
+  width: 0;
+
+  aside {
+    opacity: 0;
+    transform: translateX(-100%); // Schiebt die Sidebar nach links raus
+    pointer-events: none;
   }
 }
 
@@ -39,6 +57,10 @@ aside {
   box-sizing: border-box;
 
   @media (max-width: var(--sidebar-responsive-width)) {
+    width: 100%;
+  }
+
+  @media (max-width: 620px) {
     width: 100%;
   }
 }

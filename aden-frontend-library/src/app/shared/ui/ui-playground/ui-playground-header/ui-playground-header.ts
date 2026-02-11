@@ -10,17 +10,15 @@ import { ProBadge } from "../../../user-ui/pro-badge/pro-badge";
   styleUrl: './ui-playground-header.scss',
 })
 export class UiPlaygroundHeader {
-  // --- INPUTS (Daten von oben) ---
   meta = input<ComponentMeta | undefined>(undefined);
   author = input<ComponentAuthor | undefined>(undefined);
 
   // Status Werte
   isPremium = input.required<boolean>();
   isLiked = input.required<boolean>();
-  isSaved = input.required<boolean>(); // Auch wenn noch keine Funktion da ist, der Button braucht den Status
+  isSaved = input.required<boolean>();
   likeCount = input.required<number>();
 
-  // --- OUTPUTS (Events nach oben) ---
   likeClicked = output<void>();
   saveClicked = output<void>();
 }

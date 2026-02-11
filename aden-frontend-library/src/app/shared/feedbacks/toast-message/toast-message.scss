@@ -1,7 +1,9 @@
 .toast {
   pointer-events: auto;
-  min-width: 300px;
-  background: rgba(24, 24, 27, 0.9);
+  min-width: 300px; // Standard für Desktop
+  width: 100%;      // Nimmt den Platz des Containers ein
+  max-width: 100vw;
+  background: rgba(24, 24, 27, 0.95); // Etwas weniger transparent für bessere Lesbarkeit
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   padding: 16px;
@@ -11,7 +13,15 @@
   gap: 14px;
   color: white;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  
+  box-sizing: border-box; // Wichtig für Padding!
+
+  @media (max-width: 600px) {
+    min-width: 0; // WICHTIG: Die feste Breite aufheben
+    padding: 12px;
+    gap: 10px;
+    width: auto;
+  }
+
 
   &.success {
     border-left: 4px solid #4ade80;
@@ -44,6 +54,9 @@
 
   .message {
     flex: 1;
+    word-break: break-word; // Bricht sehr lange Wörter um
+    overflow-wrap: anywhere; // Stellt sicher, dass nichts rausschaut
+    line-height: 1.4;
   }
 
   .close-btn {

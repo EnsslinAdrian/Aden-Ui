@@ -1,16 +1,13 @@
 <div class="playground-container">
 
-  <!-- META SECTION (Header) -->
   <app-ui-playground-header [meta]="meta" [author]="displayAuthor()" [isPremium]="isComponentPremium()"
     [isLiked]="isLiked()" [likeCount]="likeCount()" [isSaved]="isSaved()" (likeClicked)="toggleLike()"
     (saveClicked)="toggleSave()">
 
   </app-ui-playground-header>
 
-  <!-- TABS & PLAYGROUND -->
   <div class="playground-body">
 
-    <!-- ZEILE 1: HAUPT TABS -->
     <div class="tabs-nav">
       <div class="tab-group">
         <button class="tab-btn" [class.active]="activeTab() === 'preview'" (click)="setTab('preview')">
@@ -26,10 +23,8 @@
         </button>
         }
       </div>
-      <!-- HIER WAR DER BLOCK FRÜHER -> WEG DAMIT -->
     </div>
 
-    <!-- ZEILE 2: SPRACH AUSWAHL (Jetzt darunter!) -->
     @if (activeTab() === 'code' && canViewCode()) {
     <div class="sub-nav-bar">
 

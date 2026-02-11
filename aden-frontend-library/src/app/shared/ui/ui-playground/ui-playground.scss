@@ -24,6 +24,10 @@ $gold-gradient: linear-gradient(135deg, #FFD700 0%, #FDB931 100%);
   padding: 0 16px;
   background: var(--surface-card);
   height: 44px;
+
+  @media (max-width: 420px) {
+    padding: 0 0px;
+  }
 }
 
 .tab-group {
@@ -84,9 +88,13 @@ $gold-gradient: linear-gradient(135deg, #FFD700 0%, #FDB931 100%);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 8px 24px;
+  padding: 14px 24px;
   background-color: #121212;
   border-bottom: 1px solid var(--border-color);
+
+  @media (max-width: 420px) {
+    padding: 14px 14px;
+  }
 
   .lang-group {
     display: flex;
