@@ -39,7 +39,7 @@
     <!-- AUTHOR PROFILE -->
     @if (author(); as auth) {
     <a [routerLink]="['/profile', auth.username]" class="author-chip">
-      <img [src]="auth.photo || 'assets/images/default-user.png'" alt="{{ auth.first_name }}" class="author-img">
+      <img [src]="auth.photo || 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNTI1MjViIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cGF0aCBkPSJNMjAgMjF2LTJhNCA0IDAgMCAwLTQtNEg4YTQgNCAwIDAgMC00IDR2MiIvPjxjaXJjbGUgY3g9IjEyIiBjeT0iNyIgcj0iNCIvPjwvc3ZnPg=='" alt="{{ auth.first_name }}" class="author-img">
 
       <div class="author-info">
         <span class="by-label">Created by</span>

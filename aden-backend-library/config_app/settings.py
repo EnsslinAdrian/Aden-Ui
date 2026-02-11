@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 from dotenv import load_dotenv
 import os
+from kombu import Queue
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -81,7 +82,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'debug_toolbar',
-    'auth_app',
+    'auth_app.apps.AuthAppConfig',
     'premium_components_app',
     'meta_components_app',
 ]
@@ -144,15 +145,28 @@ CACHES = {
     }
 }
 
+CELERY_REDIS_PASSWORD = os.getenv("REDIS_PASSWORD")
 CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL")
 CELERY_RESULT_BACKEND = os.getenv("CELERY_RESULT_BACKEND")
 
 CELERY_ACCEPT_CONTENT = ["json"]
 CELERY_TASK_SERIALIZER = "json"
 CELERY_RESULT_SERIALIZER = "json"
-
 CELERY_TIMEZONE = "Europe/Berlin"
 CELERY_ENABLE_UTC = False
+
+CELERY_TASK_QUEUES = (
+    Queue("high"),
+    Queue("default"),
+    Queue("low"),
+)
+
+CELERY_TASK_DEFAULT_QUEUE = "default"
+
+CELERY_TASK_ROUTES = {
+    "auth_app.*": {"queue": "high"},
+}
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators

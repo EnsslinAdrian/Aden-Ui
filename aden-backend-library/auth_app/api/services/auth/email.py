@@ -6,9 +6,6 @@ from django.template.loader import render_to_string
 signer = TimestampSigner()
 
 
-# --------------------------------------------------------
-#  VERIFY EMAIL
-# --------------------------------------------------------
 def send_email_verification(email: str, first_name: str = ""):
     token = signer.sign(email)
     verify_url = f"{settings.FRONTEND_VERIFY_URL}?token={token}"
@@ -21,7 +18,6 @@ def send_email_verification(email: str, first_name: str = ""):
         "verify_url": verify_url,
     }
 
-    # HTML + Text
     html_content = render_to_string("verify_email.html", context)
     text_content = f"Please confirm your email via this link:\n{verify_url}"
 
@@ -35,9 +31,6 @@ def send_email_verification(email: str, first_name: str = ""):
     msg.send(fail_silently=False)
 
 
-# --------------------------------------------------------
-#  PASSWORD RESET
-# --------------------------------------------------------
 def send_password_reset_email(email: str, reset_url: str):
     subject = "🔒 Reset password"
     from_email = settings.DEFAULT_FROM_EMAIL
@@ -59,9 +52,6 @@ def send_password_reset_email(email: str, reset_url: str):
     msg.send(fail_silently=False)
 
 
-# --------------------------------------------------------
-#  WARNING REMINDER (optional)
-# --------------------------------------------------------
 def send_verification_warning_email(user, verify_url: str):
     subject = "🕒 Reminder: Please confirm your email"
     from_email = settings.DEFAULT_FROM_EMAIL

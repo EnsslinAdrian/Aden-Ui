@@ -6,6 +6,7 @@ export interface LibraryComponent {
   description?: string;
   readingTime?: string;
   level?: 'Beginner' | 'Advanced' | 'Expert';
+  tags?: string[];
 }
 
 export interface LibraryCategory {

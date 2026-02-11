@@ -11,13 +11,12 @@ def delete_inactive_users_sync():
     limit = timezone.now() - timedelta(hours=48)
     users = CustomUser.objects.filter(is_active=False, date_joined__lt=limit)
 
-    for user in users:
-            image_field = getattr(user, 'photo', None)
-            if image_field:
-                image_field.delete(save=False)
-            user.delete()
+    count = users.count()
 
-    return users.count()
+    for user in users:
+        user.delete()
+
+    return count
 
 def warn_inactive_users_sync():
     limit = timezone.now() - timedelta(hours=24)

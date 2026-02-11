@@ -27,11 +27,6 @@ class RegisterView(APIView):
         result = register_user(request.data)
 
         if result["success"]:
-            user = result["user"]
-
-            # Send email in background (Celery)
-            send_verification_email_task.delay(user.email, user.first_name)
-
             return Response(
                 {"message": "Please check your email to activate your account."},
                 status=status.HTTP_201_CREATED
