@@ -16,8 +16,17 @@ import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-env_path = BASE_DIR.parent / ".env"
-load_dotenv(env_path)
+
+def running_in_docker():
+    return os.path.exists("/.dockerenv")
+
+ENV_ROOT = BASE_DIR.parent
+
+if running_in_docker():
+    load_dotenv(ENV_ROOT / ".env")
+else:
+    load_dotenv(ENV_ROOT / ".env.local")
+    
 
 # Quick-start development settings - unsuitable for production
 SECRET_KEY = os.getenv("SECRET_KEY")
@@ -178,10 +187,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 MEDIA_URL = "/media/"
-MEDIA_ROOT = "/app/media"
-
 STATIC_URL = "/static/"
-STATIC_ROOT = "/app/static"
+
+if running_in_docker():
+    MEDIA_ROOT = "/app/media"
+    STATIC_ROOT = "/app/static"
+else:
+    MEDIA_ROOT = os.getenv("LOCAL_DOCKER_MEDIA_ROOT")
+    STATIC_ROOT = os.getenv("LOCAL_DOCKER_STATIC_ROOT")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
