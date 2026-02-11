@@ -52,13 +52,13 @@ class UserDetailSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'email', 'username', 'first_name', 'last_name',
             'photo', 'bio', 'github_url', 'linkedin_url',
-            'plan', 'is_premium', 'date_joined', 'updated_at',
+            'plan', 'is_premium', 'lemon_order_portal_url', 'date_joined', 'updated_at',
             # Listen & Stats
             'created_components',
             'saved_components',
             'total_likes'
         ]
-        read_only_fields = ['id', 'email', 'username', 'plan', 'is_premium', 'date_joined', 'updated_at']
+        read_only_fields = ['id', 'email', 'username', 'plan', 'is_premium', 'lemon_order_portal_url', 'date_joined', 'updated_at']
 
     def get_created_components(self, obj):
         # Anforderung 3: Eigene Components anzeigen

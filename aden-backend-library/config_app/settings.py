@@ -16,14 +16,15 @@ import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-load_dotenv(BASE_DIR / ".env")
+env_path = BASE_DIR.parent / ".env"
+load_dotenv(env_path)
 
 # Quick-start development settings - unsuitable for production
 SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = os.getenv("DEBUG") == "True"
 AUTH_USER_MODEL = "auth_app.CustomUser"
 
-LEMON_SQUEEZY_WEBHOOK_SECRET = "Mf1Jmjh9SUg4vxXpPJGz"
+LEMON_SQUEEZY_WEBHOOK_SECRET = os.getenv("LEMON_SQUEEZY_WEBHOOK_SECRET")
 
 # Allowed hosts
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost").split(",")

@@ -33,6 +33,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     lemon_customer_id = models.CharField(max_length=200, blank=True, null=True)
     lemon_subscription_id = models.CharField(max_length=200, blank=True, null=True)
+    lemon_order_portal_url = models.URLField(max_length=500, blank=True, null=True) 
 
     date_joined = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -53,13 +54,11 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
         super().save(*args, **kwargs)
 
-        # Bild optimieren (ausgelagert!)
         if self.photo:
             optimized_file = optimize_user_image(self.photo, self.pk)
             self.photo.save(optimized_file.name, optimized_file, save=False)
             super().save(update_fields=["photo"])
 
-        # Altes Bild löschen
         if old_photo and old_photo != self.photo:
             old_photo.delete(save=False)
 
