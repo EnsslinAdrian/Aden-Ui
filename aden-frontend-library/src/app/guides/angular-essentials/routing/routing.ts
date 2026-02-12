@@ -3,11 +3,10 @@ import { Notice } from "../../../shared/ui/notice/notice";
 import { HeadlineGuides } from "../../../shared/ui/headline-guides/headline-guides";
 import { RoutingInteractiveDemo } from "./routing-interactive-demo/routing-interactive-demo";
 import { CodeBlockGuide } from "../../../shared/ui/code-block-guide/code-block-guide";
-import { Typografie } from "../../../shared/text/typografie/typografie";
 
 @Component({
   selector: 'app-routing',
-  imports: [Notice, HeadlineGuides, RoutingInteractiveDemo, CodeBlockGuide, Typografie],
+  imports: [Notice, HeadlineGuides, RoutingInteractiveDemo, CodeBlockGuide],
   templateUrl: './routing.html',
   styleUrl: './routing.scss',
 })

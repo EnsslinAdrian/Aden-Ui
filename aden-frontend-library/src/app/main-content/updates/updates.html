@@ -1,69 +1,40 @@
 <div class="changelog-container">
 
-  <!-- Header Bereich -->
-  <header class="page-header">
+  <div class="page-header">
     <div class="header-content">
-      <app-typografie
-        text="Changelog"
-        size="xlarge"
-        [weight]="700"
-        color="white">
+      <app-typografie text="Changelog" size="xlarge" [weight]="700" color="white">
       </app-typografie>
 
-      <app-typografie
-        text="Alle Updates und Verbesserungen von ADEN im Überblick."
-        size="medium"
-        color="grey"
+      <app-typografie text="Alle Updates und Verbesserungen von ADEN im Überblick." size="medium" color="grey"
         class="subtitle">
       </app-typografie>
     </div>
-  </header>
+  </div>
 
-  <!-- Timeline Loop -->
   <div class="timeline">
     @for (update of updates; track update.version) {
-      <div class="update-entry">
+    <div class="update-entry">
 
-        <!-- Linke Spalte: Version & Datum -->
-        <div class="meta-col">
-          <div class="sticky-wrapper">
-            <app-typografie
-              [text]="update.version"
-              size="xmedium"
-              [weight]="600"
-              color="white">
-            </app-typografie>
-
-            <app-typografie
-              [text]="update.date"
-              size="small"
-              color="grey">
-            </app-typografie>
-          </div>
-        </div>
-
-        <!-- Rechte Spalte: Content -->
-        <div class="content-col">
-          <app-typografie
-            [text]="update.description"
-            size="medium"
-            color="white"
-            class="mb-4">
-          </app-typografie>
-
-          <ul class="change-list">
-            @for (change of update.changes; track $index) {
-              <li class="change-item">
-                <!-- Badge Logik -->
-                <span class="badge" [ngClass]="change.type">
-                  {{ change.type }}
-                </span>
-                <span class="change-text">{{ change.text }}</span>
-              </li>
-            }
-          </ul>
+      <div class="meta-col">
+        <div class="sticky-wrapper">
+          <app-typografie [text]="update.version" size="xmedium" [weight]="600" color="white"></app-typografie>
+          <app-typografie [text]="update.date" size="small" color="grey"></app-typografie>
         </div>
       </div>
+
+      <div class="content-col">
+        <app-typografie [text]="update.description" size="medium" color="white" class="mb-4"></app-typografie>
+
+        <ul class="change-list">
+          @for (change of update.changes; track $index) {
+          <li class="change-item">
+            <app-badge [change]="change"></app-badge>
+            <span class="change-text">{{ change.text }}</span>
+          </li>
+          }
+        </ul>
+      </div>
+    </div>
     }
   </div>
 </div>
