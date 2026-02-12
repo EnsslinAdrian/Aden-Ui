@@ -144,4 +144,13 @@ export const routes: Routes = [
       robots: 'noindex, nofollow'
     }
   },
+  {
+    path: 'accessibility',
+    loadComponent: () => import('./imprint/accessibility/accessibility').then(m => m.Accessibility),
+    data: {
+      title: 'Accessibility',
+      description: 'Information about the accessibility of our platform.',
+      robots: 'noindex, nofollow'
+    }
+  },
 ];

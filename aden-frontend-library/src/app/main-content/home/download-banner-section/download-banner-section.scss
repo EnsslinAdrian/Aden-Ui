@@ -1,6 +1,5 @@
 .download-section {
   padding: 40px 0 80px 0;
-  /* Abstand zum Footer schaffen */
   position: relative;
   z-index: 1;
 }
@@ -8,16 +7,13 @@
 .cta-card {
   position: relative;
   background: rgba(24, 24, 27, 0.6);
-  /* Transparenter dunkler Hintergrund */
   border: 1px solid var(--border-color);
   border-radius: 16px;
   overflow: hidden;
-  /* Subtiler Schatten für Tiefe */
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05),
     0 20px 40px -10px rgba(0, 0, 0, 0.5);
 }
 
-/* Der "Scheinwerfer" Effekt im Hintergrund der Karte */
 .glow-bg {
   position: absolute;
   top: -50%;
@@ -40,7 +36,6 @@
   gap: 40px;
 }
 
-/* --- LINKE SEITE --- */
 .info-group {
   display: flex;
   align-items: flex-start;
@@ -72,7 +67,6 @@
     align-items: center;
     gap: 12px;
     flex-wrap: wrap;
-    /* Falls es auf Mobile eng wird */
 
     h3 {
       color: var(--primary-white);
@@ -112,7 +106,6 @@
 }
 
 
-/* --- RECHTE SEITE --- */
 .action-group {
   display: flex;
   flex-direction: column;
@@ -126,7 +119,6 @@
   align-items: center;
   gap: 12px;
   background: var(--primary-white);
-  /* Weißer Button für max Kontrast */
   color: #000;
   border: none;
   padding: 12px 24px;
@@ -144,7 +136,6 @@
     box-shadow: 0 4px 12px rgba(255, 255, 255, 0.15);
   }
 
-  /* Premium Button (Get Pro Access) - Gold */
   &.premium {
     background: linear-gradient(135deg, #FFD700, #FDB931);
     color: #000;
@@ -160,9 +151,6 @@
   color: #52525b;
 }
 
-/* =========================================
-   RESPONSIVE DESIGN
-   ========================================= */
 
 @media (max-width: 768px) {
   .download-section {
@@ -223,33 +211,22 @@
   border-radius: 12px;
   cursor: pointer;
   font-family: var(--main-font);
-
-  /* Der Trick: Ein 200% breiter Verlauf, der animiert wird */
   background: linear-gradient(90deg, #00ff9d, #00b8ff, #00ff9d);
   background-size: 200% auto;
-
-  /* Text Styling: Dunkel auf Neon ist extrem lesbar und "techy" */
   color: #001a1a;
   font-weight: 800;
   font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 1px;
-
-  /* Animation des Hintergrunds */
   animation: shine 3s linear infinite;
   transition: all 0.3s ease;
-
-  /* Initialer Glow */
   box-shadow: 0 0 0px rgba(0, 255, 157, 0);
 }
 
-/* Hover: Der Button hebt ab und leuchtet stark */
 .btn-upgrade:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(0, 255, 157, 0.4);
 }
 
-/* Active: Klick-Feedback */
 .btn-upgrade:active {
   transform: translateY(1px);
   box-shadow: 0 5px 10px rgba(0, 255, 157, 0.3);
@@ -260,22 +237,3 @@
     background-position: 200% center;
   }
 }
-
-// .btn-manage {
-//   width: 100%;
-//   background: var(--border-color);
-//   color: var(--primary-white);
-//   border: none;
-//   padding: 10px;
-//   border-radius: 8px;
-//   cursor: pointer;
-
-//   &:hover {
-//     background: var(--ui-border);
-//   }
-// }
-
-// &.is-pro {
-//   border-color: rgba(192, 132, 252, 0.3);
-//   box-shadow: 0 0 20px rgba(192, 132, 252, 0.05);
-// }

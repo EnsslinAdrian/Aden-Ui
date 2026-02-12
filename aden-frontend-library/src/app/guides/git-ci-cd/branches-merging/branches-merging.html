@@ -1,0 +1,172 @@
+<div class="page-container onest-font">
+
+  <app-headline-guides [badgeText]="'Workflow & Tools'" [headline]="'Git Branches & Merging'"
+    [subheadline]="'Parallel realities: How I develop new features without endangering my stable project.'">
+  </app-headline-guides>
+
+  <section class="content-section">
+    <p class="intro-text">
+      Imagine you had a copy of your entire project where you could break absolutely everything,
+      while the original remains safe and untouched in the cabinet. That's exactly what <strong>branches</strong> are.
+    </p>
+
+    <p class="intro-text" style="margin-top: 12px;">
+      In the past, I used to build new features directly into the main code. When an urgent bugfix came along in the middle,
+      I had a problem: my code was a mix of unfinished construction site and stable parts. Today, the
+      <code>main</code>-branch is sacred to me.
+    </p>
+
+    <p class="intro-text" style="margin-top: 12px;">
+      In this guide, I show you how I work with branches to tinker on multiple ideas simultaneously without stress
+      and eventually merge them cleanly back into the main project.
+    </p>
+  </section>
+
+  <section class="content-section">
+    <h2>2. The Role Distribution</h2>
+    <p class="section-desc">
+      To keep my time machine from descending into chaos, I strictly distinguish between three types of branches.
+      Each has a clear purpose:
+    </p>
+
+    <div class="concept-row">
+      <div class="concept-item">
+        <span class="icon">🛡️</span>
+        <strong>Main Branch</strong>
+        <span>Here only code lives that works 100%. Never tinker directly here!</span>
+      </div>
+      <div class="concept-item">
+        <span class="icon">🚀</span>
+        <strong>Feature Branch</strong>
+        <span>My playground for new ideas. Anything can break here.</span>
+      </div>
+      <div class="concept-item">
+        <span class="icon">🛠️</span>
+        <strong>Hotfix Branch</strong>
+        <span>The rapid response team for urgent bugs in the live system.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <h2>3. Creating & Switching Branches</h2>
+    <p class="section-desc">
+      In the past, I had to create a branch first and then switch to it separately. Today I almost only use
+      this one "short-command". It creates the new reality and beams me there immediately.
+    </p>
+
+    <app-code-block-guide filename="Terminal" [code]="branchCreateCode" language="bash">
+    </app-code-block-guide>
+
+    <div class="grid-2" style="margin-top: 24px;">
+      <app-notice noticeType="tipp"
+        noticeText="I always use prefixes like <code>feature/</code> or <code>fix/</code>. This automatically sorts the branches and everyone on the team (or my future self) immediately knows what's happening there.">
+      </app-notice>
+
+      <app-notice noticeType="warning"
+        noticeText="Before you switch branches, you should commit your work in the current branch. Git often allows the switch anyway, but it can happen that you unintentionally 'drag along' unfinished changes.">
+      </app-notice>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <h2>4. Worlds Converge: The Merge</h2>
+    <p class="section-desc">
+      When my feature is finished, the big moment comes: I bring the changes back home.
+      Important to understand: A merge always happens <strong>into</strong> the branch you're currently on.
+    </p>
+
+    <app-code-block-guide filename="Terminal" [code]="mergeCode" language="bash">
+    </app-code-block-guide>
+
+    <div class="grid-2" style="margin-top: 24px;">
+      <app-notice noticeType="tipp"
+        noticeText="I call that the 'finish line'. First I switch to the target (main), then I pull the feature towards me.">
+      </app-notice>
+
+      <app-notice noticeType="tipp"
+        noticeText="After a successful merge, I usually delete the feature-branch immediately with <code>git branch -d</code>. This keeps the list clean and prevents me from getting tangled up in old branches.">
+      </app-notice>
+    </div>
+  </section>
+
+  <app-branches-merging-live-demo></app-branches-merging-live-demo>
+
+  <section class="content-section">
+    <h2>5. Merge is Not the Same as Merge</h2>
+    <p class="section-desc">
+      Depending on the situation, Git decides for itself how a merge is performed.
+      The result looks different, but in both cases it's correct.
+    </p>
+
+    <div class="merge-types" style="margin-bottom: 20px;">
+      <div class="merge-card">
+        <span class="badge success">Fast-Forward</span>
+        <h4>Fast-Forward Merge</h4>
+        <p>
+          The target branch hasn't changed since the branch-off.
+          Git simply moves the pointer forward – no new commit is created.
+        </p>
+      </div>
+
+      <div class="merge-card">
+        <span class="badge info">Merge Commit</span>
+        <h4>Classic Merge</h4>
+        <p>
+          Both branches have evolved.
+          Git creates an additional commit that merges the histories together.
+        </p>
+      </div>
+    </div>
+
+    <app-notice noticeType="tipp"
+      noticeText="Both variants are completely normal. What matters is not the form of history, but that it remains clear when and why code was merged.">
+    </app-notice>
+  </section>
+
+  <section class="content-section">
+    <h2>6. My Rules in Daily Work</h2>
+    <p class="section-desc">
+      Branches are not an end in themselves. With a few simple rules, the workflow
+      remains clear and predictable – even after weeks or months.
+    </p>
+
+    <div class="grid-2">
+      <app-notice noticeType="warning"
+        noticeText="I never work directly on <code>main</code>. Not even for small changes. Once you break this rule, it quickly becomes a habit.">
+      </app-notice>
+
+      <app-notice noticeType="tipp"
+        noticeText="Before I merge, I always consciously switch to the target branch. This way I keep control over where the code actually flows.">
+      </app-notice>
+
+      <app-notice noticeType="warning"
+        noticeText="Long-lived feature branches increase the risk of merge problems. Better to merge more often than work in isolation for weeks.">
+      </app-notice>
+
+      <app-notice noticeType="tipp"
+        noticeText="After a successful merge, I consistently delete feature-branches. Old branches only cause confusion and are almost never needed again.">
+      </app-notice>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <h2>7. Classification & Outlook</h2>
+    <p class="section-desc">
+      Branches give me the freedom to work on ideas in parallel without endangering my stable project.
+      Merges are the controlled moment when these ideas are brought back together.
+    </p>
+
+    <p class="section-desc">
+      Conflicts, rebasing, or more complex strategies are also part of everyday Git,
+      but would go beyond the scope here. That's why I cover these topics
+      in separate guides in much more detail.
+    </p>
+
+    <app-notice noticeType="tipp"
+      noticeText="If you keep branches clean and perform merges consciously, you've already understood the most important part of Git. Everything else builds directly on that.">
+    </app-notice>
+  </section>
+
+
+</div>

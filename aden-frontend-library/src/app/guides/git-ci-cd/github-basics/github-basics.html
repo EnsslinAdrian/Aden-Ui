@@ -2,80 +2,144 @@
 
   <app-headline-guides
     [badgeText]="'Workflow & Tools'"
-    [headline]="'Git & GitHub'"
-    [subheadline]="'My safety net as a developer. How I use version control to code without fear and never lose data again.'">
+    [headline]="'Git & GitHub Basics'"
+    [subheadline]="'How I use Git to keep changes under control.'">
   </app-headline-guides>
 
-  <!-- 1. INTRO -->
   <section class="content-section">
     <p class="intro-text">
-      I don't see Git as a "tool for uploading," but as a time machine.
-      If I make a mistake, I can rewind. If I test a feature, I can create a parallel reality (branch).
+      Git is a version control system that allows you to track changes to your code
+      cleanly – both in teams and on individual projects.
     </p>
-    <p class="intro-text" style="margin-top: 16px;">
-      Here is my personal cheat sheet for everyday use. No theory, just the commands I actually use.
+
+    <p class="intro-text" style="margin-top: 12px;">
+      In this guide, I'll show you the <span class="highlight-text">Git basics</span>
+      I use in my daily work to stay organized and keep changes
+      under control.
     </p>
   </section>
 
-  <!-- 2. DEMO -->
-  <section class="demo-section">
-    <h2>1. Visualization: What's actually happening?</h2>
-    <p class="sub-text">
-      Click on the buttons to understand how commits build on each other and how branches work.
-      Merging simply means bringing two timelines back together.
+  <section class="content-section">
+    <h2>1. Identity & Setup</h2>
+    <p class="section-desc">
+      The first thing I do on every new machine. Git needs to know who you are so your "green squares"
+      on GitHub are actually attributed to you.
     </p>
-    <app-git-visualizer></app-git-visualizer>
-  </section>
-
-  <!-- 3. DAILY BUSINESS -->
-  <section class="code-section">
-    <h2>2. The Daily Workflow</h2>
-    <p class="sub-text">
-      These are the commands I type 90% of the time. When I start in the morning or finish a feature.
-    </p>
-
-    <div class="grid-2">
-      <div>
-        <h4>Setup</h4>
-        <app-code-block-guide filename="Terminal" [code]="setupCode" language="bash"></app-code-block-guide>
-      </div>
-      <div>
-        <h4>Routine</h4>
-        <app-code-block-guide filename="Terminal" [code]="dailyCode" language="bash"></app-code-block-guide>
-      </div>
-    </div>
-  </section>
-
-  <!-- 4. BRANCHING -->
-  <section class="code-section">
-    <h2>3. Working with Branches</h2>
-    <p class="sub-text">
-      I <strong>never</strong> work directly on the <code>main</code> branch. For every ticket, I create my own "feature branch."
-      This keeps the main version clean and functional.
-    </p>
-    <app-code-block-guide filename="Terminal" [code]="branchCode" language="bash"></app-code-block-guide>
-  </section>
-
-  <!-- 5. PANIC ROOM -->
-  <section class="code-section">
-    <h2 style="color: var(--danger-color);">4. Panic Room (Emergency Commands)</h2>
-    <p class="sub-text">
-      I often look this up myself. What to do when you're stuck?
-    </p>
-    <app-code-block-guide filename="Terminal" [code]="panicCode" language="bash"></app-code-block-guide>
-
-    <app-notice [noticeType]="'tipp'"
-      [noticeText]="'<strong>Git Stash</strong> is my best friend. If the boss comes in and says \'Fix this quickly on Main,\' but I\'m in the middle of a feature: <code>git stash</code> -> Do the hotfix -> <code>git stash pop</code>. Everything is back.'">
+    <app-code-block-guide filename="Terminal" [code]="configCode" language="bash"></app-code-block-guide>
+    <app-notice noticeType="tipp"
+      noticeText="Make sure to use the email you registered with on GitHub.">
     </app-notice>
   </section>
 
-  <!-- 6. PRO TIPS -->
-  <section class="code-section">
-    <h2>5. Pro Tip: Aliases</h2>
-    <p class="sub-text">
-      I'm lazy. I don't want to type <code>git status</code> every time. That's why I created shortcuts (aliases).
+  <section class="content-section">
+    <h2>2. Bringing a Project to Life</h2>
+    <p class="section-desc">
+      There are two ways: Either you start from scratch (<code>init</code>) or you copy a project that already exists on
+      GitHub (<code>clone</code>).
     </p>
-    <app-code-block-guide filename=".gitconfig" [code]="aliasCode" language="bash"></app-code-block-guide>
+
+    <div class="grid-2">
+      <app-code-block-guide headline="Initialize New" filename="Terminal" [code]="initCode"
+        language="bash"></app-code-block-guide>
+      <app-code-block-guide headline="Clone from GitHub" filename="Terminal" [code]="cloneCode"
+        language="bash"></app-code-block-guide>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <h2>3. Keeping Track</h2>
+    <p class="section-desc">
+      Git is like a review partner. Before I save anything, I ask Git: "What's the status?".
+    </p>
+
+    <div class="concept-row">
+      <div class="concept-item">
+        <span class="icon">🔴</span>
+        <strong>Modified</strong>
+        <span>Change not yet tracked</span>
+      </div>
+      <div class="concept-item">
+        <span class="icon">🟢</span>
+        <strong>Staged</strong>
+        <span>Ready to save</span>
+      </div>
+      <div class="concept-item">
+        <span class="icon">🔵</span>
+        <strong>Committed</strong>
+        <span>Safe in history</span>
+      </div>
+    </div>
+
+    <app-code-block-guide filename="Terminal" [code]="statusDiffCode" language="bash"></app-code-block-guide>
+    <app-notice noticeType="tipp" noticeText="I type git status almost compulsively every few minutes. It gives me the confidence that I know exactly
+        which files I've touched before creating the next snapshot.">
+    </app-notice>
+
+
+  </section>
+
+  <section class="content-section">
+    <h2>4. The Heartbeat: Saving Changes</h2>
+    <p class="section-desc">
+      A commit isn't a simple "save" (like CTRL+S). It's a conscious decision: "This state is
+      good, I want to keep it." Here we transfer the cycle from the simulator to the terminal.
+    </p>
+
+    <app-code-block-guide filename="Terminal" [code]="commitWorkflowCode" language="bash"></app-code-block-guide>
+
+    <div class="grid-2" style="margin-top: 24px;">
+      <app-notice noticeType="warning"
+        noticeText="Avoid meaningless messages like 'fix stuff' or 'update'. Write briefly what happened. Your 'future self' will thank you when you need to track down a bug.">
+      </app-notice>
+
+      <app-notice noticeType="tipp"
+        noticeText="I prefer to commit 10 small, clear steps rather than one huge mess. Small commits make jumping back much more precise in an emergency.">
+      </app-notice>
+    </div>
+  </section>
+
+  <app-github-basics-live-demo></app-github-basics-live-demo>
+
+  <section class="content-section">
+    <h2>5. Synchronization: Off to GitHub</h2>
+    <p class="section-desc">
+      So your code doesn't just live on your hard drive, we mirror it to the cloud.
+    </p>
+
+    <div class="sync-comparison">
+      <div class="box">
+        <span class="icon">💻</span>
+        <app-typografie text="Local Machine" size="xsmall" color="white"></app-typografie>
+        <span>main</span>
+      </div>
+      <div class="connection"></div>
+      <div class="box">
+        <span class="icon">☁️</span>
+        <app-typografie text="GitHub Cloud" size="xsmall" color="white"></app-typografie>
+        <span>origin/main</span>
+      </div>
+    </div>
+
+    <app-code-block-guide filename="Terminal" [code]="syncCode" language="bash"></app-code-block-guide>
+
+    <app-notice noticeType="tipp"
+      noticeText="Remember: <code>git push</code> uploads, <code>git pull</code> downloads changes.">
+    </app-notice>
+  </section>
+
+  <section class="content-section">
+    <h2>6. Hygiene: What Git Should Ignore</h2>
+    <p class="section-desc">
+      Not everything belongs in your time machine. We keep huge libraries or secret keys out.
+    </p>
+
+    <app-code-block-guide filename=".gitignore" [code]="ignoreCode" language="plaintext"></app-code-block-guide>
+
+
+    <app-notice noticeType="warning"
+      noticeText="NEVER put <code>.env</code> files with passwords in Git. Once they're on GitHub, they're public!">
+    </app-notice>
+
   </section>
 
 </div>

@@ -1,22 +1,16 @@
 .grid-container {
   display: grid;
-  /* Standard für große Screens: Alle 4 nebeneinander */
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
   margin-bottom: 100px;
+  perspective: 1200px; // Wichtig für die 3D-Tiefe im Grid
 
-  /* Ab Laptop-Größe (z.B. kleiner als 1400px):
-     Wir erzwingen ein 2x2 Raster.
-     Niemals 3, niemals 1 (außer auf Mobile). */
   @media (max-width: 1400px) {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  /* Mobile: Alles untereinander */
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
-    gap: 16px;
-    margin-bottom: 60px;
   }
 }
 
@@ -24,39 +18,35 @@
   background: rgba(24, 24, 27, 0.4);
   border: 1px solid var(--border-color);
   padding: 32px;
-  box-sizing: border-box;
   border-radius: 12px;
   display: flex;
   flex-direction: column;
   gap: 20px;
-  height: 100%; /* Wichtig, damit alle Karten gleich hoch sind */
+
+  // 3D Setup
+  transform-style: preserve-3d;
+  will-change: transform;
+
+  // NUR Farben und Border per CSS, KEIN transform oder all!
+  transition: background 0.3s ease, border-color 0.3s ease;
 
   &:hover {
-    border-color: #3f3f46;
-    transform: translateY(-2px); /* Subtiler Hover-Effekt */
-    background: rgba(24, 24, 27, 0.6);
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(24, 24, 27, 0.7);
   }
 }
 
-/* Anpassung für die Icons (da du jetzt SVGs und IMGs gemischt hast) */
-.feature-card .icon-box {
+.icon-box {
   width: 48px;
   height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.05); /* Optional: Leichter Hintergrund für Icon */
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 8px;
-  margin-bottom: 8px;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
 
-  img {
-    width: 24px;
-    height: 24px;
-  }
-
-  svg {
-    width: 24px;
-    height: 24px;
-    stroke: var(--primary-white);
-  }
+  // Lässt das Icon innerhalb der Karte "schweben"
+  transform: translateZ(20px);
+  will-change: transform;
 }

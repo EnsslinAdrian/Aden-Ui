@@ -81,3 +81,19 @@
     text-align: center;
   }
 }
+
+.performance-trigger {
+  display: inline-block;
+  cursor: default;
+  will-change: transform, letter-spacing;
+  animation: fadeIn 1s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.highlight-text {
+    margin-top: 15px;
+}

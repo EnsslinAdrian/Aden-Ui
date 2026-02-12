@@ -1,0 +1,195 @@
+/* Lokale Variablen für die Komponente */
+:host {
+  --node-size: 12px;
+  --rail-left: 40px;
+  --feature-offset: 50px;
+}
+
+.visualizer-card {
+  background: #111111; // Noch dunklerer Kontrast für den Visualizer
+  border: 1px solid var(--ui-border);
+  border-radius: 16px;
+  padding: 32px;
+  font-family: var(--font-mono);
+}
+
+/* --- Header --- */
+.visualizer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.status-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  .status-label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+}
+
+.branch-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: rgba(96, 165, 250, 0.1);
+  color: var(--neon-blue);
+  border-radius: 6px;
+  font-weight: 700;
+  border: 1px solid rgba(96, 165, 250, 0.2);
+  transition: all 0.3s ease;
+
+  &.is-feature {
+    color: var(--neon-green);
+    background: rgba(74, 222, 128, 0.1);
+    border-color: rgba(74, 222, 128, 0.2);
+  }
+}
+
+/* --- Buttons --- */
+.action-grid {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.branch-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-action {
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  &:hover { transform: translateY(-2px); }
+  &:active { transform: translateY(0); }
+
+  &.primary {
+    background: var(--primary-white);
+    color: var(--primary-black);
+    .plus { font-size: 1.2rem; line-height: 0; }
+  }
+
+  &.outline {
+    background: transparent;
+    &.blue { border-color: var(--neon-blue); color: var(--neon-blue); }
+    &.green { border-color: var(--neon-green); color: var(--neon-green); }
+    &:hover { background: rgba(255,255,255, 0.05); }
+  }
+
+  &.success {
+    background: var(--neon-green);
+    color: black;
+  }
+
+  &.ghost {
+    background: transparent;
+    color: var(--text-muted);
+    border-color: var(--border-color);
+    &.reset:hover { color: var(--danger-color); border-color: var(--danger-color); }
+  }
+}
+
+/* --- Timeline Graph --- */
+.timeline-container {
+  position: relative;
+  min-height: 200px;
+  padding: 20px 0;
+}
+
+.rail {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--ui-border);
+  opacity: 0.3;
+  z-index: 1;
+
+  &.main-rail { left: var(--rail-left); background: var(--neon-blue); }
+  &.feature-rail {
+    left: calc(var(--rail-left) + var(--feature-offset));
+    background: var(--neon-green);
+    opacity: 0;
+    &.visible { opacity: 0.3; }
+  }
+}
+
+.nodes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  position: relative;
+  z-index: 2;
+}
+
+.node-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  .dot-container {
+    width: var(--rail-left);
+    display: flex;
+    justify-content: center;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .dot {
+    width: var(--node-size);
+    height: var(--node-size);
+    border-radius: 50%;
+    background: var(--neon-blue);
+    box-shadow: 0 0 15px var(--neon-blue);
+    border: 2px solid #111;
+  }
+
+  .node-content {
+    display: flex;
+    gap: 12px;
+    font-size: 0.9rem;
+    transition: transform 0.4s ease;
+
+    .node-id { color: var(--neon-blue); font-weight: 700; opacity: 0.6; }
+    .node-msg { color: var(--primary-white-70); }
+  }
+
+  /* Feature State */
+  &.on-feature {
+    .dot-container { transform: translateX(var(--feature-offset)); }
+    .dot { background: var(--neon-green); box-shadow: 0 0 15px var(--neon-green); }
+    .node-content {
+      transform: translateX(var(--feature-offset));
+      .node-id { color: var(--neon-green); }
+    }
+  }
+}
+
+/* Animations */
+.fade-in {
+  animation: slideIn 0.4s ease-out forwards;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}

@@ -1,0 +1,123 @@
+<div class="page-container onest-font">
+
+  <app-headline-guides [badgeText]="'Workflow & Tools'" [headline]="'Merge Conflicts Explained'"
+    [subheadline]="'How I resolve merge conflicts cleanly without destroying my repository.'">
+  </app-headline-guides>
+
+  <section class="content-section">
+    <p class="intro-text">
+      Merge conflicts are not an exception for me, but a normal part of working with Git.
+      They occur precisely when Git cannot clearly decide which changes are correct.
+    </p>
+
+    <p class="intro-text" style="margin-top: 12px;">
+      In this guide, I show how I <span class="highlight-text">recognize merge conflicts,
+        read them and resolve them step by step</span>. Concisely, reproducibly and without
+      hectic trial and error.
+    </p>
+  </section>
+
+  <section class="content-section">
+    <h2>1. Recognizing Merge Conflicts</h2>
+    <p class="section-desc">
+      When I start a merge and Git cannot proceed automatically, Git aborts the process.
+      This does not mean the merge failed, but rather it is intentionally paused.
+    </p>
+
+    <app-code-block-guide filename="Terminal" [code]="mergeConflictStartCode" language="bash">
+    </app-code-block-guide>
+
+    <app-notice noticeType="tipp"
+      noticeText="After a conflict, nothing is lost. Git has not overwritten anything yet – the state is safely frozen until I decide how to proceed.">
+    </app-notice>
+  </section>
+
+  <section class="content-section">
+    <h2>2. Reading Merge Conflicts</h2>
+    <p class="section-desc">
+      After Git has paused the merge, it marks the affected sections directly in the file.
+      These markers show me exactly where Git could not make a decision.
+    </p>
+
+    <app-code-block-guide filename="example.ts" [code]="conflictMarkerCode" language="diff">
+    </app-code-block-guide>
+
+    <div class="concept-row">
+      <div class="concept-item">
+        <span class="icon">⬆️</span>
+        <strong>HEAD</strong>
+        <span>Code from the current branch</span>
+      </div>
+
+      <div class="concept-item">
+        <span class="icon">⬇️</span>
+        <strong>Incoming</strong>
+        <span>Code from the merged branch</span>
+      </div>
+
+      <div class="concept-item">
+        <span class="icon">⚖️</span>
+        <strong>Decision</strong>
+        <span>I choose what should remain</span>
+      </div>
+    </div>
+
+    <app-notice noticeType="tipp"
+      noticeText="I always read conflicts consciously, line by line. Git shows me only options – I always make the decision.">
+    </app-notice>
+  </section>
+
+  <section class="content-section">
+    <h2>3. Resolving Merge Conflicts</h2>
+    <p class="section-desc">
+      Once I have decided, I remove the conflict markers completely and bring the file
+      into a valid state. Only then do I tell Git that the conflict is resolved.
+    </p>
+
+    <app-code-block-guide filename="example.ts" [code]="resolvedConflictCode" language="typescript">
+    </app-code-block-guide>
+
+    <app-code-block-guide filename="Terminal" [code]="resolveStepsCode" language="bash">
+    </app-code-block-guide>
+
+    <div class="grid-2">
+      <app-notice noticeType="warning"
+        noticeText="As long as conflict markers are in a file, you cannot commit it. Git correctly blocks this.">
+      </app-notice>
+
+      <app-notice noticeType="tipp"
+        noticeText="I resolve conflicts file by file. This keeps the overview and prevents committing half-finished states.">
+      </app-notice>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <h2>4. My Rules for Handling Merge Conflicts</h2>
+    <p class="section-desc">
+      Merge conflicts cannot always be avoided, but with a few fixed rules, they remain
+      controllable and manageable.
+    </p>
+
+    <div class="grid-2">
+      <app-notice noticeType="warning"
+        noticeText="I never commit blindly after a conflict. Every affected file must be checked and understood first.">
+      </app-notice>
+
+      <app-notice noticeType="tipp"
+        noticeText="If I am uncertain, I abort the merge with <code>git merge --abort</code> and start it again later. This is not a step backward, but control.">
+      </app-notice>
+
+      <app-notice noticeType="warning"
+        noticeText="I never resolve merge conflicts under time pressure. Haste is the most common cause of broken merges.">
+      </app-notice>
+
+      <app-notice noticeType="tipp"
+        noticeText="Small, frequently merged branches create significantly fewer conflicts than long-lived feature branches.">
+      </app-notice>
+    </div>
+  </section>
+
+  <app-merge-conflicts-live-demo></app-merge-conflicts-live-demo>
+
+</div>
+

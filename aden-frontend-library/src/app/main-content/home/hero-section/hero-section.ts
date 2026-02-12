@@ -1,4 +1,4 @@
-import { Component, ElementRef, Inject, PLATFORM_ID, QueryList, ViewChildren } from '@angular/core';
+import { Component, ElementRef, inject, Inject, PLATFORM_ID, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Typografie } from "../../../shared/text/typografie/typografie";
 import { gsap } from 'gsap';
 import { RouterLink } from '@angular/router';
@@ -11,19 +11,51 @@ import { isPlatformBrowser } from '@angular/common';
   styleUrl: './hero-section.scss',
 })
 export class HeroSection {
-  @ViewChildren('animItem') animItems!: QueryList<ElementRef>;
+  @ViewChild('perfWord', { read: ElementRef }) perfWord!: ElementRef;
 
-  private platformId = Inject(PLATFORM_ID);
+  private platformId = inject(PLATFORM_ID);
 
   ngAfterViewInit() {
+    // Dieser Check sorgt dafür, dass GSAP nur im Browser läuft
     if (!isPlatformBrowser(this.platformId)) return;
 
-      gsap.registerPlugin();
+    this.initInteractiveHover();
+  }
 
-      gsap.fromTo(this.animItems.map(el => el.nativeElement),
-        { y: 20, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: 'power2.out', delay: 0.2 }
-      );
+  private initInteractiveHover() {
+    const el = this.perfWord.nativeElement;
 
+    // Wir erstellen eine Timeline, die wir bei Hover steuern
+    const hoverTl = gsap.timeline({ paused: true });
+
+    hoverTl.to(el, {
+      skewX: -10,
+      scale: 1.05,
+      letterSpacing: '5px',
+      color: '#ffffff', // Falls es vorher grau war
+      duration: 0.4,
+      ease: 'power2.out'
+    });
+
+    el.addEventListener('mouseenter', () => hoverTl.play());
+    el.addEventListener('mouseleave', () => hoverTl.reverse());
+
+    // Kleiner "Magnetic" Effekt: Das Wort folgt der Maus minimal
+    el.addEventListener('mousemove', (e: MouseEvent) => {
+      const rect = el.getBoundingClientRect();
+      const x = (e.clientX - rect.left - rect.width / 2) * 0.3;
+      const y = (e.clientY - rect.top - rect.height / 2) * 0.5;
+
+      gsap.to(el, {
+        x: x,
+        y: y,
+        duration: 0.5,
+        ease: 'power3.out'
+      });
+    });
+
+    el.addEventListener('mouseleave', () => {
+      gsap.to(el, { x: 0, y: 0, duration: 0.7, ease: 'elastic.out(1, 0.3)' });
+    });
   }
 }

@@ -1,0 +1,44 @@
+.imprint-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 80px 24px;
+  min-height: 100vh;
+
+  @media (max-width: 768px) {
+    padding: 40px 20px;
+  }
+}
+
+.page-header {
+  margin-bottom: 60px;
+  .subtitle { margin-top: 12px; display: block; }
+}
+
+h1, h2, h3, h4, h5, h6, p, span, li, ul, a {
+  font-family: var(--main-font);
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+h1 {
+  font-size: 64px;
+  margin-top: 0 !important;
+  color: var(--primary-white);
+
+  @media (max-width: 640px) {
+    font-size: 48px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 32px;
+  }
+}
+
+p, span li, ul, a {
+  color: var(--primary-white-70) !important;
+}
+
+h2, h3, h4, h5, h6 {
+  color: var(--primary-white-90);
+  margin-top: 50px;
+}

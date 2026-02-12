@@ -1,0 +1,57 @@
+<div class="visualizer-card">
+
+  <!-- Header & Status -->
+  <div class="visualizer-header">
+    <div class="status-info">
+      <span class="status-label">Active Branch:</span>
+      <div class="branch-indicator" [class.is-feature]="currentBranch() === 'feature'">
+        <span class="branch-icon"></span>
+        <span class="branch-name">{{ currentBranch() }}</span>
+      </div>
+    </div>
+    <button class="btn-action ghost reset" (click)="reset()">Reset</button>
+  </div>
+
+  <!-- Button Controls -->
+  <div class="action-grid">
+    <button class="btn-action primary" (click)="addCommit()">
+      <span class="plus">+</span> Commit
+    </button>
+
+    @if (!featureActive()) {
+      <button class="btn-action outline blue" (click)="createBranch()">
+        git checkout -b feature
+      </button>
+    } @else {
+      <div class="branch-actions">
+        @if (currentBranch() === 'main') {
+          <button class="btn-action success" (click)="merge()">git merge feature</button>
+          <button class="btn-action outline green" (click)="checkoutFeature()">checkout feature</button>
+        } @else {
+          <button class="btn-action outline blue" (click)="checkoutMain()">checkout main</button>
+        }
+      </div>
+    }
+  </div>
+
+  <!-- Graph / Timeline -->
+  <div class="timeline-container">
+    <!-- The vertical rails -->
+    <div class="rail main-rail"></div>
+    <div class="rail feature-rail" [class.visible]="featureActive()"></div>
+
+    <div class="nodes-list">
+      @for (commit of commits(); track commit.id) {
+        <div class="node-row fade-in" [class.on-feature]="commit.branch === 'feature'">
+          <div class="dot-container">
+            <div class="dot"></div>
+          </div>
+          <div class="node-content">
+            <span class="node-id">{{ commit.id }}</span>
+            <span class="node-msg">{{ commit.msg }}</span>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>

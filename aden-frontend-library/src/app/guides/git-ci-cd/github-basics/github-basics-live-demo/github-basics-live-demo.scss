@@ -1,0 +1,237 @@
+.git-visual-container {
+  background: var(--surface-card);
+  border: 1px solid var(--ui-border);
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.workflow-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+/* --- Die 3 Stufen --- */
+.stages-grid {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 40px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
+.stage-box {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  min-height: 160px;
+  transition: all 0.3s ease;
+
+  &.active {
+    border-color: var(--neon-blue);
+    background: rgba(96, 165, 250, 0.03);
+  }
+
+  .label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+}
+
+.file-status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+
+  .file-icon {
+    font-size: 2rem;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.1));
+
+    &.modified {
+      color: var(--danger-color);
+      filter: drop-shadow(0 0 8px var(--danger-color));
+    }
+
+    &.staged {
+      color: #facc15;
+      filter: drop-shadow(0 0 8px #facc15);
+    }
+
+    &.committed {
+      color: var(--neon-green);
+      filter: drop-shadow(0 0 8px var(--neon-green));
+    }
+  }
+
+  .status-text {
+    font-size: 0.75rem;
+    margin-top: 4px;
+
+    &.warning {
+      color: var(--danger-color);
+    }
+
+    &.staged {
+      color: #facc15;
+    }
+
+    &.success {
+      color: var(--neon-green);
+    }
+
+    &.empty {
+      color: var(--text-muted);
+      opacity: 0.4;
+    }
+  }
+}
+
+.action-btn {
+  width: 100%;
+  background: var(--border-color);
+  border: none;
+  color: white;
+  padding: 8px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.2;
+    cursor: not-allowed;
+  }
+
+  &:hover:not(:disabled) {
+    background: var(--text-muted);
+    color: black;
+  }
+
+  &.success {
+    background: var(--neon-green);
+    color: black;
+  }
+}
+
+.arrow {
+  color: var(--ui-border);
+  font-size: 1.2rem;
+}
+
+/* --- Historie Bereich --- */
+.history-area {
+  border-top: 1px solid var(--ui-border);
+  padding-top: 24px;
+}
+
+.graph-container {
+  position: relative;
+  margin-top: 20px;
+  padding-left: 20px;
+
+  .rail {
+    position: absolute;
+    left: 26px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--neon-blue);
+    opacity: 0.2;
+  }
+
+  .commits-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .commit-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-mono);
+
+    .node {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--neon-blue);
+      box-shadow: 0 0 8px var(--neon-blue);
+      z-index: 2;
+    }
+
+    .hash {
+      color: var(--neon-blue);
+      font-size: 0.8rem;
+      font-weight: 700;
+      opacity: 0.8;
+    }
+
+    .msg {
+      color: var(--primary-white);
+      font-size: 0.85rem;
+    }
+
+    .time {
+      color: var(--text-muted);
+      font-size: 0.7rem;
+      margin-left: auto;
+    }
+  }
+}
+
+.fade-in {
+  animation: slideDown 0.4s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.aden-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary-white);
+  color: var(--primary-black);
+  border: 1px solid transparent;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: var(--main-font);
+
+  &:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+  }
+
+  &:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+}

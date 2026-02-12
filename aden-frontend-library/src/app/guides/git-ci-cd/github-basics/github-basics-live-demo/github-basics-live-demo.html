@@ -1,0 +1,81 @@
+  <section class="demo-section">
+    <div class="git-visual-container">
+
+      <!-- INTERACTIVE WORKFLOW AREA -->
+      <div class="workflow-header">
+        <app-typografie text="Interactive Git Lifecycle" size="small" color="white" [weight]="600"></app-typografie>
+        <button class="aden-btn ghost small" (click)="reset()">Reset Simulator</button>
+      </div>
+
+      <div class="stages-grid">
+        <!-- Zone 1: Working Directory -->
+        <div class="stage-box" [class.active]="hasUnsavedChanges()">
+          <span class="label">Workspace</span>
+          <div class="file-status">
+            @if (hasUnsavedChanges()) {
+            <div class="file-icon modified">📄</div>
+            <span class="status-text warning">Modified</span>
+            } @else {
+            <span class="status-text empty">No changes</span>
+            }
+          </div>
+          <button class="action-btn" (click)="modifyFile()" [disabled]="hasUnsavedChanges() || hasStagedChanges()">
+            Edit file
+          </button>
+        </div>
+
+        <div class="arrow">→</div>
+
+        <!-- Zone 2: Staging Area -->
+        <div class="stage-box" [class.active]="hasStagedChanges()">
+          <span class="label">Staging Area</span>
+          <div class="file-status">
+            @if (hasStagedChanges()) {
+            <div class="file-icon staged">📄</div>
+            <span class="status-text staged">Ready</span>
+            } @else {
+            <span class="status-text empty">Waiting...</span>
+            }
+          </div>
+          <button class="action-btn" (click)="gitAdd()" [disabled]="!hasUnsavedChanges()">
+            git add
+          </button>
+        </div>
+
+        <div class="arrow">→</div>
+
+        <!-- Zone 3: Repository -->
+        <div class="stage-box committed">
+          <span class="label">Repository</span>
+          <div class="file-status">
+            <div class="file-icon committed">📦</div>
+            <span class="status-text success">Secure</span>
+          </div>
+          <button class="action-btn success" (click)="gitCommit()" [disabled]="!hasStagedChanges()">
+            git commit
+          </button>
+        </div>
+      </div>
+
+      <!-- THE TIME MACHINE (HISTORY) -->
+      <div class="history-area">
+        <app-typografie text="Commit History (Your Snapshots)" size="xsmall" color="grey"
+          [weight]="600"></app-typografie>
+
+        <div class="graph-container">
+          <div class="rail"></div>
+          <div class="commits-list">
+            @for (commit of commits(); track commit.id) {
+            <div class="commit-row fade-in">
+              <div class="node"></div>
+              <span class="hash">{{ commit.id }}</span>
+              <span class="msg">{{ commit.msg }}</span>
+              <span class="time">{{ commit.time }}</span>
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>

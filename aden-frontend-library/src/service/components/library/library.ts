@@ -421,11 +421,83 @@ export class Library {
           name: 'Git & GitHub Basics',
           route: '/guides/github-basics',
           type: 'guide',
-          description: 'Essential Git and GitHub commands, workflows and best practices for daily development.',
-          readingTime: '6 min',
+          description: 'Core Git concepts and essential commands to get started with version control and GitHub.',
+          readingTime: '8 min',
           level: 'Beginner',
           premium: false
-        }
+        },
+        {
+          name: 'Branches & Merging',
+          route: '/guides/branches-merging',
+          type: 'guide',
+          description: 'Learn how to work with branches, merge changes safely and structure your development flow.',
+          readingTime: '10 min',
+          level: 'Beginner',
+          premium: false
+        },
+        {
+          name: 'Merge Conflicts Explained',
+          route: '/guides/merge-conflicts',
+          type: 'guide',
+          description: 'Understand why merge conflicts happen and how to resolve them step by step with confidence.',
+          readingTime: '7 min',
+          level: 'Beginner',
+          premium: false
+        },
+        // {
+        //   name: 'Stashing',
+        //   route: '/guides/stashing',
+        //   type: 'guide',
+        //   description: 'How to temporarily save work, switch context and keep your working tree clean.',
+        //   readingTime: '5 min',
+        //   level: 'Beginner',
+        //   premium: false
+        // },
+        // {
+        //   name: 'GitHub Essentials',
+        //   route: '/guides/github-essentials',
+        //   type: 'guide',
+        //   description: 'Core GitHub features like Pull Requests, Reviews, Issues and Releases explained from real-world usage.',
+        //   readingTime: '9 min',
+        //   level: 'Beginner',
+        //   premium: false
+        // },
+        // {
+        //   name: 'Commit Messages',
+        //   route: '/guides/commit-messages',
+        //   type: 'guide',
+        //   description: 'Learn how to write meaningful commit messages that improve collaboration and project history.',
+        //   readingTime: '6 min',
+        //   level: 'Beginner',
+        //   premium: false
+        // },
+        // {
+        //   name: 'My Git Workflows',
+        //   route: '/guides/workflows',
+        //   type: 'guide',
+        //   description: 'Two practical Git workflows I use in real projects, explained with reasoning and trade-offs.',
+        //   readingTime: '8 min',
+        //   level: 'Advanced',
+        //   premium: false
+        // },
+        // {
+        //   name: 'Rebase, Tags & History',
+        //   route: '/guides/rebase-tags',
+        //   type: 'guide',
+        //   description: 'Learn how to clean up commit history, use rebase responsibly and manage releases with tags.',
+        //   readingTime: '10 min',
+        //   level: 'Advanced',
+        //   premium: true
+        // },
+        // {
+        //   name: 'Git History & Debugging',
+        //   route: '/guides/history-debugging',
+        //   type: 'guide',
+        //   description: 'Explore Git history, track changes and debug issues using powerful Git tools.',
+        //   readingTime: '9 min',
+        //   level: 'Advanced',
+        //   premium: true
+        // }
       ]
     },
     {

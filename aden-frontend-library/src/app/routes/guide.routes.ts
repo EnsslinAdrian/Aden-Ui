@@ -251,6 +251,70 @@ export const GUIDE_ROUTES: Routes = [
       breadcrumb: 'Git Basics'
     }
   },
+  {
+    path: 'guides/branches-merging',
+    loadComponent: () => import('../guides/git-ci-cd/branches-merging/branches-merging').then(m => m.BranchesMerging),
+    data: {
+      title: 'Branches & Merging',
+      description: 'Understand how branches work in Git and how to merge changes safely and efficiently.',
+      breadcrumb: 'Branches & Merging'
+    }
+  },
+  {
+    path: 'guides/merge-conflicts',
+    loadComponent: () => import('../guides/git-ci-cd/merge-conflicts/merge-conflicts').then(m => m.MergeConflicts),
+    data: {
+      title: 'Merge Conflicts Explained',
+      description: 'Learn why merge conflicts happen and how to resolve them step by step.',
+      breadcrumb: 'Merge Conflicts'
+    }
+  },
+  {
+    path: 'guides/git-stash',
+    loadComponent: () => import('../guides/git-ci-cd/stashing/stashing').then(m => m.Stashing),
+    data: {
+      title: 'Stashing & Temporary Changes',
+      description: 'Temporarily save your work, switch context and keep your working tree clean using git stash.',
+      breadcrumb: 'Git Stash'
+    }
+  },
+  {
+    path: 'guides/github-essentials',
+    loadComponent: () => import('../guides/git-ci-cd/github-essentials/github-essentials').then(m => m.GithubEssentials),
+    data: {
+      title: 'GitHub Essentials',
+      description: 'Learn essential GitHub features such as Pull Requests, Reviews, Issues and Releases.',
+      breadcrumb: 'GitHub Essentials'
+    }
+  },
+  {
+    path: 'guides/git-commit-messages',
+    loadComponent: () => import('../guides/git-ci-cd/commit-messages/commit-messages').then(m => m.CommitMessages),
+    data: {
+      title: 'Writing Better Commit Messages',
+      description: 'Learn how to write clear and meaningful commit messages that improve collaboration.',
+      breadcrumb: 'Commit Messages'
+    }
+  },
+  {
+    path: 'guides/git-workflows',
+    loadComponent: () => import('../guides/git-ci-cd/workflows/workflows').then(m => m.Workflows),
+    data: {
+      title: 'My Git Workflows',
+      description: 'Two practical Git workflows based on real-world project experience.',
+      breadcrumb: 'Git Workflows'
+    }
+  },
+  {
+    path: 'guides/rebase-history',
+    loadComponent: () => import('../guides/git-ci-cd/rebase-history/rebase-history').then(m => m.RebaseHistory),
+    canActivate: [premiumGuard],
+    data: {
+      title: 'Rebase History Control',
+      description: 'Learn how to clean up commit history, use rebase responsibly and manage releases with tags.',
+      breadcrumb: 'Git History'
+    }
+  },
 
   // -------------------------------------------------------------------------
   // Angular CLI & Tooling
