@@ -3,7 +3,6 @@ import { Typografie } from "../../shared/text/typografie/typografie";
 import { CommonModule } from '@angular/common';
 import { Badge } from '../../shared/ui/badge/badge';
 
-
 @Component({
   selector: 'app-updates',
   imports: [Typografie, CommonModule, Badge],
