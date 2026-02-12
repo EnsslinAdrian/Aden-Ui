@@ -3,11 +3,10 @@ import { Notice } from "../../../shared/ui/notice/notice";
 import { HeadlineGuides } from "../../../shared/ui/headline-guides/headline-guides";
 import { CustomAttributeDirective } from "./custom-attribute-directive/custom-attribute-directive";
 import { CodeBlockGuide } from "../../../shared/ui/code-block-guide/code-block-guide";
-import { Typografie } from "../../../shared/text/typografie/typografie";
 
 @Component({
   selector: 'app-directives',
-  imports: [Notice, HeadlineGuides, CustomAttributeDirective, CodeBlockGuide, Typografie],
+  imports: [Notice, HeadlineGuides, CustomAttributeDirective, CodeBlockGuide],
   templateUrl: './directives.html',
   styleUrl: './directives.scss',
 })

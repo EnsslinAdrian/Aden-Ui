@@ -13,17 +13,28 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 from dotenv import load_dotenv
 import os
+from kombu import Queue
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-load_dotenv(BASE_DIR / ".env")
+
+def running_in_docker():
+    return os.path.exists("/.dockerenv")
+
+ENV_ROOT = BASE_DIR.parent
+
+if running_in_docker():
+    load_dotenv(ENV_ROOT / ".env")
+else:
+    load_dotenv(ENV_ROOT / ".env.local")
+    
 
 # Quick-start development settings - unsuitable for production
 SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = os.getenv("DEBUG") == "True"
 AUTH_USER_MODEL = "auth_app.CustomUser"
 
-LEMON_SQUEEZY_WEBHOOK_SECRET = "Mf1Jmjh9SUg4vxXpPJGz"
+LEMON_SQUEEZY_WEBHOOK_SECRET = os.getenv("LEMON_SQUEEZY_WEBHOOK_SECRET")
 
 # Allowed hosts
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost").split(",")
@@ -71,7 +82,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'debug_toolbar',
-    'auth_app',
+    'auth_app.apps.AuthAppConfig',
     'premium_components_app',
     'meta_components_app',
 ]
@@ -134,15 +145,28 @@ CACHES = {
     }
 }
 
+CELERY_REDIS_PASSWORD = os.getenv("REDIS_PASSWORD")
 CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL")
 CELERY_RESULT_BACKEND = os.getenv("CELERY_RESULT_BACKEND")
 
 CELERY_ACCEPT_CONTENT = ["json"]
 CELERY_TASK_SERIALIZER = "json"
 CELERY_RESULT_SERIALIZER = "json"
-
 CELERY_TIMEZONE = "Europe/Berlin"
 CELERY_ENABLE_UTC = False
+
+CELERY_TASK_QUEUES = (
+    Queue("high"),
+    Queue("default"),
+    Queue("low"),
+)
+
+CELERY_TASK_DEFAULT_QUEUE = "default"
+
+CELERY_TASK_ROUTES = {
+    "auth_app.*": {"queue": "high"},
+}
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -177,10 +201,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 MEDIA_URL = "/media/"
-MEDIA_ROOT = "/app/media"
-
 STATIC_URL = "/static/"
-STATIC_ROOT = "/app/static"
+
+if running_in_docker():
+    MEDIA_ROOT = "/app/media"
+    STATIC_ROOT = "/app/static"
+else:
+    MEDIA_ROOT = os.getenv("LOCAL_DOCKER_MEDIA_ROOT")
+    STATIC_ROOT = os.getenv("LOCAL_DOCKER_STATIC_ROOT")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

@@ -3,12 +3,10 @@ import { Notice } from "../../../shared/ui/notice/notice";
 import { HeadlineGuides } from "../../../shared/ui/headline-guides/headline-guides";
 import { InteractiveDemo } from "./interactive-demo/interactive-demo";
 import { CodeBlockGuide } from "../../../shared/ui/code-block-guide/code-block-guide";
-import { Typografie } from "../../../shared/text/typografie/typografie";
-
 
 @Component({
   selector: 'app-auto-scroll',
-  imports: [Notice, HeadlineGuides, InteractiveDemo, CodeBlockGuide, Typografie],
+  imports: [Notice, HeadlineGuides, InteractiveDemo, CodeBlockGuide],
   templateUrl: './auto-scroll.html',
   styleUrl: './auto-scroll.scss',
 })

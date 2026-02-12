@@ -118,11 +118,29 @@ export const routes: Routes = [
   },
 
   {
-    path: 'legal-notice',
+    path: 'privacy-policy',
     loadComponent: () => import('./imprint/legal-notice/legal-notice').then(m => m.LegalNotice),
     data: {
       title: 'Privacy Policy',
       description: 'Information about the processing of your data.',
+      robots: 'noindex, nofollow'
+    }
+  },
+  {
+    path: 'terms',
+    loadComponent: () => import('./imprint/agb/agb').then(m => m.Agb),
+    data: {
+      title: 'Terms and Conditions',
+      description: 'General terms and conditions for the provision of services.',
+      robots: 'noindex, nofollow'
+    }
+  },
+  {
+    path: 'right-of-withdrawal',
+    loadComponent: () => import('./imprint/right-of-withdrawal/right-of-withdrawal').then(m => m.RightOfWithdrawal),
+    data: {
+      title: 'Right of Withdrawal',
+      description: 'Information about your right of withdrawal and how to exercise it.',
       robots: 'noindex, nofollow'
     }
   },

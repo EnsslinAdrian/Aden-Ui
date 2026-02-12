@@ -9,56 +9,199 @@ export class Library {
     {
       title: 'Form Controls',
       components: [
-        { name: 'Autocomplete', route: '/components/autocomplete', type: 'component', premium: false },
-        { name: 'Checkbox', route: '/components/checkbox', type: 'component', premium: false },
-        { name: 'Input', route: '/components/input', type: 'component', premium: false },
-        { name: 'Radio', route: '/components/radio', type: 'component', premium: false },
-        { name: 'Range', route: '/components/range', type: 'component', premium: false },
-        { name: 'Slider', route: '/components/slider', type: 'component', premium: false },
-        { name: 'Formfield', route: '/components/formfield', type: 'component', premium: false },
-        { name: 'Button', route: '/components/button', type: 'component', premium: false },
+        {
+          name: 'Autocomplete',
+          route: '/components/autocomplete',
+          type: 'component',
+          premium: false,
+          description: 'A smart input with real-time suggestions, keyboard navigation, and accessibility support.',
+          tags: ['Forms', 'Search', 'Accessibility']
+        },
+        {
+          name: 'Checkbox',
+          route: '/components/checkbox',
+          type: 'component',
+          premium: false,
+          description: 'A binary control for selecting multiple options with clear and accessible states.',
+          tags: ['Forms', 'Selection', 'Accessibility']
+        },
+        {
+          name: 'Input',
+          route: '/components/input',
+          type: 'component',
+          premium: false,
+          description: 'A versatile text input for everything from simple entries to validated form fields.',
+          tags: ['Forms', 'Text', 'Validation']
+        },
+        {
+          name: 'Radio',
+          route: '/components/radio',
+          type: 'component',
+          premium: false,
+          description: 'A single-choice control for clear, mutually exclusive selections.',
+          tags: ['Forms', 'Selection', 'Accessibility']
+        },
+        {
+          name: 'Range',
+          route: '/components/range',
+          type: 'component',
+          premium: false,
+          description: 'A numeric input for selecting values within a defined range.',
+          tags: ['Forms', 'Numeric', 'Controls']
+        },
+        {
+          name: 'Slider',
+          route: '/components/slider',
+          type: 'component',
+          premium: false,
+          description: 'An interactive control for adjusting values through direct manipulation.',
+          tags: ['Forms', 'Interaction', 'UX']
+        },
+        {
+          name: 'Formfield',
+          route: '/components/formfield',
+          type: 'component',
+          premium: false,
+          description: 'A wrapper that aligns labels, inputs, and validation into a consistent form layout.',
+          tags: ['Forms', 'Layout', 'Accessibility']
+        },
+        {
+          name: 'Button',
+          route: '/components/button',
+          type: 'component',
+          premium: false,
+          description: 'An action trigger designed to clearly communicate intent and interaction state.',
+          tags: ['Actions', 'Interaction', 'UX']
+        }
       ]
     },
     {
       title: 'Navigation',
       components: [
-        { name: 'Menu', route: '/components/menu', type: 'component', premium: false },
-        { name: 'Tap', route: '/components/tap', type: 'component', premium: false },
+        {
+          name: 'Menu',
+          route: '/components/menu',
+          type: 'component',
+          premium: false,
+          description: 'A structured navigation component for organizing actions and links efficiently.',
+          tags: ['Navigation', 'Layout', 'UX']
+        },
+        {
+          name: 'Tap',
+          route: '/components/tap',
+          type: 'component',
+          premium: false,
+          description: 'A compact tab-based navigation for switching between related views.',
+          tags: ['Navigation', 'Interaction', 'UX']
+        }
       ]
     },
-
     {
       title: 'Media & Interaction',
       components: [
-        { name: 'Drag and Drop', route: '/components/drag-and-drop', type: 'component', premium: false },
+        {
+          name: 'Drag and Drop',
+          route: '/components/drag-and-drop',
+          type: 'component',
+          premium: false,
+          description: 'An intuitive interaction pattern for moving and reordering content.',
+          tags: ['Interaction', 'UX', 'Reordering']
+        }
       ]
     },
-
     {
       title: 'Typography',
       components: [
-        { name: 'Text Component', route: '/components/text-component', type: 'component', premium: false }
+        {
+          name: 'Text Component',
+          route: '/components/text-component',
+          type: 'component',
+          premium: false,
+          description: 'A flexible text primitive for consistent typography and semantic styling.',
+          tags: ['Typography', 'Text', 'Accessibility']
+        }
       ]
     },
-
     {
       title: 'Layout',
       components: [
-        { name: 'Expansion-Panel', route: '/components/expansion-panel', type: 'component', premium: false },
-        { name: 'Grid', route: '/components/grid', type: 'component', premium: false },
-        { name: 'Scrollbar', route: '/components/scrollbar', type: 'component', premium: false },
+        {
+          name: 'Expansion-Panel',
+          route: '/components/expansion-panel',
+          type: 'component',
+          premium: false,
+          description: 'A collapsible container for progressively revealing content.',
+          tags: ['Layout', 'Interaction', 'UX']
+        },
+        {
+          name: 'Grid',
+          route: '/components/grid',
+          type: 'component',
+          premium: false,
+          description: 'A responsive layout system for structured and aligned content.',
+          tags: ['Layout', 'Grid', 'Responsive']
+        },
+        {
+          name: 'Scrollbar',
+          route: '/components/scrollbar',
+          type: 'component',
+          premium: false,
+          description: 'A customizable scrollbar that integrates seamlessly into layouts.',
+          tags: ['Layout', 'Scrolling', 'UX']
+        }
       ]
     },
-
     {
       title: 'Feedback & Indicators',
       components: [
-        { name: 'Dialog', route: '/components/dialog', type: 'component', premium: false },
-        { name: 'Tooltip', route: '/components/tooltip', type: 'component', premium: false },
-        { name: 'Progress', route: '/components/progress', type: 'component', premium: false },
-        { name: 'Snackbar', route: '/components/snackbar', type: 'component', premium: false },
-        { name: 'Badge', route: '/components/badge', type: 'component', premium: false },
-        { name: 'Confetti', route: '/components/confetti', type: 'component', premium: false },
+        {
+          name: 'Dialog',
+          route: '/components/dialog',
+          type: 'component',
+          premium: false,
+          description: 'A focused modal for confirmations and critical user decisions.',
+          tags: ['Feedback', 'Modal', 'UX']
+        },
+        {
+          name: 'Tooltip',
+          route: '/components/tooltip',
+          type: 'component',
+          premium: false,
+          description: 'A lightweight hint for contextual information.',
+          tags: ['Feedback', 'Accessibility', 'UX']
+        },
+        {
+          name: 'Progress',
+          route: '/components/progress',
+          type: 'component',
+          premium: false,
+          description: 'A visual indicator for loading states and task progress.',
+          tags: ['Feedback', 'Status', 'UX']
+        },
+        {
+          name: 'Snackbar',
+          route: '/components/snackbar',
+          type: 'component',
+          premium: false,
+          description: 'A brief message for system feedback and user actions.',
+          tags: ['Feedback', 'Notification', 'UX']
+        },
+        {
+          name: 'Badge',
+          route: '/components/badge',
+          type: 'component',
+          premium: false,
+          description: 'A compact indicator for status or supplementary information.',
+          tags: ['Indicator', 'Status', 'UI']
+        },
+        {
+          name: 'Confetti',
+          route: '/components/confetti',
+          type: 'component',
+          premium: false,
+          description: 'A celebratory effect for positive user moments.',
+          tags: ['Feedback', 'Animation', 'Delight']
+        }
       ]
     },
     // {

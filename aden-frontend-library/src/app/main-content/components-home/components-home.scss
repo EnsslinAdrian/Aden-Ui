@@ -1,8 +1,9 @@
 .overview-container {
   margin: 0 auto;
-  padding: 60px 40px;
+  padding: 80px 40px;
   box-sizing: border-box;
-  min-height: calc(100dvh - var(--header-height));
+  max-width: 1400px;
+  min-height: 100vh;
 
   @media (max-width: 768px) {
     padding: 40px 20px;
@@ -10,15 +11,33 @@
 }
 
 .page-header {
-  margin-bottom: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 80px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 40px;
 
   .subtitle {
-    margin-top: 12px;
+    margin-top: 16px;
     display: block;
+    max-width: 600px;
+    line-height: 1.6;
+  }
+
+  .header-decoration {
+    opacity: 0.5;
+    color: var(--accent-color);
   }
 
   @media (max-width: 768px) {
-    margin-bottom: 60px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+
+    .header-decoration {
+      display: none;
+    }
   }
 }
 
@@ -28,135 +47,191 @@
   gap: 80px;
 }
 
-.category-row {
-  display: grid;
-  grid-template-columns: 300px 1fr; // Feste Breite links, Rest rechts
-  gap: 40px;
-  align-items: start;
-
-  @media (max-width: 1024px) {
-    grid-template-columns: 1fr; // Mobile: Untereinander
-    gap: 24px;
-  }
+.category-section {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
 }
 
-// Linke Spalte
-.category-info {
-  position: sticky;
-  top: 100px; // Sticky Effekt beim Scrollen
+.category-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
 
   .cat-number {
     font-family: var(--font-mono);
+    color: var(--accent-color);
     font-size: 14px;
-    color: var(--accent-color); // Oder border-color für dezenter
-    margin-bottom: 16px;
-    display: block;
-    opacity: 0.8;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 4px 8px;
+    border-radius: 4px;
+  }
+}
+
+.components-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  width: 100%;
+
+  @media (max-width: 420px) {
+    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+  }
+}
+
+.guide-card {
+  display: flex;
+  justify-content: space-between;
+  text-decoration: none;
+  background: var(--bg-secondary, #121214); // Gleicher Background wie Guides
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 24px; // Kompakter für Komponenten
+  position: relative;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  min-height: 160px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 0%), rgba(255, 255, 255, 0.06), transparent 40%);
+    opacity: 0;
+    transition: opacity 0.5s;
+    pointer-events: none;
   }
 
-  .decoration-line {
-    width: 40px;
-    height: 2px;
-    background: var(--border-color);
-    margin-top: 24px;
+  /* --- PRO BADGE --- */
+  .pro-badge {
+    position: absolute;
+    top: 16px; right: 16px;
+    background: linear-gradient(135deg, #FFD700, #FDB931);
+    color: #000;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 4px 8px;
+    border-radius: 4px;
+    z-index: 5;
   }
 
-  @media (max-width: 1024px) {
-    position: static;
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    z-index: 2;
+    width: 100%;
+  }
+
+  .card-top {
     display: flex;
     align-items: center;
     gap: 16px;
 
-    .cat-number { margin: 0; }
-    .decoration-line { display: none; }
-  }
-}
-
-// Rechte Spalte: Grid
-.components-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 16px;
-}
-
-// Die "Tech Card"
-.tech-card {
-  text-decoration: none;
-  background: linear-gradient(145deg, rgba(24,24,27,0.6) 0%, rgba(9,9,11,1) 100%);
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-  padding: 24px;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 120px; // Feste Höhe für Einheitlichkeit
-
-  // Innerer Aufbau
-  .card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    z-index: 2;
-
-    .arrow {
-      color: var(--text-muted);
-      opacity: 0;
-      transform: translate(-5px, 5px); // Unten links versteckt
+    .icon-box {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      color: var(--primary-white);
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+      border: 1px solid rgba(255, 255, 255, 0.1);
       transition: all 0.3s ease;
     }
   }
 
-  .card-footer {
-    z-index: 2;
-    .tag {
-      font-family: var(--font-mono);
-      font-size: 10px;
+  .card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 12px;
+
+    .tag-type {
+      background: rgba(255, 255, 255, 0.05);
       color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
       padding: 4px 8px;
-      background: rgba(255,255,255,0.03);
-      border-radius: 4px;
-      transition: color 0.2s;
+      border-radius: 6px;
+      font-size: 10px;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.2s ease;
     }
   }
 
-  // Deko-Kreis im Hintergrund
-  .bg-decoration {
+  .hover-action {
     position: absolute;
-    right: -20px;
-    bottom: -20px;
-    width: 80px;
-    height: 80px;
-    background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
-    border-radius: 50%;
-    z-index: 1;
-    transition: transform 0.4s ease;
+    top: 24px; right: 24px;
+    color: var(--accent-color);
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+    z-index: 2;
   }
 
-  // HOVER STATES
-  &:hover {
-    border-color: var(--text-muted); // Hellerer Rand
+  /* --- STANDARD HOVER (Blaues Design) --- */
+  &:not(.locked):hover {
+    border-color: rgba(255, 255, 255, 0.2);
     transform: translateY(-4px);
-    box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+    background: #18181b;
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
 
-    .arrow {
+    &::before { opacity: 1; }
+
+    .icon-box {
+      background: var(--accent-color);
+      color: black; // Hier war der Fehler (vorher white)
+      border-color: var(--accent-color);
+      box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+    }
+
+    .hover-action {
       opacity: 1;
-      color: var(--primary-white);
-      transform: translate(0, 0); // Oben rechts
+      transform: translateX(0);
     }
 
-    .tag {
+    .tag-type {
+      border-color: var(--accent-color);
       color: var(--primary-white);
-      background: rgba(255,255,255,0.1);
+      background: rgba(59, 130, 246, 0.1);
+    }
+  }
+
+  /* --- PREMIUM HOVER (Goldenes Design) --- */
+  &.premium-content:not(.locked):hover {
+    border-color: rgba(255, 215, 0, 0.3);
+
+    .icon-box {
+      background: #FFD700;
+      color: #000;
+      border-color: #FFD700;
+      box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
     }
 
-    .bg-decoration {
-      transform: scale(1.5); // Glow wird größer
-      background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%); // Accent Color Glow (optional)
+    .hover-action {
+      color: #FFD700;
     }
+
+    .tag-type {
+      border-color: #FFD700;
+      color: #FFD700;
+      background: rgba(255, 215, 0, 0.05);
+    }
+  }
+
+  /* --- LOCKED STATE --- */
+  &.locked {
+    opacity: 0.6;
+    border-style: dashed;
+    cursor: not-allowed;
+
+    .icon-box { color: #555; }
   }
 }

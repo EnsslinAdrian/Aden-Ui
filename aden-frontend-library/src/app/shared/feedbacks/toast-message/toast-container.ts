@@ -3,7 +3,7 @@ import { ToastService } from '../../../../service/feedbacks/toast/toast';
 import { ToastMessage } from './toast-message'; // Importiere deine Child Component
 
 @Component({
-  selector: 'app-toasts-container', // Neuer Selector
+  selector: 'app-toasts-container', 
   standalone: true,
   imports: [ToastMessage],
   template: `
@@ -24,6 +24,13 @@ import { ToastMessage } from './toast-message'; // Importiere deine Child Compon
   gap: 12px;
   pointer-events: none;
   overflow: visible;
+
+  @media (max-width: 600px) {
+    right: 16px;
+    left: 16px;
+    bottom: 16px;
+    max-width: none;
+  }
 }
   `]
 })

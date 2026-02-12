@@ -15,7 +15,7 @@ class CustomUserAdmin(UserAdmin):
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
         ('Persönliche Infos', {'fields': ('first_name', 'last_name', 'photo', 'bio', 'github_url', 'linkedin_url', 'username')}),
-        ('Abo & Status', {'fields': ('plan', 'is_premium', 'lemon_customer_id', 'lemon_subscription_id')}),
+        ('Abo & Status', {'fields': ('plan', 'is_premium', 'lemon_customer_id', 'lemon_subscription_id', 'lemon_order_portal_url')}),
         ('Berechtigungen', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
         ('Wichtige Daten', {'fields': ('last_login', 'date_joined', 'updated_at')}),
     )

@@ -14,10 +14,14 @@ export class ProfileSubscription {
   @Input() user: any;
 
   manageSubscription() {
-    const portalUrl = 'https://aden-ui.lemonsqueezy.com/billing';
-    window.open(portalUrl, '_blank');
+    // Wenn wir den Link vom Webhook bekommen haben, nutzen wir ihn
+    if (this.user.lemon_order_portal_url) {
+      window.open(this.user.lemon_order_portal_url, '_blank');
+    } else {
+      const portalUrl = 'https://aden-ui.lemonsqueezy.com/billing';
+      window.open(portalUrl, '_blank');
+    }
   }
-
 
 
 

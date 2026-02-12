@@ -1,44 +1,57 @@
-<div class="dialog-overlay fade-in" (click)="onClose()">
-
+<div class="dialog-overlay fade-in onest-font" (click)="onClose()">
   <div class="premium-card scale-in" (click)="$event.stopPropagation()">
 
     <!-- Dekorativer Header -->
     <div class="premium-header">
       <div class="glow-orb"></div>
-      <div class="badge">LIFETIME ACCESS</div>
-      <h2>Unlock Full Potential</h2>
-      <p>Become a Pro member and build enterprise apps faster.</p>
+      <div class="badge-container">
+        <span class="premium-badge">LIFETIME ACCESS</span>
+      </div>
+
+      <h2 class="premium-title">Unlock Full Potential</h2>
+
+      <app-typografie text="Professional tools for enterprise-grade applications." size="small" color="white-80"
+        [weight]="400" align="center">
+      </app-typografie>
     </div>
 
     <!-- Pricing Section -->
     <div class="price-section">
-      <span class="currency">€</span>
-      <span class="amount">49</span>
-      <span class="period">/ one-time</span>
+      <div class="price-row">
+        <span class="amount">{{ price }}</span>
+        <span class="currency">€</span>
+      </div>
+      <app-typografie text="ONE-TIME PAYMENT" size="xxsmall" color="green" [weight]="800" align="center">
+      </app-typografie>
     </div>
 
     <!-- Feature List -->
-    <ul class="feature-list">
+    <div class="feature-container">
       @for (feat of features; track feat) {
-      <li>
-        <span class="check-icon">✓</span>
-        {{ feat }}
-      </li>
+      <div class="feature-item">
+        <div class="check-wrapper">
+          <span class="check-icon">✓</span>
+        </div>
+        <app-typografie [text]="feat" size="small" color="white" [weight]="500"></app-typografie>
+      </div>
       }
-    </ul>
+    </div>
 
     <!-- Footer Actions -->
     <div class="dialog-footer">
-      <p class="guarantee">
-        Secure payment via LemonSqueezy. <br>
-        Digital goods are non-refundable.
-      </p>
+      <div class="guarantee-box">
+        <app-typografie text="Secure payment via LemonSqueezy. Digital goods are non-refundable." size="xxsmall"
+          color="grey" [weight]="400" align="center">
+        </app-typografie>
+      </div>
 
-      <button class="btn-checkout" (click)="buyLifetime()">
+      <button class="btn-upgrade" (click)="buyLifetime()">
         Get Instant Access 🚀
       </button>
 
-      <button class="btn-cancel" (click)="onClose()">Maybe later</button>
+      <button class="btn-cancel" (click)="onClose()">
+        <app-typografie text="Maybe later" size="xsmall" color="grey" [weight]="500" align="center"></app-typografie>
+      </button>
     </div>
 
   </div>

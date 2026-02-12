@@ -1,12 +1,10 @@
 @if (meta(); as m) {
 <div class="meta-header">
 
-  <!-- LEFT: Title & Status Badge -->
   <div class="meta-left">
     <div class="title-wrapper">
       <h2 class="comp-title">{{ m.title }}</h2>
 
-      <!-- Premium Status Check -->
       @if(isPremium()) {
       <app-pro-badge></app-pro-badge>
       }
@@ -14,18 +12,14 @@
     <p class="comp-desc">{{ m.description }}</p>
   </div>
 
-  <!-- RIGHT: Actions & Author -->
   <div class="meta-right">
 
-    <!-- Action Buttons (Like / Save) -->
     <div class="action-group">
-      <!-- LIKE BUTTON: Löst likeClicked aus -->
       <button class="action-btn" [class.active]="isLiked()" (click)="likeClicked.emit()" title="Like">
         <span class="heart-icon">♥</span>
         <span class="count">{{ likeCount() }}</span>
       </button>
 
-      <!-- SAVE BUTTON: Löst saveClicked aus -->
       <button class="action-btn save" [class.active]="isSaved()" (click)="saveClicked.emit()" title="Save">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -36,10 +30,9 @@
 
     <div class="divider"></div>
 
-    <!-- AUTHOR PROFILE -->
     @if (author(); as auth) {
     <a [routerLink]="['/profile', auth.username]" class="author-chip">
-      <img [src]="auth.photo || 'assets/images/default-user.png'" alt="{{ auth.first_name }}" class="author-img">
+      <img [src]="auth.photo || 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNTI1MjViIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cGF0aCBkPSJNMjAgMjF2LTJhNCA0IDAgMCAwLTQtNEg4YTQgNCAwIDAgMC00IDR2MiIvPjxjaXJjbGUgY3g9IjEyIiBjeT0iNyIgcj0iNCIvPjwvc3ZnPg=='" alt="{{ auth.first_name }}" class="author-img">
 
       <div class="author-info">
         <span class="by-label">Created by</span>

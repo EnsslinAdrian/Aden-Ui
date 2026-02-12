@@ -2,6 +2,10 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Permis
 from django.db import models
 from django.core.files.base import ContentFile
 from auth_app.api.utils.image_utils import optimize_user_image
+import os
+
+def user_profile_upload_path(instance, filename):
+    return f"profile_images/{filename}"
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
@@ -23,7 +27,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True)
     first_name = models.CharField(max_length=150, blank=True)
     last_name = models.CharField(max_length=150, blank=True)
-    photo = models.ImageField(upload_to='profile_images/', blank=True, null=True)
+    photo = models.ImageField( upload_to=user_profile_upload_path, blank=True, null=True)
     bio = models.TextField(blank=True, null=True)
     github_url = models.URLField(blank=True, null=True)
     linkedin_url = models.URLField(blank=True, null=True)
@@ -33,6 +37,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     lemon_customer_id = models.CharField(max_length=200, blank=True, null=True)
     lemon_subscription_id = models.CharField(max_length=200, blank=True, null=True)
+    lemon_order_portal_url = models.URLField(max_length=500, blank=True, null=True) 
 
     date_joined = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -46,22 +51,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     objects = CustomUserManager()
 
     def save(self, *args, **kwargs):
-        try:
-            old_photo = CustomUser.objects.get(pk=self.pk).photo
-        except CustomUser.DoesNotExist:
-            old_photo = None
-
         super().save(*args, **kwargs)
-
-        # Bild optimieren (ausgelagert!)
-        if self.photo:
-            optimized_file = optimize_user_image(self.photo, self.pk)
-            self.photo.save(optimized_file.name, optimized_file, save=False)
-            super().save(update_fields=["photo"])
-
-        # Altes Bild löschen
-        if old_photo and old_photo != self.photo:
-            old_photo.delete(save=False)
 
     def __str__(self):
         return self.email

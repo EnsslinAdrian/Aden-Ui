@@ -6,6 +6,7 @@ from auth_app.api.utils.generate_username import generate_unique_username
 from meta_components_app.models import Component
 from django.db.models import Sum
 from meta_components_app.models import Component, ComponentSave 
+from auth_app.api.utils.image_utils import optimize_user_image
 
 class MemberComponentSerializer(serializers.ModelSerializer):
     class Meta:
@@ -38,11 +39,9 @@ class RegisterSerializer(serializers.ModelSerializer):
 
    
 class UserDetailSerializer(serializers.ModelSerializer):
-    photo = AbsoluteImageUrlField(required=False, allow_null=True)
+    photo = serializers.ImageField(required=False)
     github_url = serializers.URLField(required=False, allow_null=True, allow_blank=True)
     linkedin_url = serializers.URLField(required=False, allow_null=True, allow_blank=True)
-
-    # Die Listen & Stats
     created_components = serializers.SerializerMethodField()
     saved_components = serializers.SerializerMethodField()
     total_likes = serializers.SerializerMethodField() 
@@ -52,30 +51,43 @@ class UserDetailSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'email', 'username', 'first_name', 'last_name',
             'photo', 'bio', 'github_url', 'linkedin_url',
-            'plan', 'is_premium', 'date_joined', 'updated_at',
-            # Listen & Stats
-            'created_components',
-            'saved_components',
-            'total_likes'
+            'plan', 'is_premium', 'lemon_order_portal_url', 'date_joined', 'updated_at',
+            'created_components', 'saved_components', 'total_likes'
         ]
-        read_only_fields = ['id', 'email', 'username', 'plan', 'is_premium', 'date_joined', 'updated_at']
+        read_only_fields = ['id', 'email', 'username', 'plan', 'is_premium', 'lemon_order_portal_url', 'date_joined', 'updated_at']
 
     def get_created_components(self, obj):
-        # Anforderung 3: Eigene Components anzeigen
         comps = Component.objects.filter(author=obj).order_by('-created_at')
         return MemberComponentSerializer(comps, many=True).data
 
     def get_saved_components(self, obj):
-        # Anforderung 1: Gespeicherte Components (Favoriten)
-        # Nutzt die ComponentSave Tabelle
         saved_ids = ComponentSave.objects.filter(user=obj).values_list('component_id', flat=True)
         comps = Component.objects.filter(id__in=saved_ids).order_by('-created_at')
         return MemberComponentSerializer(comps, many=True).data
 
     def get_total_likes(self, obj):
-        # Anforderung 2: Wie viele Likes habe ich auf meine Components bekommen?
         return obj.components.aggregate(total=Sum('likes_count'))['total'] or 0
-
+    
+    def update(self, instance, validated_data):
+        new_photo = validated_data.pop("photo", None)
+    
+        if new_photo:
+            # 🔥 ALTES BILD LÖSCHEN
+            if instance.photo:
+                if instance.photo.storage.exists(instance.photo.name):
+                    instance.photo.delete(save=False)
+    
+            # 🔥 NEUES BILD OPTIMIEREN (Name kommt vom Upload)
+            optimized = optimize_user_image(new_photo)
+    
+            instance.photo.save(
+                optimized.name,
+                optimized,
+                save=False
+            )
+    
+        return super().update(instance, validated_data)
+    
 
 class PublicUserSerializer(serializers.ModelSerializer):
     photo = AbsoluteImageUrlField(required=False, allow_null=True)

@@ -1,6 +1,3 @@
-// ui-playground-header.scss
-
-// WICHTIG: Diese Variable muss hier definiert werden, da sie nicht vererbt wird!
 $gold-gradient: linear-gradient(135deg, #FFD700 0%, #FDB931 100%);
 
 .meta-header {
@@ -14,6 +11,10 @@ $gold-gradient: linear-gradient(135deg, #FFD700 0%, #FDB931 100%);
 
   @media (max-width: 768px) {
     flex-direction: column;
+  }
+
+  @media (max-width: 420px) {
+    padding: 14px;
   }
 }
 
@@ -73,12 +74,21 @@ $gold-gradient: linear-gradient(135deg, #FFD700 0%, #FDB931 100%);
   display: flex;
   align-items: center;
   gap: 16px;
+
+  @media (max-width: 420px) {
+    width: 100%;
+    justify-content: space-between;
+    flex-direction: column-reverse;
+  }
 }
 
-/* --- ACTIONS (Like/Save) --- */
 .action-group {
   display: flex;
   gap: 8px;
+
+  @media (max-width: 420px) {
+    width: 100%;
+  }
 
   .action-btn {
     background: rgba(255, 255, 255, 0.03);
@@ -93,6 +103,11 @@ $gold-gradient: linear-gradient(135deg, #FFD700 0%, #FDB931 100%);
     gap: 6px;
     font-family: var(--main-font);
     transition: all 0.2s ease;
+
+    @media (max-width: 420px) {
+      width: 100%;
+      justify-content: center;
+    }
 
     &:hover {
       background: var(--bg-hover);
@@ -126,9 +141,12 @@ $gold-gradient: linear-gradient(135deg, #FFD700 0%, #FDB931 100%);
   width: 1px;
   height: 24px;
   background: var(--border-color);
+
+  @media (max-width: 420px) {
+    display: none !important;
+  }
 }
 
-/* --- AUTHOR CHIP --- */
 .author-chip {
   display: flex;
   align-items: center;
@@ -139,6 +157,11 @@ $gold-gradient: linear-gradient(135deg, #FFD700 0%, #FDB931 100%);
   border-radius: 50px;
   text-decoration: none;
   transition: all 0.2s ease;
+
+  @media (max-width: 420px) {
+    width: 100%;
+    justify-content: center;
+  }
 
   .author-img {
     width: 32px;

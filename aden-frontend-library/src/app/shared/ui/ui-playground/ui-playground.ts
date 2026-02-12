@@ -6,6 +6,8 @@ import { UserProfileService } from '../../../../service/user/userProfile/user-pr
 import { ComponentInteraction } from '../../../../service/components/component-interaction/component-interaction';
 import { UiPlaygroundHeader } from "./ui-playground-header/ui-playground-header";
 import { UiPlaygroundCode } from "./ui-playground-code/ui-playground-code";
+import { ToastService } from '../../../../service/feedbacks/toast/toast';
+import { AuthenticationService } from '../../../../service/auth/authentication/authentication';
 
 type Tab = 'preview' | 'code' | 'install';
 type CodeLang = 'html' | 'scss' | 'ts';
@@ -20,8 +22,9 @@ export class UiPlayground {
   private router = inject(Router);
   protected userProfile = inject(UserProfileService);
   private interactionService = inject(ComponentInteraction);
+  private toastService = inject(ToastService);
+  private authService = inject(AuthenticationService);
 
-  // --- INPUTS (Code Strings) ---
   htmlCode = input<string>('');
   scssCode = input<string>('');
   tsCode = input<string>('');
@@ -32,7 +35,7 @@ export class UiPlayground {
   // --- STATE ---
   activeTab = signal<Tab>('preview');
   activeCodeLang = signal<CodeLang>('html');
-  copied = signal(false); 
+  copied = signal(false);
 
   // Dynamic Data
   likeCount = signal(0);
@@ -75,54 +78,70 @@ export class UiPlayground {
     });
   }
 
-  toggleLike() {
-    if (!this.meta || !this.meta.slug) return;
-
-    const currentLikes = this.likeCount();
-    const currentlyLiked = this.isLiked();
-
-    // Optimistic Update
-    this.isLiked.set(!currentlyLiked);
-    this.likeCount.set(currentlyLiked ? currentLikes - 1 : currentLikes + 1);
-
-    this.interactionService.toggleLike(this.meta.slug).subscribe({
-      next: (res) => {
-        this.likeCount.set(res.likes_count);
-        // Optional: Wenn es eigene Component ist, Profil neu laden (für Total Likes)
-        if (this.isComponentPremium()) {
-          this.userProfile.loadProfile().subscribe();
-        }
-      },
-      error: () => {
-        // Rollback bei Fehler
-        this.isLiked.set(currentlyLiked);
-        this.likeCount.set(currentLikes);
-      }
-    });
+toggleLike() {
+  // 1. Check: Ist der User eingeloggt?
+  if (!this.authService.isAuthenticated()) {
+    this.toastService.add(
+      'You need an account to like components',
+      'info'
+    );
+    return;
   }
 
-  toggleSave() {
-    if (!this.meta || !this.meta.slug) return;
+  if (!this.meta || !this.meta.slug) return;
 
-    const user = this.userProfile.profile();
-    if (!user) {
-      this.redirectToLogin();
+  const componentName = this.meta.title || 'Component';
+  const currentLikes = this.likeCount();
+  const currentlyLiked = this.isLiked();
+
+  this.isLiked.set(!currentlyLiked);
+  this.likeCount.set(currentlyLiked ? currentLikes - 1 : currentLikes + 1);
+
+  this.interactionService.toggleLike(this.meta.slug).subscribe({
+    next: (res) => {
+      this.likeCount.set(res.likes_count);
+      if (this.isComponentPremium()) {
+        this.userProfile.loadProfile().subscribe();
+      }
+    },
+    error: () => {
+      this.isLiked.set(currentlyLiked);
+      this.likeCount.set(currentLikes);
+      this.toastService.add(`Could not like ${componentName}. Please try again.`, 'error');
+    }
+  });
+}
+
+  toggleSave() {
+    if (!this.authService.isAuthenticated()) {
+      this.toastService.add(
+        'Create an account to save your favorite components',
+        'info'
+      );
       return;
     }
 
+    if (!this.meta || !this.meta.slug) return;
+
+    const componentName = this.meta.title || 'Component';
     const currentSaved = this.isSaved();
-    // Optimistic Update
+
     this.isSaved.set(!currentSaved);
 
     this.interactionService.toggleSave(this.meta.slug).subscribe({
       next: (res) => {
-        // Profil neu laden, damit es in der "Saved" Liste erscheint
         this.userProfile.loadProfile().subscribe();
+
+        const msg = !currentSaved
+          ? `Successfully saved ${componentName}!`
+          : `Removed ${componentName} from your collection`;
+
+        this.toastService.add(msg, 'success');
       },
       error: (err) => {
         console.error('Fehler beim Speichern', err);
-        // Rollback
-        this.isSaved.set(currentSaved);
+        this.isSaved.set(currentSaved); 
+        this.toastService.add(`Failed to save ${componentName}.`, 'error');
       }
     });
   }
